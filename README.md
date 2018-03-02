@@ -1,8 +1,8 @@
-# Python 3, an illustrated tour
+# Python 3, an Illustrated Tour
 
-Course materials and handouts for the [Python 3, an illustrated tour course](https://training.talkpython.fm/courses/explore_python3/python-3-illustrated-tour).
+Course materials and handouts for the [Python 3, an Illustrated Tour course](https://training.talkpython.fm/courses/explore_python3/python-3-illustrated-tour).
 
-[![Python 3, an illustrated tour](./readme_resources/illustrated-python-3.png)](https://training.talkpython.fm/courses/explore_python3/python-3-illustrated-tour)
+[![Python 3, an Illustrated Tour](./readme_resources/illustrated-python-3.png)](https://training.talkpython.fm/courses/explore_python3/python-3-illustrated-tour)
 
 ## Course Summary
 
