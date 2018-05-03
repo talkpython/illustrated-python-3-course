@@ -8,8 +8,7 @@ def test_other():
 
     vals = range(42, 2_000_000, 32)
 
-    assert hex(hun) == '0xcaa'
-
+    assert hex(hun) == '0xc8a'
     def fn(x):
         return x + 10
 
