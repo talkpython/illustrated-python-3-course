@@ -1,0 +1,103 @@
+00:00 So let's look at an example of using the mypy tool.
+00:03 I'm going to add typing to a little project I have, it's a markov chain,
+00:08 so you can check out this GitHub repository if you want to look at it,
+00:11 but here's how I do it, I'm in a virtual environment
+00:14 and I say pip install mypy, that's going to go out and fetch the mypy tool
+00:17 and I'm going to clone this GitHub repository that I have,
+00:20 and I'll change into that directory,
+00:22 and in there, there's a file called markov.py, I'm just going to run mypy,
+00:26 which gets installed as a binary when I install the mypy tool
+00:30 and I run that on markov.py and it will return no output.
+00:34 And again, why this returns no output is because mypy supports gradual typing
+00:39 it ignores code that doesn't have annotations and this code didn't have any annotations,
+00:44 so it's not going to have any output there.
+00:46 If I want to get a little bit more ambitious, I can put -- strict after mypy
+00:50 that turns on a bunch of features
+00:53 and I'm going to get a bunch of warnings or errors from the results here,
+00:57 it's going to say this function is missing a type annotation
+00:59 we're calling some other functions in a type context and they're not typed.
+01:04 And so these are the sorts of things that mypy can find for us.
+01:08 Again, note that it also supports this gradual typing
+01:11 and so if we leave off the strict,
+01:13 it's just going to ignore anything that we haven't annotated.
+01:16 So here are a few hints for adding annotations,
+01:18 2 ways that you can do it, you can start from the outside code that gets called
+01:22 and calls other code and start calling annotating this outer code,
+01:26 alternatively you can start wrapping inside code that gets called and annotating that first.
+01:32 Either one of those will work.
+01:35 What is important for me is if I've got a public interface,
+01:38 I want to make sure that there's typing around it
+01:41 and that it's clear what comes in and out.
+01:44 So I'm going to start annotating something that I think is important
+01:48 and I'm going to run the mypy on some file.
+01:51 It might complain because it's going to start type checking where I've annotated
+01:55 and then I might need to go in and fix things or add more annotations.
+01:59 And if I want to get ambitious again, I can use this -- strict
+02:03 and that will turn on a bunch of flags and add a bunch more checks for me.
+02:08 But basically, after I've gone through this process on my markov file here,
+02:12 I'll have a dif that looks something like this.
+02:15 So I'm going to end up importing from the typing module the dict and list types
+02:21 and I'm going to make a table result variable here or type
+02:26 and it's going to be this structure here.
+02:29 It's going to be a dictionary that maps a string to another dictionary
+02:33 and inside that dictionary, we map a string to account.
+02:36 So this code if you're not familiar with it, it creates a markov chain
+02:40 a markov chain takes input and gives you some output based on what your input is,
+02:45 and in this case, markov chain is typically used in text prediction
+02:49 or if you're typing, predicting what characters to come next
+02:53 and so you can feed a paragraph or a bunch of text into this
+02:56 and it will be able to tell you if I have a, what comes after a,
+03:00 after a comes maybe p because we're spelling apple or something like that.
+03:05 That's the tooling that the markov chain allows you to do.
+03:09 And so here in my constructor here, I've got data that's coming in
+03:12 and I've got size that's an optional value here.
+03:15 And when I annotate that, I'm going to say data is going to be a string,
+03:20 size is going to be an int and my constructor returns none.
+03:24 This is the way that you annotate a constructor.
+03:28 Also note that I've got a variable here, an instance variable called self.tables,
+03:33 and I am annotating that and that is going to be a list of table results.
+03:37 So maybe you can see the reason why I made this table result variable here or type
+03:42 is because it makes it a little bit more clear
+03:44 I would have this nested list of dictionaries of dictionaries
+03:48 and I can just clearly read that this is a list of table results.
+03:51 Here's another method that got type annotated.
+03:54 So predict takes a string of input.
+03:57 So we've annotated that and returns the string that's going to come after that input
+04:02 if we feed an a we should get p out, something like that
+04:05 and you'll note that I annotated just the method parameters
+04:09 and the method what it returns, but there is one more annotation in here.
+04:13 I didn't annotate a bunch of the variables inside of here
+04:16 because mypy didn't complain about those,
+04:18 but it did complain about this guy down here
+04:21 and the reason is because I've got a variable called result
+04:25 that is looping over this options.items collection,
+04:29 and then I'm also reusing that same variable result down later
+04:33 to randomly choose out of my possible guys what comes next
+04:38 because I'm looping over something that might be empty,
+04:42 in this case result could be none and that confuses mypy
+04:47 but what's really happening here is this is actually indicated
+04:50 that my reuse of this variable, this was a bug on my part,
+04:55 I shouldn't have reused this variable name
+04:57 and so mypy said, well, you've either got to type it or change the name.
+05:01 So in this case, I add the typing and mypy doesn't complain about it anymore.
+05:05 But the correct thing to do here would be to actually change that variable name.
+05:09 You could call this, this is the input and count rather than the resulting count there.
+05:15 Here's another example of the annotation that I added
+05:19 this get table function accepts a line, which is a string
+05:22 and the number of characters that we're going to process as input.
+05:26 So we could process a single character after a comes p,
+05:29 but we could also say I want to process a and p
+05:31 and after a and p comes another p for apple or whatnot,
+05:34 if you add more memory to this markov chain,
+05:37 it makes better predictions and can make sentences or paragraphs or that sort of thing.
+05:41 And we're going to also say that this get table returns a table result,
+05:45 recall that I defined this table result couple slides back, which is a nested dictionary here.
+05:50 But again, it's a lot more readable to have this table result defined
+05:54 and reuse that table result rather than throwing this nested code around all over the place
+06:01 table result is very clear and should make sense.
+06:05 So after doing that, I think my code is more clear, it should be more clear
+06:09 and people who are coming to it should have a very good understanding
+06:13 of what is the input and what is the output.
+06:16 I also found a possible bug by reusing the result variable
+06:19 so I could annotate that, in retrospect I should have just renamed the variable
+06:23 but mypy can help you find these sorts of issues.

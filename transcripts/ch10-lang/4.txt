@@ -1,0 +1,92 @@
+00:00 In this video, we're going to look at the unpack test assignment.
+00:03 I'm using PyCharm so I'm going to expand my directory here
+00:06 and click on unpack test.
+00:10 We can see at the bottom here that when we execute this file,
+00:13 it will try and run pytest against it
+00:15 and we can see that PyCharm is complaining about various names that are missing.
+00:19 Let's read the assignment and see what we need to do.
+00:21 It says given the tuple person, which is defined right here,
+00:25 unpack the values into name, age and country.
+00:28 So person is a tuple with a string which appears to be the name
+00:33 a number which looks like it's the age
+00:36 and a string which appears to be a country.
+00:39 One way to do this would be to say name is equal to person 0, index position 0
+00:44 and age is equal to person 1, and country is equal to person 2.
+00:52 Let's run and make sure it works,
+00:54 note that because I just opened this and I had previously run vm.test
+00:57 If I say run here, it's not going to run this file
+01:00 a couple things I can do, I can right click here and say run unpack test.
+01:04 I can also run it from over here by right clicking on the file
+01:08 and running it over there.
+01:10 There's also a command line shortcut, it's control shift F10.
+01:13 Let's try and do that and see what happens when we run this.
+01:15 Okay, so it appears that I got to line 21.
+01:22 There is one failure pytest ran and so it appeared
+01:26 that we made this first part work.
+01:28 Now, we really didn't do an unpack operation
+01:31 what an unpack operation does is it says
+01:33 I know that a sequence contains a certain amount of items
+01:36 and I want to in a single assignment
+01:39 with commas in between the variable names pull those out.
+01:42 So this is how we would do the unpack here.
+01:45 We would say name, age, country is equal to person,
+01:51 let's just run that again to make sure it still works.
+01:53 Okay, we still get the name around the next part.
+01:56 So that's how we do basic unpacking and this works in Python 2 & 3.
+01:59 Let's look at extended unpacking,
+02:01 extended unpacking remember is where we put a star in front of a variable.
+02:05 So it says use unpacking to get the first letter of the name, store the result in first.
+02:10 So one way to do this is just to say name is a string
+02:14 and let's pull off the first character, first is equal to that.
+02:16 If we want to do this using unpacking though or extended unpacking,
+02:20 one way would be to say first, second, third
+02:27 but we don't know how many, perhaps we don't know,
+02:30 in this case we do know how many characters there are
+02:32 but it'd be kind of annoying to type all those out
+02:34 and if the length is dynamic, it's not going to work.
+02:38 What Python allows us to do is put a little star in front of the next variable
+02:41 and just say something like rest
+02:43 and what's going to happen here is first will be the first item of the sequence
+02:47 and rest will be a list containing the rest of the items.
+02:50 I'm going to use a feature of PyCharm here to just put a breakpoint in here
+02:57 and now I'm going to click the bug up here and let's inspect what's going on.
+03:01 I want to look at rest and it looks like rest is a list and it has a length of 0 .
+03:13 Let's see what name is or first, first is c.
+03:18 Okay, so it looked like it didn't pull out rest
+03:23 or PyCharm thinks that it's an empty list, which is interesting.
+03:27 Oh, that's because I have an error.
+03:30 I'm going to hit play and just fix my error here.
+03:33 The problem is because I gave it a list of length 1 because I left the 0 up here.
+03:38 Let's get rid of that and let's debug it again.
+03:41
+03:43 Okay, in this case now rest is a list
+03:45 and it has each of the characters in there.
+03:48 So when you put a star in front of it, that's just going to make a list
+03:51 and put the remaining items in there.
+03:53 And because a list can be variable length in Python
+03:56 this will support arbitrary length of names there.
+04:00 Okay the final assignment here is
+04:05 unpack the characters from name into a list called letters.
+04:08
+04:10 So one way to do this, you could say letters is equal to list of name
+04:14 and that should work.
+04:17
+04:20 It appears to work, but we want to use unpacking to this,
+04:24 in particular, we want to use extended unpacking.
+04:26 So let's try and do it extended unpacking has remember that little star in front of it
+04:31 *letters is equal to name.
+04:35 Let's run that and see what happens.
+04:39 I get a syntax error starred assignment target must be in a list or a tuple.
+04:44 So what that means is that I can't have a standalone variable with a star in front of it,
+04:49 Python 3 requires that I put that comma right there
+04:52 to indicate that we're going to unpack this into a list.
+04:57 Let's try it now and it looks like we get the right thing.
+05:00 So hopefully you've learned a little bit about unpacking
+05:06 and extended unpacking in Python 3.
+05:08 This is a great way to pull out either the first or the last of a sequence.
+05:12 Remember that when you use the extended unpacking
+05:15 with a star in front of something,
+05:17 there has to be at least more than one variable
+05:20 or you have to put a comma following it,
+05:22 also recall that when you use extended unpacking
+05:24 with a star in front of the variable name, that variable will be turned into a list.

@@ -1,0 +1,43 @@
+00:00 So here's an example of parallelism.
+00:02 We talked about concurrency here, we have three Python processes
+00:05 and each of them is going to create their own painting.
+00:08 And so the first one can do a little bit of work and do a little more work
+00:11 and if I had multiple cores, if I had at least three cores
+00:15 while that one was running this other process could be doing his work
+00:18 and another process could be doing its work,
+00:20 and so we can see that this takes about a third as much time
+00:24 as our prior concurrent version, if we are able to do this in a parallel manner.
+00:29 Now, let's go back to our concurrent way when we have one Python process
+00:33 and let's think about maybe painting a little bit more
+00:37 if you've painted a little bit, you might know
+00:39 that when you're painting you put some paint on the canvas
+00:42 or if you're water coloring you get the paper wet and then you paint on it
+00:47 and then typically you have some period after you've painted where you let it dry.
+00:51 And so we're going to just put on some grey blocks here
+00:54 and this grey block indicates that the paint is drying,
+00:56 now, if you are painting three paintings,
+01:00 it could be the case that you paint and then dry and wait for that drying
+01:04 and then start working on the next one.
+01:07 And this would be a synchronous manner of doing that
+01:09 but you'll note that all this drying time here with the gray drying time,
+01:13 you're not really painting, you're just waiting for it to dry.
+01:15 So that could be wasted time.
+01:17 If we move this to an asynchronous model and the asynchronous model says
+01:21 if I'm going to be waiting on something
+01:24 and I know that at some point it will be done,
+01:26 as soon as I need to start waiting, like I start painting and then I start waiting here,
+01:31 I'm going to say go ahead and wait, but I'm not going to wait till you're done drying,
+01:36 I'm just going to go off and I'm going to start painting on my next guy
+01:39 until he needs to dry, and then I'm going to start painting on my next guy
+01:43 and I'm going to repeat that.
+01:45 And that way I can take advantage of this drying time or whatnot.
+01:50 This grey indicates drying time.
+01:53 This is similar to code in the real world.
+01:55 There is some code where you do some CPU heavy work,
+01:58 but then you have some work that's what we call IO bound
+02:01 where it's going over the network or it's going over the file system
+02:05 and Python is not really doing anything, but it's waiting for data to come back.
+02:09 So this is what we call IO bound
+02:12 and if you have something that's IO bound and you have lots of IO bound stuff,
+02:17 then you can take advantage of this asynchronous way of programming
+02:21 to not worry about IO bound stuff and move on to other stuff.

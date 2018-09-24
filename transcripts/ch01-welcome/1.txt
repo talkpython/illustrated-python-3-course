@@ -1,0 +1,74 @@
+00:00 Welcome to Python 3, An Illustrated Tour.
+00:02 I'm Matt Harrison and I'll be your host
+00:04 through this nice trip on the new features of Python 3.
+00:07 Let me just give you an introduction
+00:09 about what we're going to cover in this course.
+00:11 We're going to talk about the changes and new features in Python 3.
+00:14 So if you've been using Python 2 for a while and transitioned to 3
+00:18 or you've started using 3, but aren't aware
+00:21 of all the new features, this course is for you.
+00:24 Let me tell you a little bit about myself.
+00:26 I am the author of various Python books.
+00:28 I wrote the best-selling Illustrated Guide to Python 3.
+00:31 I have books on Pandas as well as the Tiny Python Notebook.
+00:34 I run a company called MetaSnake and I do Consulting and training for them.
+00:38 So I've trained companies big and small
+00:41 and I'm really used to seeing how people cope with Python
+00:44 and how people cope with the new features.
+00:46 I ran the Utah Python user group for five years.
+00:49 I've been using python since 2000
+00:52 and I tweet about Python with my username @_ _mharrison_ _.
+00:56 Who is this course for?
+00:58 Well, it's for old Python programmers
+01:00 or those who have been using Python 2
+01:02 and maybe have transitioned a Python 3
+01:04 but are still programming it as if it were Python 2.
+01:07 It's also for new Python programmers, those who are just getting started
+01:10 and want to sort of understand better the features
+01:13 and cool syntax and benefits that Python 3 provides.
+01:17 So in general, this course is aimed for all those
+01:19 who want to leverage the latest features of Python.
+01:22 Let's talk about what we're going to cover in this course.
+01:25 We're going to talk virtual environments
+01:27 how you can make use of Pipenv in a Windows or Unix environment.
+01:31 We'll also be talking about Fstrings and how you can take advantage of those,
+01:35 great new feature in Python 3.
+01:37 We'll also talk about what has changed in numbers since Python 2
+01:41 some of the things that are happening under the covers
+01:43 as well as some other features that you can take advantage of.
+01:46 We'll talk about classes, we'll dive into Super and learn how that works.
+01:51 We'll also talk about some of the new dunder methods in classes.
+01:54 We'll talk about functions, we'll talk about keyword only arguments
+01:57 and we'll get into some of the fun stuff there.
+02:00 We'll look into the standard libraries
+02:02 some of the new libraries in the standard library,
+02:04 we'll look at the statistics module, we'll look at the enom module.
+02:07 We'll look at the pathlib module and show some examples from those.
+02:11 We'll also talk about some of the new syntax in Python 3
+02:14 that isn't available and why you might want to use that.
+02:18 We'll look at the new async library,
+02:20 we'll talk about how that functions under the covers, the mechanisms that that's using
+02:24 and we'll look at cool things like asynchronous context managers,
+02:27 asynchronous iterators and asynchronous generators.
+02:30 We'll also dive into annotations and see how you can take advantage
+02:33 of this cool new feature to make your code more robust.
+02:37 In addition, we'll look at unicode,
+02:39 this is native in Python 3
+02:41 and we'll see some of the features that Python 3 supports
+02:44 and allows you to do with the new Unicode functionality.
+02:47 We'll also look at some of the new annotation tools
+02:50 that allow you to take advantage of the annotation syntax.
+02:53 And we'll also talk about the new features like generalized unpacking
+02:58 and show some examples of that.
+03:00 So in addition to content, which I think is pretty good,
+03:03 there's also a lot of labs for all these concepts
+03:07 and you get to try your hand at these Labs
+03:10 there are some cool self-correcting assignments that you'll get to do.
+03:13 And in addition, there are content walks through all the solutions to those
+03:17 as well as the walks through common errors that people have
+03:20 when they come across these things.
+03:22 It's a great way to try your hand out
+03:24 and learn these new things and take advantage of them.
+03:26 I hope you enjoy this class and I hope that it makes your Python code
+03:31 much cleaner, easier to read and more robust.
+03:34 Enjoy.

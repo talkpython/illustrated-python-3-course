@@ -1,0 +1,11 @@
+00:00 Here's an example of concurrency.
+00:02 Here I've got Python running over here
+00:04 and Python is going to paint three pictures.
+00:07 And so I'm going to just do some work
+00:10 and after I've done a little bit work on one picture,
+00:13 I'm going to do some work on another one
+00:15 and then I'll do some work on another one
+00:17 and I'll keep doing that shifting between them
+00:20 until I'm finally done at some point.
+00:22 This is concurrency, I'm juggling multiple paintings
+00:25 with a single CPU or a single Python process.

@@ -1,0 +1,63 @@
+00:00 In this video, we're going to look at keyword test.
+00:02 Let's open that up, open it in your editor.
+00:05 Let's read the first assignment,
+00:07 it says one formula for force is mass times acceleration
+00:10 create a function force that takes to keyword only arguments mass and acceleration
+00:15 and returns the product of the arguments,
+00:17 put this function in the module called py3code.
+00:22 Let's open up py3code here,
+00:26 and it says at the bottom put keyword tests here
+00:30
+00:34 I can split this if I want to and view both of these.
+00:38 I want to make a function called force that takes mass and acceleration here
+00:42 so def force and it takes mass and acceleration
+00:48
+00:52 and returns mass times acceleration.
+00:57
+00:59 Okay, I will save this now and run this guy and see if it works.
+01:04
+01:09 Okay, and so it looks like I got an error here on this line here,
+01:14 when I call force 10, 9.8 it did not raise a type error and it wants to raise a type error.
+01:19 The reason why that is is because I didn't actually make a keyword only function
+01:24 I just made a normal function that takes mass and acceleration.
+01:28 So this will work and it won't raise a type error.
+01:31 The intention of the keyword only arguments is
+01:33 that it makes clear what our numbers are
+01:36 in this case it's not clear necessarily which one is mass and which one is acceleration.
+01:40 So in order to change that what we need to do is we need to put a star right in front of that.
+01:45 And now when we call this force function,
+01:47 we need to specify the mass and acceleration.
+01:50 Let's run it and make sure that it works.
+01:55 Okay, and now I'm on the other problem here
+01:58 so that part appeared to work.
+02:00 Let's go on to the next problem,
+02:03 the quadratic formula solves an equation of the form ax^2+ bx + c = 0
+02:09 write a function quad that returns a tuple with the solutions
+02:13 make a, b and c keyword only arguments,
+02:17 put this function in a module called py3code.py
+02:23 Okay, so if you remember the quadratic formula,
+02:28 it looks something like this, negative b plus or minus the square root
+02:36 of b squared minus 4ac and then all of this over 2a
+02:50 so there's my attempt at writing this out in some little language here.
+02:55 Let's see if we can implement this as a Python function here
+02:58 and with keyword only arguments
+03:00 so quad, and I'm going to put a star at the front
+03:02 because I want everyone to specify a, b and c when they call this.
+03:08 And because this can return 2 results,
+03:10 it can return the positive of the square root and the negative of the square root,
+03:14 we're going to make 2 results and return that as a tuple of both of those.
+03:19 So what I'm going to do is I'm just going to say,
+03:24 the square root part I'm going to say sqrt is equal to
+03:28 let's say b squared minus 4 times a, times c to the .5
+03:40 and then x1 is going to be equal to in parenthesis negative b plus
+03:48 the square root portion and this divided by 2 times a
+03:53 and the other solution will be this negative b minus the square root of that
+04:02 and let's return x1 and x2.
+04:07 Let's run our test over here and make sure that it works.
+04:10
+04:14 Okay, and we got that it did indeed work.
+04:18 So we can see the calling here rather than saying quad 1, 3, 1 here.
+04:24 we have to explicitly say a is equal to 1, b is equal to 3 and c is equal to 1.
+04:31 Note that we can change the order of those if we want to as well.
+04:34 This just allows us to again be more explicit and not have magic numbers floating around
+04:38 but to have some context around them.

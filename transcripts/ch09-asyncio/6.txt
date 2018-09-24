@@ -1,0 +1,36 @@
+00:00 Let's look at some of the basics that are required to do this,
+00:02 again, you need an event loop, this manages your work.
+00:04 You need some co-routines.
+00:06 You need to have functions that are suspendable,
+00:08 they have to have an await in there
+00:10 so that they can hand off the work to someone else,
+00:12 they can't just be CPU heavy functions
+00:14 or they'll never hand off to someone else
+00:16 and you'll basically be getting the same throughput that you would be getting
+00:20 by doing this in a synchronous manner.
+00:22 A couple of other things,
+00:24 there's what's called a future and a future is something
+00:26 that may have a result in the future.
+00:28 There's what's called a task, and a task is a subclass of a future
+00:31 that allows you to take a coroutine
+00:33 and basically make it implement this future interface that Python uses.
+00:38 There's also what we call context switch
+00:40 and basically context switch is when we call this await,
+00:43 under the covers this loop is going to switch
+00:45 from one of these co-routines to another one
+00:47 and you can think of this, remember we talked about threading
+00:51 and that you can use native threads,
+00:53 we can think of this context switch
+00:55 that rather than going from one thread to another
+00:57 we're going from a green thread to another green thread
+00:59 a basic thread that's implemented inside of the virtual machine.
+01:03 That's a context switch, and this event loop manages that for us.
+01:08 We talked a little bit about blocking and non-blocking.
+01:10 So blocking is you wait until your work is done before proceeding
+01:14 we talked about that with our painting,
+01:16 you waited until your paint was completely dry before proceeding
+01:19 and non-blocking, we hand off control while running,
+01:23 so if we're doing a non-blocking painting, we paint
+01:25 and then if it needs to dry we go and paint something else,
+01:28 until that needs to dry and then we go pay something else
+01:31 and we repeat that process.

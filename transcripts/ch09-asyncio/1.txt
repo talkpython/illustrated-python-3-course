@@ -1,0 +1,48 @@
+00:00 We're going to look at asyncio, specifically pep 526
+00:04 and the tooling that came in Python 3.6.
+00:08 Asyncio came about during Python 3.4 time frame
+00:12 and Python 3.6 added some new syntax to make it nicer to use.
+00:15 Let's talk about some terms first to get these straight
+00:19 what is concurrency, concurrency means that we're sharing resources.
+00:23 One way to visualize this is a juggler who has multiple balls.
+00:28 Each of those balls is a resource and he's juggling them.
+00:30 Similarly, a CPU on a computer juggles multiple resources.
+00:35 It can run multiple things,
+00:38 a single CPU cannot run multiple things at the same time,
+00:40 but what it's doing is it's shifting between those very quickly.
+00:43 Parallelism, which some people confuse for concurrency, but it's different,
+00:47 parallelism means doing multiple things at the same time.
+00:50 So if I have some parallel code,
+00:52 it can run something faster than doing something at once.
+00:57 So an example here would be a CPU that has multiple cores.
+01:03 It can run code twice as fast as that code is run to take advantage of both CPUs.
+01:08 If we're going back to our juggler example,
+01:11 this would be multiple jugglers juggling multiple balls,
+01:14 presumably multiple jugglers who are juggling can juggle more balls
+01:18 than just one juggler, if they don't have to coordinate among themselves per se.
+01:22 A couple of other things to be aware of,
+01:24 one is a thread, a thread is a operating system construct for doing something,
+01:29 a thread runs on a CPU, if you have multiple CPUs
+01:33 and your code can run in multiple threads,
+01:36 it's possible that each of those threads could take advantage
+01:39 of a single CPU and make it run faster.
+01:42 Now, this isn't the case in Python,
+01:44 Python has what's called the gil or global interpreter lock
+01:47 which limits multi-threaded code in Python to only run on one CPU
+01:51 regardless of how many CPUs are on the system.
+01:54 Another thing to be aware of is what's called a green thread,
+01:57 green threads are VM level threads,
+02:00 so they're not done at the operating system level
+02:02 but they're done at a programming or user level
+02:05 and these are a little bit lighter weight, but they don't scale across CPUs.
+02:09 And we'll see how asyncio basically allows you
+02:13 to use green threads or run different contexts across a CPU inside of a VM,
+02:21 but doesn't necessarily allow you to take advantage of multiple CPUs.
+02:25 A couple other terms we'll talk about here,
+02:28 synchronous, synchronous means if I'm going to run something,
+02:31 if I'm synchronous I wait till the execution is done before I run something else.
+02:35 And asynchronous code is where I kick off execution
+02:37 and maybe I have a callback or some way to figure out when it's done
+02:41 and after I kicked off execution, I'm going to move on to some other code
+02:46 until I get this call back or mechanism that tells me that it's done.
+02:49 That's asynchronous code.

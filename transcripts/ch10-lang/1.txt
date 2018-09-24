@@ -1,0 +1,105 @@
+00:00 In this video we're going to talk about exception chaining.
+00:02 This came out in pepped 3134.
+00:05 There are a few new things that this introduces in Pythons exceptions.
+00:08 That's the __context__ , __cause__ and the __traceback__.
+00:12 We'll look at all of them here.
+00:14 The motivation for this, the pep states that
+00:16 during handling of one exception, exception a,
+00:19 it may be possible that another exception, exception b, may occur.
+00:23 If this happens exception b is propagated outward and exception a is lost.
+00:27 In order to debug the problem, it's useful to know about both exceptions,
+00:30 the __context__ attribute retains this information.
+00:33 So let's look at an example here.
+00:35 I'm trying to divide 1 by 0, I'll get a 0 division error
+00:39 that will raise an exception and I can inspect that exception here
+00:42 and note that I'm just printing the string of the exception,
+00:46 the context of it, the __context__ , the __cause__ and the __traceback__
+00:50 and because this is the original exception here, I only have that exception,
+00:54 there's no context no __context__ and no __cause__.
+00:56 There is a __traceback__ which has the __traceback__ for the exception.
+00:59 Now, let's change it a little bit.
+01:01 Let's make a function called divide work that does some division
+01:04 and if there's a 0 division error, it will call log, the log function.
+01:09 And in this case, let's pretend that log talks to a cloud-based logging provider
+01:15 and for some reason this is down.
+01:17 So instead of actually logging it raises a system error that says logging is not up.
+01:20 So now we're going to have a couple errors here
+01:23 if we divide by 0 we're going to try and log that
+01:26 and we're going to get another error that says a system error.
+01:29 So if we look at what happens when we say divide 5 by 0,
+01:32 it gives us a traceback and it says we got to 0 division error
+01:35 and it says during the handling of that 0 division error another exception occurred.
+01:40 We also got this system error logging is not up.
+01:43 Let's try and call our divide work with a 0 division error
+01:47 and see what the exception looks like.
+01:49 If we inspect the exception, we'll see that we got the logging is not up exception.
+01:54 So this means we're getting a 0 division error,
+01:56 which is trying to log that and it's getting the logging is not up error.
+02:00 If we look at the __context__ there, there we see the 0 division error
+02:03 and there is no __cause__ and we see that we have a traceback.
+02:08 So by having multiple exceptions here we can inspect the __context__
+02:13 and see where that exception came from,
+02:16 in this case, the logging up exception came from having it as 0 division error.
+02:22 Let's look at the motivation for __cause__
+02:24 it says sometimes it can be useful for an exception handler
+02:27 to intentionally reraise an exception either to provide extra information
+02:31 or to translate an exception to another type.
+02:34 The __cause__ attribute provides an explicit way
+02:37 to record the direct cause of an exception
+02:39 let's look at __cause__ here is some code that illustrates it
+02:42 we still have our divide work function, it's changed a little bit.
+02:45 If we get a 0 division error, we're going to log that
+02:48 and in this case our log will not fail, it's just going to print that out
+02:52 but we are going to raise another exception
+02:54 instead, we're going to raise it an arithmetic error,
+02:56 and we're going to say raise that from the original exception.
+02:59 If we call it here, we can see that we get a 0 division error
+03:03 and it says that the above exception was the direct cause
+03:07 of the following exception, the arithmetic error.
+03:10 So the 0 division error caused reraised the arithmetic error from that 0 division error.
+03:16 And if we inspect the __cause__ attribute of the exception
+03:20 the exception that we get is bad math and it was caused by the 0 division error,
+03:26 note that the context is also the same error there with the same exception,
+03:30 but because we said raise this new exception from the original exception,
+03:36 this is the original exception that we raised from the 0 division error.
+03:42 Let's look at the motivation for adding __traceback__.
+03:44 It says adding the __traceback__ attribute to exception values
+03:47 makes all the exception information accessible from a single place.
+03:51 Python 3 also added __traceback__ to the exception.
+03:55 The reason why they did this was just to make it nice to have around.
+04:00 prior to Python 3, in order to get the traceback
+04:03 you had to import the sys module and try and pull the traceback off of that.
+04:08 In Python 3, they're just going to give it to you
+04:10 so we can look at the traceback by just inspecting the __traceback__ attribute if we need to.
+04:16 This might be useful for low-level logging or figuring out what your issues are,
+04:20 if you need to dig into them.
+04:23 One thing to note is that because the exception contains the traceback
+04:27 and that can have variable state in Python 3, there is an explicit decision
+04:30 to actually remove exception variables following the exception block.
+04:37 So here's the exception block in here and in Python 3
+04:40 we have access to the e variable inside of that.
+04:44 In Python 2, the e variable sits around afterwards.
+04:47 But in Python 3, if we try to inspect that e following our exception block, that indented block
+04:54 we will not have it anymore, so this is cleaned up to not leak information.
+04:57 Just one thing to be aware of.
+04:59 Let's look at some suggestions for exception handling.
+05:02 Mistake one suggestion is to make your own specific exceptions
+05:05 and this just helps readability and discoverability
+05:08 rather than gripping through a code base with a lot of key error or index error.
+05:13 If you have something that's specific to your code and is named specifically,
+05:18 it makes it easier to find and easier to debug.
+05:21 Another suggestion is to be specific about what exceptions you handle.
+05:25 So if you've got to try statement don't just put any exception after it
+05:29 be very specific about the exceptions you handle.
+05:31 A general rule of thumb in Python is we want to only handle exceptions
+05:36 that we know that we can recover from
+05:38 and so these two sort of go hand-in-hand
+05:40 if we can only recover from certain exceptions, just catch those exceptions.
+05:44 don't be general and catch any exception.
+05:46 So to summarize, exceptions are made a little bit nicer in Python.
+05:50 You can raise exceptions from other ones.
+05:53 You have the context of where the exception happened, and again in Python,
+05:57 we want to be very specific and only handle what we can
+06:00 so we've got a couple suggestions for best practices for exception handling.
+06:04 Hopefully, this helps you be better
+06:06 and make your code a little bit more clear and more robust to failures.

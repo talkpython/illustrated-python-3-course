@@ -1,0 +1,56 @@
+00:00 Let's talk about what's found in a coroutine.
+00:03 Again, you need to declare a coroutine with async before the def
+00:05 any non blocking code, you need to call await before it in Python 3.6
+00:10 and again, this allows you to do that context switch
+00:13 from one green thread to another
+00:16 you can't call await in functions, they can only be called in coroutines.
+00:18 anything that has an async def.
+00:21 If you want to return a value, there's a couple ways that you can return a value
+00:24 we can pass in this future that we saw
+00:26 and just say future.set result,
+00:28 we can also return from a coroutine.
+00:31 And then when we say run until complete
+00:35 we will get a future as a result and we can call result on that
+00:39 to pull off the result of what's returned.
+00:42 So those are a couple ways to return a value.
+00:44 Typically, I find myself using futures because it seems for me
+00:48 to make it a little bit more clear
+00:50 because you need to pack all these things into the event loop
+00:52 and typically you have multiple things running
+00:55 and so my code seems to have futures
+00:57 rather than just returning the result from the gathered future
+01:01 from every coroutine that I'm collecting together.
+01:05 These coroutines need to be put into the event loop
+01:07 and so to put them into the event loop we can say asyncio wait
+01:11 or asyncio gather or we can just pass in a coroutine
+01:15 directly into that run until complete
+01:18 wait and gather allow us to take multiple coroutines
+01:20 and make a new future out of those to pass into our loop.
+01:25 Let's look at the interface for future and what we can do with the future.
+01:29 So there are a couple ways to create futures.
+01:32 You can call the constructor, but I'd advise against that
+01:34 rather I would call, if you're creating a future loop create future.
+01:38 This allows you if you're using an alternate event loop,
+01:42 they can create their own future that has an alternate implementation
+01:44 rather than hard coding it to the asyncio future that's in there.
+01:48 So there could be some optimizations that alternate event loops
+01:50 that you could plug in as using,
+01:52 but this is the interface for futures
+01:54 once we have a future we can call await on it
+01:56 and that waits until result arrives,
+01:59 we can call set result on it, we can call set exception on it,
+02:02 we can have a call back on it.
+02:05 We can pass in a function and that function will be called with the future
+02:08 when the callback is done.
+02:10 We can call exception to get the returned exception
+02:13 and we can call result to get the returned result.
+02:16 Note that if the future does not yet have a result,
+02:18 this will raise an invalid state error.
+02:21 It could also return a cancelled error if the future was canceled.
+02:24 So typically, we don't like go into a loop and call if f result and try
+02:29 and see if there's an error there
+02:31 rather we use this code right here, result is equal to yield from f
+02:35 and that will give us our result.
+02:38 We don't have to go into a loop or anything.
+02:40 If we want to cancel our future, we can say cancel
+02:42 and we can get the status of whether it's done or canceled.

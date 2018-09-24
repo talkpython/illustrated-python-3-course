@@ -1,0 +1,30 @@
+00:00 In order to use the monkeytype tool,
+00:02 rather than just analyzing your code, you actually need to run it.
+00:05 So you probably need a driver file or some test scripts or something,
+00:08 while it's running, it will drop some information into a sqlite file
+00:12 and then with that sqlite file, you can tell it to annotate code with type information.
+00:17 We're going to look at the same markov file that we were looking at previously
+00:21 and here for monkeytype, I'm going to make a code runner,
+00:24 I'm just going to call it run test.py, it's going to import doc test
+00:28 and it's going to import the markov module that we have
+00:31 and it's just going to run the doc tests on the module
+00:33 and hopefully using that information,
+00:35 It will be able to give us some type information.
+00:38 Using monkeytype is pretty straightforward.
+00:40 I say pip install monkeytype to get it installed
+00:43 and then I rather than running Python on my code
+00:46 I say monkeytype run with the runner file,
+00:49 and in this case again, it's going to run through that doc test
+00:53 and trace the code and remember those types and put them in a sqlite file.
+00:58 And then after I've done that, I can run monkeytype stub markov
+01:01 that will create the stub information.
+01:04 And so this is what it outputs, it just prints this out to standard out
+01:07 and you can see that it has added some types
+01:11 to my functions and to my methods.
+01:14 One thing to note is that it added Python 3 style annotation support
+01:18 so this looks pretty good, if you look at the types that it added
+01:22 for example in the git table function,
+01:24 you'll note that it added this nested dictionary of strings mapping the dictionaries,
+01:29 of strings mapping the integers, so that's pretty good.
+01:32 And it looks like all the type information there
+01:35 is pretty correct and should be good to use.

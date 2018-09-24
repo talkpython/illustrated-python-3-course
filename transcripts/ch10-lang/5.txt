@@ -1,0 +1,125 @@
+00:00 In this video, we're going to talk about additional unpacking generalizations.
+00:04 This came out in pep 448 which is in Python 3.5.
+00:08 The pep reads extend usages of the * iterable unpacking operator
+00:13 and ** dictionary unpacking operators to allow unpacking
+00:16 in more positions an arbitrary number of times.
+00:20 Let's look at some examples here.
+00:22 If I had a dictionary and I wanted to merge it with another one
+00:26 in Python 2 and prior to Python 3.5 I would have to do something like this.
+00:32 I would create a dictionary here called thing_colors
+00:35 which is mapping some object to the color.
+00:38 So apple is red, pumpkin is orange.
+00:40 And if I wanted to merge this into a new dictionary with more colors
+00:44 one way I could do it is create the new dictionary here called more_colors
+00:48 and then I could say update more colors with thing_colors
+00:51 that would insert thing_colors into more colors.
+00:54 And then I could update more colors with other values there,
+00:57 note that in this case apple I'm overriding it with green.
+01:00 This pep allows us to do something like this
+01:03 where I say thing_colors is equal to apples is red and pumpkin is orange
+01:08 and more_colors is equal to,
+01:10 and then I make a literal dictionary but inside of that I put ** thing_colors in there.
+01:15 What that does is it unpacks the keys and values from that dictionary
+01:18 and copies them into more_colors.
+01:21 After that, I'm going to insert bike is blue and apple is green,
+01:24 note that apple here is a repeated key
+01:28 and so because this apple comes after, where after means further to the right
+01:34 in my literal dictionary here, then this apple mapping to green
+01:38 will overwrite the apple that is red.
+01:42 But note that in more colors here, I have pumpkin as orange in there.
+01:47 Also note that Python 3.6 the order of dictionary insertion is remembered
+01:52 apple was the first key that I put in followed by pumpkin
+01:57 and note that in more colors apple is first, pumpkin is second and then bike is third,
+02:01 because this key was already in there, it stayed in the first position,
+02:04 even though the value is updated.
+02:07 So an unpack can be in any location in the dictionary
+02:10 in the previous example, it was at the very start
+02:12 but it can be at the end or you can have actually multiple unpacks in a dictionary
+02:18 Here I say bike is blue, apple is green
+02:21 and then we're going to unpack thing_colors in there,
+02:24 in this case the apple that's red from there overrides the apple that is green.
+02:29 But note that bike and apple are in first and second position
+02:33 because they were in the original dictionary.
+02:36 Another nice feature of this change is
+02:39 it allows us to have multiple ** operations in function calls here.
+02:43 Note that here I'm calling this function print args,
+02:46 which takes variable number of keyword arguments
+02:49 and I'm saying I want to pass in thing_colors
+02:53 unpacked and also more_colors unpacked.
+02:55 This one didn't work prior to Python 3.5,
+02:58 but in Python 3.5 and above you can do syntax like this
+03:01 and note that I'm putting in another named parameter here
+03:05 with a value in between those.
+03:07 One thing to be aware of though, is that you can't repeat names in a call.
+03:11 So this might be a gotcha here.
+03:13 Here I've got thing colors and I've got apple is red here,
+03:16 I've also got more colors apple is green
+03:19 and if I call this with thing_colors and more_colors with these repeated keys,
+03:23 I get a type error. In the prior example on the previous slide,
+03:27 I didn't repeat that apple key and so I didn't get this error.
+03:31 So this is something you might need to be aware of if you're repeating those.
+03:34 Simple way to get around that is just to merge those dictionaries
+03:38 before calling them in there, that's something that might happen.
+03:41 So that's the ** operation that allows us to unpack into dictionaries
+03:46 and also use unpacking and function calls in more than one place if we want to.
+03:51 Let's look at the single star, single star allows us to create tuples.
+03:55 So here I've got name is equal to Matt.
+03:58 Remember that the string Matt is a sequence of characters here.
+04:03 And if I say *name, with a comma at the end here,
+04:08 it's going to give me back a tuple.
+04:10 Note that I'm not doing this extended unpack operation,
+04:13 there's no assignment here, so this is slightly different than the prior examples
+04:18 where I would get back a list,
+04:20 but this is saying I want you to take what's in the sequence and stick it into a tuple.
+04:24 This is also a case where you might need a comma
+04:27 if I have name is equal to Matt and I just say *name on itself,
+04:31 I get this error here, syntax error, can't use a star expression here.
+04:35 Here, I've got some examples of various ways we can use star expressions
+04:39 and know that by default, these return a tuple
+04:43 and I can actually string these together by putting a comma
+04:46 and use multiple of them and here I have a tuple,
+04:49 note that there's parentheses here
+04:52 with all of the characters from name and last in there,
+04:55 if I wanted to put those into a list,
+04:58 I just put square brackets around those and that puts it into a list.
+05:03 Similarly, I can put it into a set, note that a set is not ordered,
+05:06 so the order comes out a little different than what the order is in name and last.
+05:12 Here I've got a little function called summer
+05:14 that just takes variable arguments and variable keyword arguments
+05:17 and it's going to sum all the arguments that are passed in in positional locations
+05:22 and it's also going to sum all the values
+05:24 so it's not doing very much, it just accepts arbitrary number of arguments
+05:27 and sums them if they are positional or values in keyword arguments,
+05:33 let's look at some examples of calling this,
+05:36 I can call it with 1, 2, 3, any number of positional arguments and it gives me 6.
+05:40 I can also call it with star list here and then a three following that,
+05:45 and that's fine, Python 3.5 and above doesn't complain about that.
+05:50 Note that I can also have multiple stars here and this can be a list here,
+05:54 it can be any sequence here, and I can have
+05:58 however many stars I want to in that, if I want to,
+06:00 and here I'm calling it with a star, a positional parameter
+06:03 unpacking a dictionary here, a keyword parameter here
+06:08 and another unpacked dictionary over here and that works as well.
+06:13 Little bit of the difference between this syntax
+06:15 and the extended unpacking that we showed in another video,
+06:19 here I've got name is equal to the string Matt.
+06:21 I can do the extended unpacking by doing an assignment here on the left-hand side
+06:26 by saying *letters, I need the comma at the end there is equal to name
+06:31 that makes a new variable called letters
+06:33 and it is a list with the individual characters in it.
+06:36 Note that in this unpacking generalization,
+06:39 which is different than the extended unpacking defined in this pep here,
+06:43 I am not putting this on the left-hand side,
+06:45 I need to put it on the right hand-side,
+06:47 I put a star in front of it, a comma at the end
+06:50 and I assign it to a variable and it gives me back a tuple here.
+06:54 So a little bit of a difference between those two,
+06:56 if you need to create a list you can use this extended unpacking.
+07:01 Note that if I simply put square brackets around that
+07:04 I will also get a list on the second example.
+07:08 This video talked about additional unpacking generalizations, which is pretty cool.
+07:13 If you want to create dictionaries from other dictionaries
+07:17 or merge dictionaries or create tuples or lists or sets from sequences,
+07:21 you can easily do this with this new syntax.
+07:24 You can also pass in multiple unpacking operations into function calls,
+07:29 which is cool as well.

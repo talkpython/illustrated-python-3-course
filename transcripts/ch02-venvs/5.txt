@@ -1,0 +1,19 @@
+00:00 In this video I'm going to show how to run the venv test file
+00:04 using idle in case you don't have PyCharm and you want to use another editor,
+00:08 this is how you would do it from another editor.
+00:11 So the first thing I want to do is I want to activate my environment.
+00:16 So I say pipenv shell and that will activate my environment
+00:20 now, I want to launch idle here,
+00:23 so I'm going to say python -m idlelib.idle.
+00:26 If I don't activate my virtual environment first and I launch idle
+00:30 I'll get the system idle that might not have pytest installed.
+00:35 So I want to make sure that I have pytest installed.
+00:39
+00:43 Okay, at this point, idle has launched.
+00:48 Let's open our venv test file, there it is
+00:54 and let's just come up here to run and say run module
+00:57 and note that over here in the repl, we got some output
+01:02 and it says it past one in one second.
+01:06 So because we have launched this from a virtual environment
+01:09 that has access to pytest, we're able to run this from pytest.
+01:13 All we have to say is run module.

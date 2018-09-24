@@ -1,0 +1,59 @@
+00:00 In this video, we're going to look at unicode test,
+00:03 let's open that up in the editor that you want.
+00:06 I'm going to run it. You can run it from your command line
+00:09 by just invoking Python on the file,
+00:12 or you can in PyCharm right click and say run
+00:15 you should get three errors here. Let's go to the first error.
+00:18
+00:20 On line 10 we get a name error, so here's line 10.
+00:24 And in this function, it's called test 1.
+00:27 It says the following line is from Yu Lou Chun by Dao Ren Bai Yun.
+00:31 There's a link to Project Gutenberg there, it says convert the line to utf-8 bytes
+00:36 stored in the variable utf-8_txt.
+00:40 So up here we have a unicode string and we're going to convert that to bytes.
+00:43 Let's see how we do that.
+00:45 We're going to make a variable called utf-8_text is equal to
+00:50 and on text, we need to call the encode method.
+00:53 So we're going to encode the string and we're going to encode it as utf-8 bytes
+01:00 so we can say utf-8, and that should give us a new variable that actually is bytes.
+01:10 Let's run this and see if it works.
+01:13 Note that our test here is just asserting that the last five characters are these bytes.
+01:17 It's also asserting the length of the bytes.
+01:23 Okay, so we have one that's passed now.
+01:25 So the thing to remember is that if you have a string, a unicode string
+01:29 if you want to change it into bytes that process is called encoding,
+01:34 you don't decode a string, you decode bytes back into a string.
+01:38
+01:40 Okay, here's another line or probably the same line
+01:44 convert the line to big5, another Chinese encoding and store it in big5_txt.
+01:53 So big5_txt = txt so we have bytes here
+02:00 and we want to encode those bytes as big5.
+02:06 Let's run that and see if that works.
+02:09
+02:11 Okay, it looks like it worked, we have 2 passed,
+02:14 one thing to note is the length of the big5 encoding
+02:18 is 74 bites on that same string versus above,
+02:21 when it's utf-8 encoded it's 111 bytes.
+02:25 So there are some compromises that utf-8 makes
+02:28 but in general, utf-8 is one of the most widely used encodings on the internet.
+02:33 So it's a pretty good encoding to use
+02:35 even though it might be a little bigger than other encodings.
+02:39 Okay, test three, the following is utf-8 bytes decode it into a variable result.
+02:45 So we have some bytes here and we're going to make a variable called result
+02:49 and we're going to take our unknown bytes and we're going to decode it.
+02:53 Again, we don't encode bytes, bytes are already encoded for us.
+03:00 Okay, let's run this and make sure it works
+03:03
+03:07 It looks like we're good to go.
+03:11 So let's just for fun put a little break point here
+03:16 and see if we can see what unknown is.
+03:19 I'll move the break point down one level here
+03:24
+03:27 Okay, here's result.
+03:29 And if you look at result, it says that snake makes your head
+03:34 and then it says spin upside down.
+03:37 Okay, cool. Thanks for watching this video.
+03:39 Hopefully, you have a better understanding of unicode and bytes
+03:42 and the conversion between those two.
+03:45 Again, if you have a unicode string, you encode those as bytes,
+03:49 and if you have bytes, you decode those to a unicode string.

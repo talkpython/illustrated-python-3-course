@@ -1,0 +1,17 @@
+00:00 Okay, let's look at a task.
+00:02 A task is responsible for executing a coroutine object in an event loop,
+00:05 don't directly create task instances use the ensure future function.
+00:08 Let's see why it says that.
+00:10 So again, this task will wrap a coroutine and allow us to use it in an event loop
+00:15 and ensure future is a more general function.
+00:18 It takes any awaitable object and is item potent so you can call it multiple times,
+00:22 but it does return a task for you, something that you can run.
+00:26 A couple of tips here, use loop create future instead of future
+00:30 to create a future again because you might have an optimized future on a certain loop.
+00:36 Use asyncio gather or asyncio ensure future to create tasks from coroutines.
+00:40 And if you want to speed up your loop or whatnot
+00:43 you can use a third-party loop, uvloop is one that has a faster loop implementation
+00:47 that's not in the standard library.
+00:49 You can also time out a list of co-routines if you want to
+00:52 by calling asyncio wait and passing a list of coroutines and give it a timeout
+00:57 that will run for the given amount and will time out otherwise.

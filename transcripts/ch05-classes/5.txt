@@ -1,0 +1,30 @@
+00:01 In this video, I want to introduce an optimization
+00:03 that was brought to pass in pep 412 Python 3.3.
+00:08 This is called key sharing dictionaries
+00:10 and it's a nice little optimization
+00:12 that will save memory when you're using Python 3.
+00:15 From the pep we read: key sharing allows dictionaries,
+00:18 which are used as attribute dictionaries
+00:21 or the __dict__ attribute of an object
+00:24 to share keys with other attribute dictionaries of instances of the same class.
+00:28 So let's just understand what that means.
+00:31 Basically whenever you create a class in Python
+00:34 underneath the class there will be a __dict__ attribute
+00:39 which will store the attribute names and map them to the values there.
+00:43 What happens is if you're creating a bunch instances of classes
+00:46 that have a bunch of attributes, these attributes are typically strings
+00:50 and those strings will be repeated and so Python the interpreter
+00:53 would go out and create a new string for each attribute
+00:57 and those strings could add up if you're creating thousands
+01:01 or many more instances of a class.
+01:04 So this is a nice little optimization,
+01:07 what it does is it caches essentially the keys in a dictionary.
+01:11 We also read from the pep that as a result of this optimization
+01:14 these dictionaries are typically half the size of the current dictionary implementation.
+01:18 Benchmarking shows that memory use is reduced
+01:21 by 10 to 20 percent for object-oriented programs
+01:24 with no significant change in memory use for other programs.
+01:28 So you don't have to do anything about this
+01:30 you get to take advantage of this automatically.
+01:32 Also note that this optimization does not apply to dictionaries
+01:37 only to the __dict__ dictionary in an instance.

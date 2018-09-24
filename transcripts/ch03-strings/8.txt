@@ -1,0 +1,38 @@
+00:00 We're going to look at fstring test, open that up.
+00:03 The first part says assuming the variable stock and price exist
+00:06 make a variable res that has Stock and then whatever the stock value is
+00:12 then price and whatever the price value is.
+00:14 You should use an fstring to do this.
+00:16 So long behold here is stock and price.
+00:19 So let's make a variable called res, that's an fstring.
+00:22 So to make an fstring we put an f in front of our string
+00:25 and I'm going to say Stock here and then I want the value of stock,
+00:31 in this case I'll just put it in curly braces here
+00:34 and then price here with the value of price.
+00:38 We could do some formatting here.
+00:43 In this case, it didn't particularly define that we include any specific formatting.
+00:47 Let's just run this and see if it works.
+00:51
+00:53 And it looks like it worked here.
+00:55 So this will give us a string that looks like that, pretty cool.
+00:59 The next part says assume the variable x exists.
+01:02 And x is defined down here, create a variable answer
+01:05 that has the sin of x using math.sin to 2 decimal places.
+01:10 And so it wants us to say x with the value of x then sin of x
+01:15 with the sin of that, use an f string to do that.
+01:17 So the first thing we need to do is import the math libraries,
+01:20 we're going to say import math here.
+01:24 Let's come down here and we'll make this variable called answer.
+01:27 It's going to be an fstring, so we'll put that in there.
+01:31 We need x and we'll put the value of x there
+01:35 and we want sin of x with math.sin of x and we need to format it.
+01:46 So in order to provide formatting, we put a colon at the end here
+01:50 and we're going to format this as a float.
+01:53 So, I believe we need to say .2f to get 2 decimal places.
+01:59 Let's try that and see if it works.
+02:02
+02:08 Oh, I've got a typo here, I need to close off my embedding of my expression there.
+02:15 Let's try again.
+02:17 Okay, it looks like that worked.
+02:22 So this shows you that not only can you put expressions in here,
+02:25 but you can put formatting with them as well using the formatting syntax.

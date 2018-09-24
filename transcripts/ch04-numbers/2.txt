@@ -1,0 +1,32 @@
+00:00 In this video we're going to talk about pep 237, came out in Python 3
+00:04 and this is the unification of long and integer types.
+00:07 From the pep it says there is also the greater desire to hide unnecessary details
+00:11 from the Python user when they're irrelevant for most applications.
+00:15 It makes sense to extend this convenience to numbers.
+00:18 If you're familiar, in Python 2 there was a long integer type
+00:22 and a normal integer type.
+00:25 And you could tell one from the other
+00:27 because when you print it out a long type there was an L after it.
+00:30 Now Python supports arbitrary precision in integers
+00:32 it's only limited by the amount of memory you have
+00:35 so you can make pretty big integers if you want to.
+00:38 Here's an example of creating big integers
+00:41 and we're calling the sys.getsizeof on our integers
+00:44 and just seeing that as we create bigger and bigger integers,
+00:48 that the number of bytes required to store those integers gets bigger.
+00:52 And so what's happening here is that Python's doing an automatic transition
+00:57 from the native integers to these longer integers,
+01:01 but it's hiding that from you, you don't notice it.
+01:05 Typically we don't even inspect a number of bytes that we're using in Python,
+01:08 but this just allows us to see that we can make arbitrary large integers
+01:12 and they'll just use more memory, but Python will allow us to do that.
+01:17 If you're interested in the details of this
+01:19 you can look at the c code on python.org or in the GitHub project
+01:22 and that's in the include/longintrepr.h and objects/longobject.c
+01:29 the details of how this is handled.
+01:32 For most people this isn't a big deal because again in Python,
+01:36 we just let Python do what it wants to do.
+01:38 and if we have an error we deal with the error,
+01:42 but typically, when we're dealing with integers or whatnot there aren't errors
+01:44 with this and the float division that we saw prior
+01:47 a lot of the inconsistencies or warts in Python are hidden away from end users.

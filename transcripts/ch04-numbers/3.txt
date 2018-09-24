@@ -1,0 +1,44 @@
+00:00 In this video, we're going to talk about rounding.
+00:02 Let's read from what's new in Python 3
+00:05 the round function, rounding strategy in return type have changed,
+00:09 exact halfway cases are now rounded to the nearest even result
+00:13 instead of away from 0, for example round 2.5 now returns 2 rather than 3.
+00:19 So if you're not familiar with this, this is called banker's rounding
+00:24 and we round towards the nearest even number
+00:28 so round 2.5, 2 is even 3 is not even, so it's going to round it to 2.
+00:33 Round 3.5, 3 is not even 4 is, so it's going to round it to 4.
+00:38 And why is this called banker's rounding
+00:40 is because if you're rounding and you're in a bank
+00:43 and you always round up you're going to bias towards the high end
+00:46 and you're biased towards more than what you actually have.
+00:49 If you round towards even, then you're alternating
+00:52 and presumably your bias is going to offset one another
+00:56 and in the end you'll come out more accurate.
+00:59 That's the theory behind rounding towards even.
+01:02 And here's just a slide that says what I just said
+01:05 to the nearest even number is called banker's rounding
+01:08 it tries to eliminate bias to rounding high.
+01:11 One thing to be aware of is this, note in the Python docs it says
+01:15 the behavior of round for floats can be surprising
+01:18 for example, round 2.6752 gives to 2.67 instead of the expected 2.68
+01:26 this is not a bug, it's a result of the fact that most decimal fractions
+01:30 can't be represented exactly as a float.
+01:33 So what's going under the covers there
+01:36 is that 2.675 if you create a number that represents that
+01:42 it's actually going to be closer to 2.67 than 2.68
+01:46 and so when you round it to two places,
+01:49 Python is going to note that and it's going to round it correctly,
+01:53 even though to us users, who at least in the US,
+01:56 I think it's a US-centric view that you round up
+01:59 and this is rounding to what's more close,
+02:04 even though 2.675 seems closer to some people to 2.68.
+02:08 Here's an example of that.
+02:10 I can say round 0.5 to 1 digit and round .15 to 1 digit of precision
+02:16 those both round to .1 and that's because under the covers
+02:20 the float number that represents them is actually closer to those numbers
+02:25 than the other option for rounding.
+02:28 So this is something that's new in Python 3.
+02:31 I personally ran into this when I was doing some work on porting some Excel spreadsheets
+02:36 and so interesting behavior here,
+02:39 but again, the bias is towards being more correct in the average term
+02:45 rather than always rounding up.

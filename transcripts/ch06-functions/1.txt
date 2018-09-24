@@ -1,0 +1,73 @@
+00:01 In this video we are going to discuss keyword only arguments.
+00:03 These came out in Python 3 pep 3102.
+00:06 The motivation from this can be gleaned from reading the pep
+00:09 it says one can easily envision a function which takes a variable number of arguments
+00:13 but also takes one or more options in the form of keyword arguments.
+00:17 Currently, the only way to do this is to provide both
+00:21 a varagrs argument and a keywords argument **kwargs
+00:25 and then manually extract the desired keywords from the dictionary.
+00:29 In Python 2 you can't have a *args argument and then put named parameters after
+00:34 you can only put the **kwargs after it.
+00:38 So this pep introduces 2 syntactical changes
+00:40 that you can have named arguments after *vargs in Python
+00:44 and that you can also use a bare star * and have named arguments after them.
+00:49 Let's look at some examples.
+00:51 Here we have *args here and we also have a keyword argument name
+00:55 is equal to Joe following that,
+00:57 in Python 2 this would be a syntax error, you cannot do this.
+01:00 But Python 3 supports it.
+01:02 We're also using the fstring here and we're just printing out Hey name
+01:05 whatever is passed in for name.
+01:07 Let's look at some invocations here
+01:09 if we call foo by itself name defaults to Joe
+01:12 so there's no change there to the name value.
+01:16 Note that if I call foo with Matt, Matt comes in as a positional argument
+01:20 because it's not a keyword argument.
+01:23 So I also get Hey Joe.
+01:25 Finally here, if I say name is equal to Matt, name gets overridden and the result is Hey Matt.
+01:29 Here's an example using the new star just by itself syntax.
+01:33 Again, this is Python 3 syntax only, it won't work in Python 2.
+01:38 I've got a star there, what that is indicating is that
+01:42 anything following this is a keyword only argument
+01:45 and must have a keyword to update it
+01:48 and because there are no arguments proceeding it, positional arguments or otherwise,
+01:52 if you want to change the value of name,
+01:55 you need to provide keyword arguments.
+01:57 Note that I can also call foo2 by itself and name will default to Joe,
+02:02 because this keyword argument has a default value.
+02:05 Let's look at some invocations here.
+02:07 Here I'm calling it with no parameters and name defaults to Joe.
+02:10 Here I'm calling it with Matt as a parameter, but this is a positional parameter
+02:15 and because I haven't allowed in my function definition to have positional parameters,
+02:20 I'm going to get an error, I am going to get a type error that says
+02:22 foo2 takes 0 positional arguments, but I gave it one,
+02:27 and finally here, I'm going to call it with a keyword argument name is equal to Matt
+02:31 and name overrides the value that is defaulted to Joe
+02:35 and I get hey Matt as an output.
+02:37 Here, I've got another example, I've got a bare star by itself,
+02:42 and then I also have a keyword argument that doesn't have a default value.
+02:47 In essence, what this is telling Python is that I don't have any positional arguments
+02:51 that I will support but you need to require a keyword name
+02:55 when you invoke this, if you don't, you're going to get an error
+02:59 and we'll see here in the calls below.
+03:01 Here I call foo3 with no arguments and I get a type error.
+03:04 It says I'm missing a keyword only argument name
+03:07 so I am missing one keyword only argument.
+03:10 Here I'm calling it with a positional argument and I get an error that says
+03:14 I take 0 positional arguments, but you gave me one.
+03:17 And finally, I'm calling it with a keyword argument and name gets overridden to Matt.
+03:22 So again, in essence, this is requiring any invocation of foo3 to type out name.
+03:30 The motivation for this change in Python 3 is to improve the readability.
+03:33 If you have a function that says send 404, 200 and 100,
+03:38 these are all magic numbers and it's not clear what these mean.
+03:41 If these are positional named arguments,
+03:44 we can provide the names of them if we want to but it's not required.
+03:49 What this is doing is it's forcing us to provide the name to them
+03:52 and one could make an argument here at this second line of code here
+03:57 send code is equal to 404, amount is equal to 200, timeout is equal to 100
+04:02 is clear and explicit about what the intent of the code is.
+04:06 So if you have code that looks like this
+04:08 where you have a bunch of numbers or configuration parameters
+04:11 and you're not clear what they're doing
+04:14 or when you come back to them it's not clear to you what's going on there,
+04:17 consider using keyword only arguments to make your code more readable.

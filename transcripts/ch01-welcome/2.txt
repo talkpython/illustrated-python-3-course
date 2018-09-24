@@ -1,0 +1,12 @@
+00:01 I just want to share with you some motivation and some resources.
+00:05 I've taught a bunch of people Python over the years
+00:07 and I've found that most people learn best when they can
+00:10 in addition to just listening or watching, they can try something out.
+00:13 And so included with the course are a bunch of labs or assignments
+00:16 for you to try out what we've talked about.
+00:18 I would advise you not to look at the solution videos
+00:21 which are included in the course until you've tried out the labs,
+00:24 that's going to help you get the most out of the course.
+00:28 Also, I want to give you this GitHub link here.
+00:30 This will give you all the resources for the course.
+00:33 So keep this handy while you're going through the course.

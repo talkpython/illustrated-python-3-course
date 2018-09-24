@@ -1,0 +1,13 @@
+00:00 So here's a slightly better example,
+00:02 we've got a function called sum2 and it's going to take x and y
+00:06 and note here's our colon here and here's our annotation.
+00:09 In this case, we have an expression and this is just a string,
+00:12 it's the string num and then in this case for y we have another expression there
+00:16 and it's an int, and then at the end here we're saying that it returns a float.
+00:20 Now this might seem a little weird, we're specifying
+00:23 a string and an int and a float as the types here,
+00:27 and again, note that Python isn't going to do anything when you run this code,
+00:31 but what it does do is it adds a __annotations__ attribute to the function
+00:36 and you can look at that attribute
+00:39 and it's just a dictionary mapping the parameters
+00:42 and then it has a special parameter called return there that gives the return value.

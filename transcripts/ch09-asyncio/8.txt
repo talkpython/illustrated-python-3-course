@@ -1,0 +1,129 @@
+00:00 I'm going to go through some code here
+00:02 just to give you some insight into how you could make your own asynchronous library
+00:08 and I didn't come up with this, this was from a presentation I saw
+00:11 from Robert Smallshire, and so I'll credit him on this, this isn't his code,
+00:16 but this is adapted code from him,
+00:18 but I really like the approach here to give you some insight
+00:21 into developing an asynchronous framework.
+00:24 Here, I've got a function called map,
+00:26 and if you're familiar with functional programming,
+00:28 map takes a function and a sequence
+00:30 and it applies that function to every item in the sequence.
+00:32 So this should be pretty straightforward.
+00:34 We're creating a result list here
+00:36 and we're just looping over our sequence and we're appending into that.
+00:40 We could use a list comprehension or whatnot for this, but bare with me for a minute,
+00:43 if we wanted to make this asynchronous, then we've got to change it a little bit
+00:47 it's got to yield, it's got to give something else the chance to run
+00:51 and so I'm going to put a yield in here
+00:53 and I'm going to change it to say async map here.
+00:56 So this looks very similar, I just put a yield in there and it says
+00:58 after I do some work, yield give something else the ability to run.
+01:02 So if you're familiar with generators,
+01:04 you'll know that generators in Python allow you to call them
+01:07 and once you call them and they get to this yield point
+01:10 they freeze their state and then when you call next on them,
+01:13 when you're looping over a generator,
+01:15 you can resume the state exactly where it left off.
+01:19 So we're going to change this function into a generator
+01:22 so that we can loop over it and we can call next on it.
+01:25 So here's an example of doing that here.
+01:27 Our function is a generator and we're going to make an instance of this generator,
+01:31 we're going to pass in a lambda in there that just adds to something
+01:34 and we're going to pass in range of 3 so 0 up not including 3
+01:38 and if you're familiar with the iteration protocol, how for loops work under the covers,
+01:43 basically you get an iterator and then you call next on that iterator.
+01:46 Well generator in Python is an iterator and so you can call next on a generator.
+01:51 So I'm going to call next on it and that's going to say
+01:54 okay, I'm going to apply lambda to the first guy in range.
+01:59 The first guy in range is zero the lambda adds 2 to zero,
+02:03 and at that point it's going to append that and it's going to yield
+02:06 and so it yielded, it appended into our result that guy, the 2
+02:11 and then we're going to call next again
+02:13 and it will put three in that result
+02:16 and note that it's giving me back my interpreter here.
+02:19 I have my interpreter back, I'm doing this from the console here
+02:22 and maybe I do some other work, I can say 5+7. Well, that's 12,
+02:26 and now I want to go back and I want to do this again.
+02:29 So I call next again and it does some more work
+02:32 and it's going to stick 4 on the end , the iteration protocol when I call next again, I'm done,
+02:36 It's going to give me a stop iteration
+02:37 but note that since I returned the result list that comes in my exception here.
+02:43 So the stop iteration also has my result at the end of it.
+02:47 So that's pretty cool, so I can take that concept here and make a function from it now.
+02:52 So I'm going to make a function called runner that takes a generator
+02:55 and it's just going to go into a while loop and it's going to call next repeatedly
+02:58 until I get a stop iteration and when I get to stop iteration exception,
+03:02 I'm going to say well pull off the value guy
+03:04 because that's going to be whatever the generator returned.
+03:07 And we can run that here and we can see that
+03:09 when I pass in the same code here that I had previously
+03:12 I pass it into my runner function, I get that result out of it.
+03:16 Pretty cool, but what this is allowing me to do is
+03:18 right after this next here, I could work on something else
+03:22 or have multiple generators that I'm working on at the same time.
+03:26 So in order to do that, we're going to make a class called a task
+03:30 a task will wrap a generator, we're just going to pass a generator into it and it will have an ID.
+03:35 So we're going to just take an ID and keep track of our generator as instances in there.
+03:41 The ID is tracked as a class variable here.
+03:44 Okay, so now we have a task, let's make a scheduler,
+03:47 a scheduler is going to take task and it's going to run them.
+03:51 We're going to import from the collections module,
+03:53 let's call the deck or the double ended queue.
+03:56 This allows us to efficiently stick things in the front and in the back
+04:00 and pull them off at either end very quickly.
+04:02 What we're going to do is stick tasks into our deck
+04:05 pull them off the front and then stick them
+04:07 back into the other end as we're working on them.
+04:09 So we're going to have a deck here with our tasks in it
+04:12 and we're going to make 2 other attributes, results and exceptions,
+04:14 those are both dictionaries, they're going to map the task ID
+04:17 to either the result that came out of it or if there is an exception
+04:21 they're going to map the task to the exception.
+04:23 And then we have an add method and add method takes a generator
+04:26 and it just sticks it into our tasks list after it wraps it with the task class.
+04:31 Now, we have the run method,
+04:33 this is where the meat of our scheduler is.
+04:36 It's just going to be very similar to what we saw before here.
+04:38 We're going to have a while loop it's going to have an infinite loop.
+04:41 It's going to say if we don't have any tasks pop out of there.
+04:44 Otherwise, what we're going to do is
+04:46 we're going to get our first task, our T from the left hand side
+04:49 and we're going to call next on it.
+04:51 We're going to print out that we're running it,
+04:53 but we're going to call next on it.
+04:55 So it's going to do some work until it gets to that yield,
+04:57 and it might have other things that happen, we might get a stop iteration.
+05:01 So we might be done with that generator.
+05:02 If we did get a stop iteration that indicates that we're done
+05:05 and we're going to stick into our results dictionary whatever we got for the value there.
+05:10 We might also get an exception, if some exception happen
+05:12 so we can just remember our exception.
+05:15 If our generator is still running, so we didn't get a stop iteration or an exception,
+05:18 we're going to stick it back into the end of this deck.
+05:21 So it's going to come back in the other end
+05:23 and then we're going to come back up to the top here
+05:26 and we're going to get our next task here
+05:28 and we're going to work on that one, and we'll just keep working on these
+05:31 and they're all going to yield or they should yield
+05:33 and allow other tasks to work at the same time.
+05:36 And at some point, all the tasks will be done, we'll break out of this.
+05:39 So let's just look at an example of running this here.
+05:42 I'm going to make two generators async map g1 and another one async map
+05:48 one is adding to the other, one has a lambda that is multiplying by 3
+05:52 and they have slightly different input sizes,
+05:55 we'll make an instance of our scheduler and we'll just add those two generators to them
+05:59 and then we'll call run and we'll see that run is switching off between the two
+06:02 it's going to say I'm running 1 now, I'm running 2, now I'm running 1,
+06:05 and at some point 1, which is only three long, gets finished
+06:09 and it says this is the result of running that
+06:12 and it keeps working and now it's just working on 2, and then it gets the result of 2.
+06:17 And finally it's done, we can say what are the results of the scheduler
+06:21 and it says well the results from task 1 are this
+06:25 and the results of task 2 are that, but note that it interwove those results.
+06:30 It worked on both of them at the same time.
+06:32 Hopefully, that gives you some insight into how you can yield
+06:36 and allow something else to run and then come back and work on something else.
+06:40 So as long as we have these yields or awaits in Python 3.6
+06:45 in our coroutines that we're creating,
+06:48 we can take advantage of this asyncio framework

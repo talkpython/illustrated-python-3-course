@@ -1,0 +1,59 @@
+00:00 Few best practices for typing,
+00:02 if you have a function that you're passing around
+00:04 and you want to add typing information to it
+00:07 using first class functions so you're passing a function into another function,
+00:10 again use that typing callable to annotate that
+00:13 if you want to disregard the type use the typing any
+00:16 why would you want to disregard the type and use this any guy?
+00:20 Well, tools like mypy allows for what's called gradual typing,
+00:24 and it's going to ignore any code that doesn't have types on it.
+00:28 But when you start adding types, it's going to do type checking on those.
+00:32 This is a feature that's built in into mypy, it's intentional
+00:35 and the idea there is that if you want to start adding types to your code
+00:39 you can add them bit by bit and as you add them,
+00:43 the code that you add the types to will start getting type checked
+00:46 and it will ignore code that doesn't have types.
+00:48 Another hint when you start adding these types
+00:51 is instead of returning some complicated, nested structure
+00:54 list of strings isn't super complicated, but one thing to consider is
+00:58 instead of doing that, make a variable called append result
+01:01 that is equal to this list of strings and just use the append result instead
+01:06 and then any place where you have this list of string guy,
+01:09 you can use this append results variable instead,
+01:12 it just makes your code a little bit easier to read
+01:15 especially when you get some of these more nested structures,
+01:17 we'll show an example of that later.
+01:19 If you're using a named tuple, note that the traditional syntax for a named tuple here
+01:24 does not allow for type annotations.
+01:26 So here I've got a named tuple person with a name, age and country,
+01:30 I can't annotate that by using that syntax,
+01:32 but I can import from the typing Library the named tuple class
+01:38 and if I subclass from that, here I'm making a person class
+01:41 and I'm subtyping named tuple, I can put these class variables here
+01:46 with type annotations and add the annotation there.
+01:49 So if you use named tuples you probably want to
+01:52 migrate to this newer way of defining them that allows you to put types on them.
+01:57 Another thing to be aware of is that none can be used all over the place in Python
+02:01 and you don't want to dereference a none per se
+02:05 and try and pull an attribute off of a none object
+02:08 and so a lot of places in Python you'll need to have checks
+02:11 for if something is actually none or not before you do something to it.
+02:15 And sometimes you might return something and you might not,
+02:17 and in that case you're going to want to use this optional from the typing module
+02:21 so we can import optional here and we can say
+02:24 this function find returns optionally a person object
+02:28 and basically it's going to loop over a list and if it finds some person that matches
+02:33 it will return it, otherwise, it will return a none.
+02:36 So if you are optionally returning something, use that optional type.
+02:40 Here's another hint when you're using the mypy tool,
+02:43 mypy tool has a nice little function called reveal_type.
+02:46 We don't even need to import it, we just put reveal_type in our code
+02:50 and when we run our mypy tool it will print out what it infers the type to be.
+02:55 Here I have a function called add that takes two parameters, x and y
+02:58 and it says the x is an integer and y is a float,
+03:01 if I sum those up maybe I don't know what type that returns,
+03:04 I don't know what Python returns there.
+03:06 If I want to find out, I can say reveal types there with the new variable
+03:11 and when I run mypy on this, mypy is going to say
+03:13 I think that this type is this and that allows me to add typing
+03:17 to the res variable if I wanted to.

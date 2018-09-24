@@ -1,0 +1,64 @@
+00:00 In this video, we're going to look at async context test.py
+00:04 Let's look at the first test, it says write an asynchronous context manager staller,
+00:08 it should accept a time in seconds when the context is entered,
+00:12 it should pause for that many seconds, call asyncio sleep.
+00:15 Okay, so let's make a staller.
+00:18 We have to define a class called staller
+00:20 and we need to define a constructor __init__
+00:25 and it needs to take some time in seconds
+00:28 and because this is an import there rather than saying time,
+00:34 maybe I'll just say amount and I'll say self.amount is equal to amount.
+00:38 Now we need to define the implementation for the asynchronous protocol
+00:42 of the context manager and that is defining __aenter__ and __aexit__
+00:49 and because this is asynchronous,
+00:51 we're going to put an async right in front of that def there.
+00:55 Okay, it says when we enter we want to call asyncio.sleep
+01:01 and we want to sleep for self.amt
+01:04 and we're getting squiggles here in PyCharm
+01:06 because we need to import asyncio there
+01:10 and because we're calling an asynchronous function,
+01:13 remember, whenever we call asynchronous functions, we need to await them.
+01:16 So this is a function that can call asynchronous functions
+01:22 because it is defined with async in front of it.
+01:24 Great, we just also need to define the async def __aexit__
+01:30 and this doesn't need to do anything, so we'll just pass here.
+01:34 Let's run this and make sure that it works,
+01:36 so I'll just right-click and say run this.
+01:38 And it looks like I'm on the second part here,
+01:42 so this is my staller context manager,
+01:45 it takes an amount that we want to stall
+01:48 and when we enter the context it will sleep for that amount before starting the context.
+01:53 We can look down at the test here just to make sure that that's what's going on.
+01:56 We have a time, we keep track of the time before we go into it,
+02:00 we're going to say we're going to stall for one second
+02:02 and then we're going to enter it, we're going to look at our time
+02:05 and we're going to assert that our time difference
+02:08 is greater than or equal to 1 second, which it appears to be now.
+02:11 The next one says write an asynchronous context manager closer.
+02:13 It should accept an object and call the .close method on it when the context exits.
+02:19 Okay class closer, we need the constructor,
+02:23
+02:26 and it needs some object here, I'm just going to say obj
+02:30 and let's say self.obj is equal to obj,
+02:33 and we need a __aenter__ , __aexit__ async def __aenter__
+02:41 and this doesn't need to do anything here
+02:44 and we need a async def __aexit__
+02:50 and when we exit we need to make sure that we call closer here
+02:54 so you can say self.obj.close.
+02:58
+03:01 Let's run this and make sure it works.
+03:04 Okay, it looks like it worked and we can look at the test down here.
+03:10 The test just makes a class called CloseMe and if you call close on it,
+03:15 it sets an attribute called closed is equal to true
+03:17 and inside of here, we just create an instance of CloseMe
+03:21 and we put it in our async context manager here
+03:24 and we don't do anything, we just assert that after we're done closed is called.
+03:30 Note that nowhere inside of this code have we called closed
+03:35 but we passed the c object into closer and it called that when it exited out of it.
+03:41 Hopefully you have a little bit more understanding
+03:44 how to use these asynchronous context managers
+03:46 the key point being that if you want to do some asynchronous calling
+03:52 you can do that inside of the __enter__ or __exit__ if you want to.
+03:57 Note that closer doesn't do any asynchronous calling.
+04:00 It just closes an object so you can make the context managers like that
+04:05 as well if you want to.

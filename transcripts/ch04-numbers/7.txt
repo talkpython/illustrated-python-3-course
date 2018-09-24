@@ -1,0 +1,23 @@
+00:00 In this video we're going to look at stat test.
+00:02 So open that up in your editor.
+00:05 It looks like there's one function in here., let's run it.
+00:08 I'm just going to right click here and say run
+00:11 and I get a name error on line 13.
+00:15 Okay, let's read what the test says to do
+00:20 and see if we can make it so we don't get a name error, so we get a pass here.
+00:24 It says calculate the mean, variance and standard deviation of the data array,
+00:29 store the results in m, v and s.
+00:32 So this wants us to use the statistics library.
+00:35 So from statistics, import and we can say
+00:42 we're going to import the mean and the variance
+00:47 and if we want to put this on another line, we could say stdev.
+00:53 So again, we put parentheses here
+00:55 if we want to have our imports go across multiple lines.
+00:58 So here's data, we want to get the mean of it
+01:01 m is equal to the mean of the data,
+01:04 v is the variance, v equals variance of data.
+01:08 and s equals standard deviation of data, looks good.
+01:13 Let's run it— bingo, we're good.
+01:17 So this is a library that's built into Python
+01:20 and it's good for doing basic statistics.
+01:23 So rather than writing your own, take advantage of this because it's there.

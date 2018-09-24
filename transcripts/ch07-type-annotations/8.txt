@@ -1,0 +1,107 @@
+00:00 In this video we're going to look at annotate_test.py.
+00:03 The first thing it says to do is to make a copy of py3code.py to py3code.pyORIG
+00:08 So I've got those files in my documents directory.
+00:12 I'm going to say copy documents talkpy labs in py3code
+00:23 and let's just copy that to py3code.pyORIG
+00:26 You can do this through an explorer window if you're on Windows
+00:30 or from the terminal if you want to, either way.
+00:33 Okay, so there we go.
+00:36 Next thing it says is to use virtual environment and pip to install mypy.
+00:41 So I'm in my directory where my virtual environment is,
+00:45 I've got it activated so I can say pip install mypy here
+00:50 and it will go out and fetch it and install it.
+00:53 Okay, so now I should have mypy in my path and I can run it.
+00:58 Excellent, okay.
+01:01 Next thing it says is to run mypy-- strict on py3code, let's try that.
+01:06 So I'm going to go into my directory where I have the labs here.
+01:14 I'm going to say mypy--strict on py3code,
+01:18
+01:26 mypy--strict on py3code.py.
+01:32 Okay, and I get a bunch of things,
+01:34 on line 4 we're missing an annotation, line 7 we're missing an annotation,
+01:38 on line 10 missing an annotation, line 15 missing an annotation.
+01:42 So let's go through and see if we can fix some of these things here.
+01:46 Let's open up py3code, line 4 it says we're missing an annotation,
+01:50 that's this guy right here.
+01:52 So it looks like this is returning an integer,
+01:54 so let's add an annotation here to just say return int,
+01:57 and let's run it and see if that fixed it.
+02:04 Okay, and so now I no longer have that there.
+02:07
+02:16 I'm just going to copy and paste this so I can quickly throw these on here.
+02:29 All of these methods here return an integer.
+02:32 Okay, let me run mypy again and see what it's complaining about now.
+02:37 We're now in line 44, function is missing an annotation on 44.
+02:43 So here's 44, this is our force guy and we've got mass and acceleration,
+02:47 so I'm just going to say that mass is a float and acceleration is a float
+02:52 and those return an int and quad here.
+02:59 I'm going to say a is a float and b is a float and c is a float
+03:14 and this also returns a float here, and we'll change this guy,
+03:19 it should return a float instead of an int.
+03:25
+03:28 Okay, we got on line 52 incompatible return type
+03:32 got tuple of float float and not an expected float.
+03:35 Interesting, okay on 52 it says that we're returning this guy as a float and this guy's a float.
+03:42 So, let's see, we can use PyCharm to fix that for us,
+03:50 it has the smarts to fixes this for us.
+03:51 Another thing we might want to do is you might want to just say this is a quad result here
+03:57 and put that up here and say quad result here
+04:09 that way if I'm getting these quad results in other places I can reuse that if I want to.
+04:13
+04:16 Okay, and it says that tuple is not defined, let's define tuple.
+04:20 We can probably use PyCharm to do that, so import this name, and it's typing.tuple.
+04:30 So if you're not familiar with that, there's the typing library
+04:32 and you can import that tuple guy.
+04:35 And the nice thing about using the tuple here as we use these square brackets
+04:37 and we can say that this is a tuple of floats
+04:40 rather than just saying that it is of the tuple class
+04:43 we're specifying what is inside the tuple, kind of cool.
+04:47 Let's run it again and make sure it works.
+04:50 Okay, we're good to go there. Let's go back to our annotate test.
+04:55 Okay, run py3code with this super test and keyword test.
+05:03 Okay, so let's try and do this here.
+05:07 We're going to run py3code with super test and keyword test
+05:13 with ignore missing imports, I'll just copy this.
+05:17
+05:21 Okay my copy didn't work, so ignore my copy
+05:24 mypy --strict py3code and it says ignore missing imports, so we'll ignore.
+05:37 Missing Imports tells it that if you've got import data
+05:42 that you don't have type information for it, just ignore that don't complain about it.
+05:47 So I wanted this to do super test and keyword only test I believe.
+05:51
+05:54 Okay, and so if we do this, now we're getting function is missing a type annotation there,
+06:00 keyword test and super tests are missing type annotations.
+06:06 In this case, it's not missing anything extra in py3code.
+06:09 So there aren't any other issues.
+06:12 We could go through super test and we could add annotations
+06:15 to super test if we wanted to here.
+06:18
+06:22 So let's look at super test, on line 3, it says function 3, 31 and 33.
+06:28 So here's line 3, we could just say that this returns none here,
+06:34
+06:42 31 def speed this returns an int
+06:45
+06:47 and 33, cannot assign to a method.
+06:55 Okay, in that case, it's just complaining, it's just giving us a warning
+06:58 it's saying you know what, you're doing some monkey patching here,
+07:00 you probably shouldn't do that.
+07:03
+07:07 Okay, 31 is still complaining,
+07:11 it's saying I take a self so this would actually be a character,
+07:16
+07:19 let's see if that resolves that issue.
+07:23 Okay, and keyword has a couple of things
+07:28 and it's actually complaining about the test here.
+07:31 So in the keyword test saying too many positional arguments for force and quad,
+07:36 that's kind of cool, note that this is our actual test that's calling this.
+07:40 If we were using mypy in the continuous integration situation here
+07:45 note that we're intentionally calling this in a bad way,
+07:48 we would want to probably turn off mypy for this keyword test
+07:52 because this is a false positive here.
+07:57 Okay, so hopefully you got a little bit of a feel for adding type annotations here.
+08:03 It's not too difficult, and we saw that we can do some cool things
+08:07 I had erroneously put float here as the return type
+08:11 and mypy told me that that's not what it returned, it actually returns a tuple.
+08:15 So this is a great feature that's coming out
+08:18 and I hope you can take advantage of it to make your code more robust
+08:22 or find bugs earlier in your code.

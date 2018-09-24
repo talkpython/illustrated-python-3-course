@@ -1,0 +1,58 @@
+00:00 Test, open that up and your editor and see if we can get it going.
+00:03 So the first thing you're going to have to do is use pip to install pytest asyncio
+00:09 this is a pytest plugin to enable asynchronous testing.
+00:14 Let's run my test here and see if this works.
+00:16 So I'm going to hit run asyncio test.
+00:19
+00:22 I have not installed asyncio test so I can do that either from PyCharm
+00:27 or I can do that from the command line here.
+00:30 I'm going to do it from the command line.
+00:32 I'm in the directory where my virtual environment is created on my machine
+00:36 and I'm just going to say bin pip install pytest asyncio
+00:45 and that should go out and get that and install it.
+00:48 So that's how we would install from the command line
+00:51 making sure that I'm running pip from my virtual environment.
+00:56 Go back and run this guy again and let's see if he passes that guy.
+01:01 Okay, now we have installed pytest asyncio,
+01:04 let's do the next part here.
+01:06 Write a coroutine add2 that accepts two parameters
+01:09 adds them and calls asyncio.sleep(0) finally it returns the sum.
+01:14 So in order to make a coroutine, we need to say async def
+01:19 and it's going to be called add2,
+01:22 it's going to take two parameters X and Y
+01:25 so it says it's going to add them.
+01:27 So I'm going to say result is equal to X plus Y
+01:29 and then it says it wants us to call asyncio sleep
+01:33 so asyncio.sleep(0) because this is an async call here,
+01:39 we can't just cut like this, we need to say await asyncio sleep
+01:43 and I have an issue here, it says I need to import asyncio.
+01:48 So let's say import that and then let's return the result here
+01:52 again the benefit of calling asyncio sleep in a coroutine
+01:56 is it gives the event loop the opportunity to run something else.
+01:59 So a single coroutine can't hog the CPU
+02:05 run this and make sure that it works.
+02:09 Okay, so it looks like the add2 part is working.
+02:13 Next part says write a coroutine avg that takes two parameters
+02:18 coroutines and size, it loops over coroutines and gets the values from them
+02:22 when it has pulled out size values, it returns the average of those values
+02:27 and says make sure you put in await call in it.
+02:30 If you want a well-behaving coroutine you need to put an await call in it.
+02:34 So we need to say async, because we're making a coroutine,
+02:37 def avg and it's going to have some coroutines.
+02:40 So maybe I say cos and I'm going to say size,
+02:45 after I get values from those, I'm going to average them.
+02:49 So I'm going to loop over my corotines for co in cos,
+02:54 I need to accumulate the results of those.
+02:58 So I'm going to say result is equal to an empty list.
+03:00 I'm going to say res.append await co
+03:04 I'm going to wait on that coroutine in my list of coroutines.
+03:07 Again when you call it coroutine, you need to say await on it.
+03:11 And if the length of res is equal to size,
+03:16 then I'm going to say return the sum of res divided by the length of res
+03:24 and that should give me the average of the first size coroutine results,
+03:31 presumably those are giving me numerical values.
+03:34
+03:40 And when I run that it appears to work.
+03:42 So again, key here is you want to have that await in there
+03:45 so that you can give the event loop the ability to call another coroutine
+03:52 if it wants to and do some switching between them.

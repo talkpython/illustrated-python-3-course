@@ -1,0 +1,126 @@
+00:01 This video will discuss string formatting and pep 3101.
+00:05 Pep 3101 introduced the format method on a string,
+00:09 note that this exists in later versions of Python 2.
+00:13 Prior to that, there was a c-like way of formatting strings
+00:18 so we would use percent and then some character after that
+00:23 typically s means I'm going to represent this as a string.
+00:27 So here I have two variables and then we use the mod operator
+00:31 and pass in a tuple of things that we want to stick into these placeholders here.
+00:37 So %s %s will take hello and stick it into the first place holder
+00:41 and in the second place holder world will pop in.
+00:45 Pep 3101 we make this a method on a string
+00:49 format is a method on a string, and we're using curly braces
+00:52 to specify our placeholders here, in this case the 0 and 1,
+00:56 0 refers to who's in the zero position
+00:59 and the 1 here refers to who's in the second position.
+01:04 Again, Python is a zero based language, so 0, 1.
+01:07 One of the nice things about the 0 and 1 which are completely optional
+01:10 is if I want to say Hello, Hello, Hello, I could say {0} {0} {0}
+01:16 I wouldn't have to put in Hello three times in as arguments to format.
+01:21 Using the format method, there's a mini language
+01:24 and it allows us to do some things, we can insert some Python expressions.
+01:28 So in this example, I'm passing in a dictionary into the format,
+01:35 and note that I'm doing an index operation here with square brackets here,
+01:41 so I'm saying on what's ever passed in I want you to do an index operation
+01:44 and pull age off and we get 50 there.
+01:47 We can do a similar thing with attribute access,
+01:50 Here I say .age give me the age attribute of my p class
+01:55 and I'm passing in p there and he prints out 50.
+01:59 So we can do some simple expressions there index and attribute access.
+02:04 You try and call a function or do something like that
+02:07 and it's going to bark at you and say that you can't do that.
+02:10 Here's an example of trying to call upper.
+02:13 So we pass in a string and we want to say
+02:15 hey give me the upper attribute, but also invoke it with parentheses here
+02:19 and it gives me there's no attribute upper with parentheses following it.
+02:24 So it's trying to do some things
+02:27 to not allow you to invoke or call arguments there.
+02:31 We talked about position and here's just an example of using position
+02:35 if I want to say na na na na hey Jude,
+02:38 I can repeat na 3 times just by putting the position in there,
+02:43 note that I don't have to repeat na multiple times.
+02:46 Now, there's a whole little language for string formatting here.
+02:49 This is basically what can go where,
+02:52 this next slide here is the crib sheet that tells you
+02:56 what can actually go in the where
+02:58 so I'll go over these briefly, don't try and memorize all this
+03:04 you can refer back to this if you need to
+03:07 but a lot of the times you don't need all these different formatting options.
+03:13 So a fill character, you can specify a fill character
+03:17 the default character here is a space and you don't need to put anything in there.
+03:23 There's an alignment that allows you to center right or pad align things
+03:29 by using one of these four characters here,
+03:32 less than, greater than, equal or the caret.
+03:35 There's a sign, we can stick in a sign here
+03:37 so we can put a plus a minus or a space
+03:40 if we have a plus in there,
+03:43 then we're going to put a sign in front of all numbers.
+03:46 If we have a minus in front of there,
+03:49 then we're going to put a sign in front of negative numbers
+03:52 and with a space we will put a space in front of positive numbers
+03:57 and the sign in front of negative numbers.
+03:59 We can put this hash in there and that just says
+04:03 if I've got a number that's a binary, octal or hex,
+04:08 I want you to stick 0b, 0o or 0x in front of those respectively.
+04:14 There's an option here to do zero padding
+04:18 so we can stick in a zero there
+04:22 and if we have numbers we'll get padding after that,
+04:24 the default there is space so it doesn't stick in padding,
+04:28 but if you want to have zero padding on the left you can do that.
+04:32 We can specify the minimum width if we want
+04:35 something to take at least 3 spaces, we can say 3 in there.
+04:39 We can also specify a thousands separator,
+04:41 there is no thousands separator by default,
+04:44 but if we want to have a comma as a thousands separator
+04:47 we can put that in there.
+04:49 Also, we can put a precision following a period,
+04:52 this is for floating-point numbers.
+04:55 If you want to have five digits of precision, you can put .5
+04:58 and that will give you the precision.
+05:01 If you have a string that's going in,
+05:03 then this will give you the max length of the string.
+05:06 So if I want to take uh up to 5 characters of that you can put 5 in there.
+05:10 And finally, at the end here, we have a type.
+05:12 There are various types that we can specify, these are all on the bottom here.
+05:17 The default is s which means just give me the string representation of that.
+05:21 We can also provide r to give us the repr.
+05:24 There are various options that we can use for numbers that are integer numbers
+05:30 and here are some floating-point options we can use as well.
+05:33 So e for lowercase exponent, E for uppercase exponent
+05:38 f for fixed point, g general, it changes between fixed point and exponent
+05:44 to try and be nice to you.
+05:46 And n is a locale specific general version if you're in a different locale
+05:51 and a % sign will convert a floating point number to a percent.
+05:56 So if you have .5 it will convert that to 50,
+05:59 so lots of options and things that you can do in there.
+06:01 Don't memorize this, but you can come back
+06:04 and refer to this if you need to.
+06:06 Here are some examples of formatting a string.
+06:08 Here I say that I want to format Ringo in 12 characters
+06:13 and surrounded by asterisks here.
+06:17 So we put a colon here,
+06:19 anything following the colon is the formatting options.
+06:22 You can see that we have an asterisk, that's the fill character
+06:26 and then we have a caret and then we have 12
+06:28 so we're going to take 12 characters and center that, caret means center.
+06:32 Here's one here, formatted percentage using a width of 10 with 1 decimal place
+06:36 and a sign before the width padding.
+06:38 And so we see there's a colon, after the colon
+06:41 is going to come our formatting options
+06:43 we're going to use an equal that says put the space after our sign there
+06:49 and we're going to use 10 characters and one character of decimal precision.
+06:55 And then, since it's a percent, we're going to
+06:58 multiply it by 100 to convert it to a percent.
+07:01 And so we see 44 divided by 100 would be .44
+07:04 but this is going to multiply that by 100.
+07:07 Here's a simple binary and hex conversion.
+07:09 We just put :B and 12 as binary is 1100
+07:15 12 as hex is c.
+07:18 There's a little link at the bottom here pyformat.info,
+07:21 it's a nice website, you should go visit that
+07:23 and it has a bunch of examples of doing string formatting
+07:26 in what it calls the old school way of doing it,
+07:30 which is using the mod operator and the c-style placeholders
+07:35 and some examples of doing that with the newer format method,
+07:38 great examples in there, nice little resource to know about when you forget
+07:43 the formatting options and want to see some examples.

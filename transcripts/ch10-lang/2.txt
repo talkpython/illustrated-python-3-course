@@ -1,0 +1,49 @@
+00:01 In this video, we're going to look at exception test, open that up in an editor.
+00:04 Let's read about the problem, the first part says
+00:07 define a customized exception color error that subclasses runtime error.
+00:11 This is pretty straightforward, we just make a new class
+00:16 called color error and we're going to subclass runtime error.
+00:20 We don't have to do anything else, we can just pass for the body of that.
+00:23 The reason why one might want to define their own class of exceptions
+00:27 is so that they can handle those in a special way in their application
+00:31 and it makes looking for them and their application a lot easier.
+00:35 The next part says create a function err_wrap that takes a function fn *args and **kwargs.
+00:42 It should call and return the result of invoking the function
+00:45 with the arguments and the keyword arguments
+00:47 if an exception is raised it will use the raise from exception chaining
+00:51 to wrap the error with a color error.
+00:54 Okay, so this is taking advantage of higher order functions in Python
+00:57 and we can pass functions in as parameters to other functions
+01:01 we're going to say def err_wrap and it's going to take a function.
+01:05 It's going to take variable positional arguments,
+01:07 so *args and **kwargs and we're going to return the result
+01:11 of calling function *args with **kwargs here,
+01:16 but we don't just want to return this
+01:18 we want to wrap it and make sure that if there is an exception in here
+01:21 that we catch that exception,
+01:23 so I'm just going to say try except exception as e
+01:27 and then if I actually got an exception in here
+01:30 rather than raising that exception I'm going to wrap it.
+01:33 So I'm going to say raise color error from e,
+01:37 what that will do is it will wrap color error from e
+01:41 and there will be a context in there that will point to the original exception
+01:45 so we can run this and see if it works.
+01:48
+01:52 It looks like it works, let's take a brief moment to look at the code
+01:55 and see what it is actually testing.
+01:58 Here we're calling err wrap with the lambda that simply adds to numbers
+02:02 and it asserts that that result works.
+02:05 Here we're calling err wrap with a lambda that divides twonumbers
+02:08 and it's doing division by 0 and it's asserting the it raises a color error
+02:13 and then later on the context, the context manager object here
+02:19 has a value attribute which is the actual error
+02:21 and on that there is a context which is zero division error.
+02:25 So the real error was the zero division error,
+02:27 but it got wrapped with color error.
+02:30 Same thing down here below.
+02:32 We're making a function called raise 2 that just raises a key error,
+02:35 and we're calling raise 2 and we're asserting that color error is raised
+02:40 but inside the wrapped context is key error,
+02:44 so hopefully this gives you some insight into how to do wrapping in Python 3.
+02:50 This will help finding errors a little bit easier
+02:54 and you can make them specific to your code if you'd like to.

@@ -1,0 +1,65 @@
+00:00 Let's look at mypy a little bit more.
+00:02 I'm going to contrast this with a tool that Google has in a minute here.
+00:05 So mypy supports Python 3 style annotations,
+00:10 it also supports Python 2 style annotations
+00:13 and it supports what are called stub files.
+00:16 So if you have some code that you need to type check
+00:19 or you want to type check against but you can't change that code,
+00:22 such as code in the standard library or whatnot,
+00:24 you can use these stub files, these are pyi files
+00:27 that just have type information in them.
+00:29 Mypy can run against all of these.
+00:32 If you want to create a stub file, if you are using a third-party library
+00:35 and can't push code back upstream or they don't want to include type information,
+00:40 you can also create stub files as well.
+00:42 Mypy ships with a stub gen.py tool to create stub files.
+00:46 And one of the values of having these stub files is
+00:49 it gives a little bit more checking to validate
+00:53 that you haven't had typos in what you're calling
+00:56 and that the methods and functions that you're calling all exist.
+00:58 Here's an example of running mypy,
+01:01 it's pretty easy to install, we just pip install it
+01:03 and then we can say Python -m mypy on what we need to check
+01:08 or we can call the mypy executable itself on the file.
+01:11 And again, this is static type checking, it's not going to execute the markov code per se
+01:17 but it's going to look at it and try and divine what the types are.
+01:21 And in this case, I'm going to get some errors
+01:24 you'll note that the tooling that I just ran previously for pyannotate
+01:28 added some type information to my markov file,
+01:32 and now when I run mypy against it, it's going to complain
+01:35 because it's going to start type checking those things.
+01:38 So it complained about line 38 and line 57.
+01:40 It says we need type annotations for a variable.
+01:43 These are what those two lines look like.
+01:45 We are making the tables attribute in the class instance,
+01:49 and we also have a results attribute this table creation as well.
+01:54 So interestingly enough, monkey type and pyannotate,
+01:59 they didn't create the types for these guys internally,
+02:03 they created the function and method types, but not the internal types
+02:07 that mypy was looking at in this case.
+02:09 Here's an example of removing the errors for the tables guy.
+02:13 I can just do an inline definition here for the type on the variable here.
+02:17 It's that nested guy, and if I was being a little bit more user-friendly,
+02:22 I'd probably define this up above as a table result
+02:26 and just point this at table result instead, make it a little bit more easy,
+02:32 this is a little bit too nested and we're going to use table result in a couple of places in this file,
+02:38 so it makes sense to reuse that code.
+02:39 One of the other things you can do is integrate mypy with continuous integration tools
+02:43 so you can run things like --cobertura-xml-report
+02:47 and that will give you a line-by-line report on how your type information is.
+02:52 It will give it a ranking of it and you can integrate that
+02:56 and if you're interested in tracking these things,
+02:59 this is something that's interesting to you and called quality,
+03:02 then you can measure it and keep track of it with your continuous integration.
+03:05 Another nice little feature in mypy is the reveal type function.
+03:09 You don't need to import it, but when you're running my type against the module,
+03:12 you can just say reveal type of some variable
+03:15 and mypy will try and divine what it is.
+03:18 It does an okay job, sometimes it can't really guess what it is and so it just returns any,
+03:22 in this case, I've got a file that takes an integer and a float
+03:26 and it ads those two and it's asking if I add those two,
+03:29 what's the type of this res variable, and we know that it's a float
+03:34 if we have used Python for a while, but maybe you don't
+03:37 or maybe you've got some other type that you're not quite sure what it is.
+03:40 You run that with mypy and it's going to tell you that this type is a float
+03:45 so you can put your type information in there if you want to.

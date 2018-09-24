@@ -1,0 +1,125 @@
+00:00 In this video we'll talk about extended iterable unpacking,
+00:03 it came about in Python 3, this is a nice feature.
+00:06 Let's dive into what that means
+00:09 because extended iterable unpacking is quite a mouthful.
+00:11 Here's a simple motivation from the pep
+00:14 if I have an iterable here, range 5
+00:18 and we know in Python 3 that range 5 is lazy,
+00:22 it only gives us values as we iterate over it
+00:25 unlike in Python 2 where it returns a list.
+00:28 I might want to say, I want the first and last value
+00:31 but I don't care about the middle values
+00:34 or I want what's in between the first and last values,
+00:36 this pep allows us to do that,
+00:38 I can say a,* b and then c
+00:44 what this is going to do is it's going to say a gets the first value 0,
+00:47 c is going to get the last value and *b gets what's ever left over,
+00:53 it unpacks those and note that this type here is a list,
+00:57 it's going to put those into a list.
+01:00 A couple of notes here, this catch-all or starred expression is a list, it's not a tuple
+01:05 if you're familiar with *args, when you're invoking functions
+01:09 and you look at the value of your args inside of your functions,
+01:14 it's going to be a tuple, in this case, it's a list.
+01:17 You can only have one starred expression,
+01:20 if you don't have these guys nested, so it's possible to nest them,
+01:23 and then in this little nested guy you can have a starred expression
+01:26 but you can't have a *b *c and then d because it's ambiguous to Python
+01:32 and Python wants us to be explicit.
+01:34 Another thing to note is that this deals with the left side of assignment.
+01:38 So this is unpacking and unpacking tuples or sequences
+01:42 deals with the left side of assignment typically.
+01:44 Let's do a quick unpacking review,
+01:46 if you're not familiar with unpacking
+01:50 or this feature that's in Python, that's pretty cool.
+01:52 This is all Python 2 compliant as well, so all this code works in Python 2 on this slide
+01:56 if I've got a variable a and a variable b,
+01:58 you may or may not know that I can swap them easily simply by doing this,
+02:04 a,b = b,a. What that's doing under the covers is it is saying
+02:08 on this side here, I'm actually making a tuple here
+02:11 and I'm doing an unpacking operation here and I'm saying
+02:14 take the variable a and make it point to whatever the value of b was in this tuple
+02:19 and make d point to whatever a is in this tuple.
+02:23 Now, it might seem confusing, how does it keep track of that,
+02:25 but under the covers what's happening is
+02:28 this tuple has references to the values of b and a, not the actual variables.
+02:33 So it has references to those values
+02:35 and then you're just pulling those out into new variables. Pretty cool.
+02:39 Okay, this next example here,
+02:42 I have a list of names fred, george, luna and harry
+02:46 and I can do something like this where I say
+02:48 first, rest is equal to names 0 and names 1:
+02:53 and this slice at the end here gives me names from index position 1 to the end.
+03:00 When we look at first and rest we'll know that this first guy is a scalar.
+03:04 he's the fred guy, but the second guy here
+03:08 is a list of those names or the sub guys there.
+03:12 This third example here in person,
+03:14 we have a tuple that has a nested tuple in it.
+03:17 So it's got a name and age, some location
+03:19 and then it's got a tuple that presumably is dad and mom
+03:24 so we can do something like this where we do an unpacking on the left hand side
+03:28 where we say name, age, location and then in parentheses here
+03:31 dad mom is equal to person.
+03:34 What that will do is it will create a variable for each of those guys
+03:36 and it will understand because dad and mom is in parentheses there
+03:40 it wants us to unpack that tuple of Arthur and Molly
+03:45 and pull those into the variable dad and mom.
+03:47 Here below, you'll see that I have name and dad
+03:50 and this is actually a tuple because it's got a comma between those
+03:53 and so we see that we have those values pulled out.
+03:57 So that's unpacking, this works in Python 2 and 3.
+04:00 Here's another example of unpacking, this would work in Python 2
+04:04 were it not for this fstring here, but I can do the same thing
+04:07 you may or may not know that if I'm in a for loop, a for loop creates variables,
+04:11 and in this case, I'm unpacking those variables because I'm using enumerate,
+04:16 enumerate returns the index position and the items of enumeration.
+04:19 In this case, the items of enumeration are tuples
+04:23 fred and age and george and the age,
+04:25 and so if I want to unpack fred and the age,
+04:28 I need to put parentheses around those guys to pull them out as variables.
+04:33 So inside of my for loop here, I have a variable called i that points to the index.
+04:39 And in this case, I told it to start at 1 rather than the default of 0
+04:42 and I also have a variable called name and age
+04:45 and so I'm just going to print those out,
+04:47 I'm going to print out the index, the name, intense basis and the age here.
+04:52 Okay, so this is the Python 3 stuff that's new.
+04:55 We've got some names again and I'm going to say first
+04:58 and then I'm going to say *rest, so what that does here
+05:02 is it says I want first to unpack the value at the start
+05:06 and star rest to take a list of everything else that's on the end
+05:10 and we'll see that it's putting that into a list here.
+05:13 Again, this is Python 3 syntax,
+05:15 alternatively if I've got this nested tuple like I had before
+05:18 with fred 20 England and then the nested tuple of Arthur and Molly
+05:23 I can say *ignore, I want to ignore or put everything at the front
+05:27 in this ignore list here and then I'm going to unpack dad and mom there,
+05:33 that will give me a variable called dad and mom
+05:35 and we'll actually create a variable called ignore that has the rest in it.
+05:38 I can also use multiple stars here if were nested, like I said here
+05:42 so I'm going to say ignore everything at the start,
+05:45 except I'm going to have some thing at the end which is this tuple,
+05:49 note that what's inside of this tuple here is two strings
+05:54 and in Python, strings are sliceable, and so I can say d first,*d
+06:01 and that's going to take Arthur here
+06:03 and it's going to pull off the first thing of Arthur which is a,
+06:07 so d first, the value of d first is a,
+06:10 d is going to be a list with r t h u r in it,
+06:15 m first is going to be the same, the first letter of Molly,
+06:18 capital M and the *m will be a list with the rest of that in there.
+06:22 One thing that might bite you, you need to be aware of
+06:25 you can't just have a star in front of a variable by itself.
+06:28 You're going to get an error that looks like this
+06:30 that says syntax error, starred assignment,
+06:32 target must be in a list or a tuple.
+06:35 A fix for that is easy, you can just put a comma at the end there
+06:39 and in this case, this is sort of a no op here,
+06:41 but if you wanted to do that you could
+06:44 or if you had something over here that's iterable
+06:46 that isn't already a list, you could create a list easily by doing that.
+06:51 Of course, I would want to be a little bit more explicit
+06:54 if I was doing this, I would say people is equal to list of names.
+07:00 To me that's more explicit and easier to read,
+07:04 but you could do this if you wanted to.
+07:06 We've talked in this video about this new unpacking syntax
+07:10 that allows you to put stars in the left hand side of an unpacked operation,
+07:15 it's pretty cool and allows you to basically clob what's in a sequence into a list. 07:22 Hopefully this is useful to you and you can find places
+07:25 where this will make your code easier to read and use.

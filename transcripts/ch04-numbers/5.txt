@@ -1,0 +1,86 @@
+00:00 In this video we're going to look at num test,
+00:02 open it up in your editor and validate that you can run it.
+00:06 If you don't run it from your editor,
+00:08 run it from the command line, it should work as well.
+00:10 We see that there is one failure., it's a name error on line 8,
+00:13 so I think we're good to go on my machine.
+00:16 Let's look at this first test here,
+00:18 there are 102 floors in the Empire State Building,
+00:20 if you have walked up a seventh of them,
+00:24 how many whole floors have you walked up, store the result in floors.
+00:2800:31 So the idea here is to say we want to make the distinction
+00:35 between true division and floor division,
+00:39 because we're walking up floors that should be a hint
+00:42 that we should use floor division here
+00:44 which gives us this division or whole numbers,
+00:48 So, 102 and we've walked up a seventh of those.
+00:54 So in Python 3 we use the double slash to get the floor division.
+00:59 Let's run it and see if it works,
+01:04 and I have a typo, I did 107 instead 102, I'm trying again.
+01:09 Okay, so that one looked like it worked.
+01:12 So that's the whole number of floors that we walked up.
+01:16 What percentage of floors have you climbed,
+01:18 store the result as a string with one decimal of precision in the variable per
+01:23 so what percentage have we climbed?
+01:27 I'm going to put it in an fstring here feature Python 3
+01:30 so need to put curly braces around here.
+01:33 So we have climbed 7 out of 102.
+01:36 So 7 divided by 102 will give us the number of floors.
+01:41 Let's run this and see what it says.
+01:45 Okay. So this is what I got here
+01:49
+01:53 per do the reverse of it does it equal to that, no, it says it's not.
+01:58
+02:01 So what's happening here?
+02:04 I am getting a number that's not formatted correctly.
+02:07 So it wants me to format it as a percent.
+02:11 So in order to do that, I need to put a colon here
+02:13 and this says I want one decimal, so I put .1
+02:16 and then I put percent there to format it as a percent.
+02:19 Okay, in that case, it looks like it worked.
+02:23 It should be 6.9% doing a little trickery here.
+02:26 so you don't just cheat and type in 6.9%
+02:29 Okay, I have (2^64)-1 satoshis, can I divide them wholly by 3.
+02:35 How many would each person get store the result in coins?
+02:38 So again, this is floor division, if we want to do whole division.
+02:43 So coins = satoshis//3
+02:49 and if we multiply that by 3, if it's integer or a floor division,
+02:54 it should get us back to where we started from.
+02:57 So let's see here satoshis divided by 3.
+03:01 It looks like that is indeed the case you can divide them by 3.
+03:05
+03:08 The US population is around 326 million, some number after that
+03:18 how many whole coins would eat US citizen get, store the result in US coins.
+03:24 So US coins is equal to and there's a hint,
+03:28 use underscore to make the population easier to read
+03:31 so I'm going to say 326_979_681
+03:39 so there's our total population and we are going to divide our coins.
+03:47 So whole coins would each person get, we need to divide satoshis.
+03:51
+03:57 Satoshis divided by that,
+04:00 that should give us the whole coins and let's run that.
+04:05 Okay, that looked like it worked.
+04:10 So again, when we do the double slash that's what we call floor division,
+04:14 that gives us a whole integer number.
+04:17 Okay, I have .5 pumpkin pies and 1.5 apple pies.
+04:21 I want to use Python to round the number of each pie
+04:24 store the result in pumpkin and apple,
+04:27 so pumpkin = round (.5) and apple = round (1.5)
+04:41 So you might think well, I do, I was taught when you round
+04:44 if it's .5 you go up to the next number,
+04:47 but apparently that's not always the case generally.
+04:52 Python 3 actually doesn't do that.
+04:54 It does what's called banker’s rounding,
+04:56 where it rounds to the nearest even number here.
+05:00 So this one should round to 2 and this one should round to 0
+05:06 and that's why the sum of those is 2.
+05:09 Okay, hopefully that gave you a little feel for floor division in Python 3.
+05:16 And again, this is the behavior just a single slash in Python 2
+05:20 and the ability to put underscores in number literals
+05:25 just to help you read them better.
+05:27 These are good as commas, placeholders are also good in her and binary literals as well.
+05:35 And also, we learned a little bit about round,
+05:38 how round does what's called banker’s rounding
+05:40 one of the benefits of that is that it eliminates the bias towards rounding high,
+05:44 they should even out if you have randomly distributed numbers,
+05:48 hence that's why bakers like to use banker’s rounding.

@@ -1,0 +1,13 @@
+00:00 In summary, these tools, they're all third-party tools, they are not in the standard library,
+00:04 I view a lot of them as works-in-progress.
+00:07 They seem to do an okay job and especially the tracing ones
+00:12 will sort of get you off and running pretty quickly to add type information.
+00:17 Pytype, I saw some errors in there and I tried to dig in a little bit
+00:23 then dig in too far with the errors that it was throwing.
+00:26 Monkeytype, I also had some cases where it would throw errors on me.
+00:30 But remember, these are live projects and most of these have been updated
+00:34 within the past month or so and so people are working on them.
+00:38 Keep an eye on them, they might be useful to add type information if you want them.
+00:43 But again, if you just add types to your Python code,
+00:46 you're not going to get any benefit, you need to use some other tools
+00:49 such as mypy to do some static validation of that.

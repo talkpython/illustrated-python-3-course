@@ -1,0 +1,15 @@
+00:00 In this video, we're going to talk about 3rd-party annotation tooling.
+00:03 These are tools that are useful when using annotations that Python 3 supports.
+00:08 We're going to look at a couple tools here one is MonkeyType,
+00:12 this is created by the people at Instagram
+00:14 and this is a tool that allows you to run your code
+00:17 and as it's running, it will trace it and keep track of the types
+00:20 and then it will generate some type information for you.
+00:22 Similar project is called PyAnnotate, this is by Dropbox
+00:26 and this is very similar, it does basically the same thing.
+00:28 Basically the difference between these two is that MonkeyType is focused on Python 3,
+00:33 whereas PyAnnotate has Python 2 support
+00:36 because Dropbox has a lot of Python 2 code and they want to add types to it.
+00:41 There's another tool called PyType, which is very similar to mypy,
+00:45 it does type checking and we'll look at that as well.
+00:48 We'll also look at mypy a little bit.

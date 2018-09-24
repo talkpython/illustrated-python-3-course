@@ -1,0 +1,87 @@
+00:00 Here's some example code for painting.
+00:03 I've got a canvas here and I've got a paint method
+00:05 and this is our CPU work here.
+00:08 We're just going to say loop over some number here
+00:12 and do a mod operation and check that at zero
+00:15 and then when you're done with your painting or your CPU work
+00:19 you're going to make a little instance attribute called start
+00:22 and you're going to say I'm going to be done and dry them out after start.
+00:27 So we're going to say two seconds after that we're going to let it dry.
+00:30 And then we have another method down below called is dry
+00:34 that just says if the current time is greater than the end, then yeah, we're done.
+00:37 Otherwise, we're not done,
+00:39 and I'm going to write a little decorator here,
+00:41 this decorator will wrap a function and just tell how long it takes.
+00:45 So I'm not going to really talk about how decorators work per se
+00:48 but just know that it returns a new function called inner
+00:53 that's going to call the original function,
+00:55 but it's going to start a timer before it and it's going to print
+00:58 how long it took inside of there,
+01:00 just for kick so we can have some timing information.
+01:04 Okay, so on my machine, I've got some code here that I'm going to call
+01:08 and I'm going to call paint, a paint function,
+01:11 it's going to create a canvas and then it's going to call paint
+01:14 which is the CPU heavy part.
+01:16 And then it's going to do this little loop here
+01:19 where it's going to wait if it's dry
+01:21 and it's going to say if it's not dry sleep for a half second.
+01:24 So we could say that this is the IO portion
+01:27 it's waiting for something to happen, but it's not really doing any work.
+01:31 And if I run this, and I say I want to do three paintings
+01:34 one naive way to do it is just say run paint and do paint
+01:37 and then paint and then do paint,
+01:40 that will make three paintings or three canvases.
+01:42 If I do this in a sequential manner like this,
+01:44 it says that it takes 6.03 seconds to do that.
+01:48 So a little bit of overhead for the CPU heavy stuff
+01:51 and then some drying time that we've added in there.
+01:54 We can switch this to an asynchronous manner by using this asyncio library.
+01:58 So in order to use this I'm going to change my function
+02:01 I'm going to put an async in front of it
+02:03 and the rest of my code looks very similar, I've still got my while loop
+02:06 but here I'm going to put an await statement here
+02:10 and I'm going to say await asyncio sleep a half-second
+02:14 rather than time.sleep .5 seconds
+02:17 and this is what's called a coroutine.
+02:19 This is an asynchronous coroutine,
+02:22 and it gives us the ability to run code that is interruptible
+02:26 that has portions where you wait for something else to happen
+02:29 or you can hand off control for something else to happen.
+02:32 So I've got a little function that's going to run this.
+02:35 What we're going to do is we're going to make a loop here.
+02:38 We're going to get what we call an event loop and then in this event loop,
+02:42 we're going to call a function called gather.
+02:46 This is an asyncio, we're going to gather three instances of this async paint.
+02:51 We're going to get three co-routines
+02:53 and it's going to return what's called a future here.
+02:55 And this future is something that it can run and interrupt
+02:58 and get some result back at some point in the future when it's done.
+03:02 And then in our loop we just say run until complete future
+03:06 and this will run this code, but interestingly enough,
+03:09 when we run this code on my machine this takes two seconds,
+03:12 even though it does three paintings.
+03:14 So what it's doing here is it's going to say
+03:16 I'm going to start painting my first guy
+03:18 and then I'm going to check if he's dry,
+03:21 if he's not, I'm going to call this await asyncio sleep
+03:24 and when you call await here, that gives it the ability
+03:27 to go off to another coroutine
+03:30 and so it starts going on the other work, and then the other work starts a canvas
+03:34 and then it jumps into that await, and then says okay I can do other work
+03:38 and so it goes into the third one, and then all of them get painted
+03:42 and then they just go into this while loop
+03:45 where it's going to keep calling await every half second
+03:47 and it's going to see if they're done,
+03:49 and if they are done that's great, it will take them off
+03:51 if they're not it's going to say, okay, I'm going to go and check the next one
+03:54 and so it sort of repeats doing that and it can do that at the same time.
+03:57 So this is an example of asynchronous code,
+04:00 the cool thing about this is that it's not written with callbacks.
+04:03 And so if you sort of squint at it and if you got rid of async
+04:07 and you got rid of a wait there,
+04:09 it really looks very similar to our prior code
+04:12 where we're just saying get a canvas painted and while it's not dry sleep.
+04:16 So that's the benefit of this asynchronous code,
+04:18 note that we do have to have an event loop
+04:21 and there's some overhead and construction of that in order to run it
+04:24 you have to schedule these coroutines in order to run them.

@@ -1,0 +1,267 @@
+00:00 In this video we're going to talk about unicode.
+00:03 There are a few terms that we need to know
+00:05 before we can understand unicode and how Python handles it.
+00:08 So let's talk about these terms.
+00:10 The first term is a character and a character is a single letter
+00:14 something that you would type and it would print on the screen.
+00:17 There's a little bit of a vagary between character and glyph
+00:20 glyph is the visual representation of said character.
+00:24 So if we think of the character A in the English alphabet
+00:29 A is a single letter and there's a visual representation
+00:33 of A actually uppercase or lowercase.
+00:36 So the glyph would be the representation of it, a is the actual character.
+00:41 There's also what's called a code point
+00:44 and a code point is a numeric description of a character.
+00:48 And each character or glyph has a unique numeric description.
+00:53 Typically this is represented as a hex number
+00:56 and this is also where unicode comes from.
+00:59 This is a universal code that represents this character or glyph.
+01:04 Another term that we need to know is an encoding
+01:06 encoding is a mapping, a byte stream to a code point
+01:11 and so we'll understand this little bit more,
+01:13 but basically, you can think of a code point
+01:16 as a universal way of understanding something
+01:18 and when we want to tell someone else about it
+01:22 or tell a computer or send it over the network,
+01:24 we encode that character into some encoding,
+01:28 so typical encodings will include ASCII or utf-8
+01:32 there are other encodings as well, we'll look at a few of them.
+01:35 Here's an example.
+01:37 So there's a character called Omega and it has a glyph
+01:40 and it looks sort of like a horseshoe Ω
+01:42 you might be familiar with it if you've done some physics,
+01:45 it has a code point, so the code point, we put a capital U in front of it
+01:51 it just stands for unicode,
+01:53 and the code point is 2126 note that that is a hex number.
+01:56 There are also a couple encoding represented here,
+01:59 so one encoding is the byte string consisting of e2 84 and a6,
+02:06 this is the utf-8 encoding for the Omega character or glyph
+02:10 or the 2126 unicode code point.
+02:14 There's also a utf-16 code point, ff, fe&! at the end.
+02:23 Note that these are two different encodings
+02:25 and their byte streams look different.
+02:27 Here's how we do it in Python.
+02:29 One thing to be aware of in Python 3
+02:31 is that all strings in Python are unicode strings
+02:33 we'll talk a little bit how they're represented internally
+02:35 but if I have the glyph, I have a way to type it
+02:39 I can just type it into a string.
+02:41 I can also copy and paste it from a webpage or whatnot.
+02:44 If I don't have the glyph or I don't want to type it
+02:46 but I do have the code point I can insert that
+02:49 by putting a \_u or _U depending on how long the hex string is
+02:57 if the hex string is 4 characters, then I use an _u or a lowercase u
+03:01 if the hex string is longer than 4 characters
+03:04 then I'm going to put an upper case U
+03:06 and I'm going to left pad it with zeros untill I get to 8 characters.
+03:09 I can also use the unicode name
+03:12 and in this case the name is Ω sign
+03:16 and I put a \N and then I put the name in curly braces.
+03:20 A fourth way to get this unicode string
+03:24 is by passing in this number here
+03:28 and 8486 is the decimal version of 2126.
+03:32 So if I pass that into the chr function
+03:34 that will give me a character from an ordinal number
+03:37 and that's the unicode ordinal.
+03:40 Note that I can print this out to the screen
+03:42 and it will print out the Omega character
+03:45 and I can test if all these characters
+03:47 are indeed equal or equivalent to one another and they are.
+03:50 Another thing that you might want to be aware of in Python
+03:52 is a module included in Python called unicode data.
+03:55 And if you have unicode data, you can pass in a single string character into it
+04:00 and it will tell you what the name is.
+04:03 So in this case, we have the Ω character in there
+04:07 and unicode data.name says that unicode name of this is Ω sign.
+04:13 Let's look at another example really quickly.
+04:15 There's a character called superscript two and that's
+04:19 if you're familiar with math, like you said x2
+04:23 the squared would be the glyph
+04:25 the number 2 raised up slightly higher is the superscript two
+04:29 it has a unicode code point, in this case, it's the hex characters 178
+04:35 and we can see two encodings here,
+04:37 here's a utf-8 encoding and we can also see a Windows 1252 encoding.
+04:42 Now, where'd you get these code points?
+04:44 Where do you understand what the master data is?
+04:49 If you want to find them out, you can go to a website called unicode.org.
+04:53 There's a consortium there that occasionally releases new mappings,
+04:57 but they have charts that you can download that map letters
+05:02 to unicode character codes or code points.
+05:05 Here's an example of one of the charts.
+05:08 You'll see something like this.
+05:10 This is for the Emoji chart and you can see that there is along the top,
+05:15 we've got a hex number here
+05:18 and then we've got another hex number here on the left-hand side.
+05:22 And when you concatenate those two
+05:24 you get this hex number at the bottom here,
+05:27 and that is the code point for the smiley face here.
+05:30 And then the next one is the sort of normal face,
+05:35 and then there's a frowny face and a crying face and a surprised face.
+05:39 The chart also contains a table that looks like this
+05:42 that has the code point name and glyph all in one place here.
+05:45 Right here we have the code point 1F600,
+05:50 we have the glyph which is the smiley face
+05:53 and we have the actual name, which isn't smiley, but grinning face,
+05:56 note that it's capitalized and there is a space between it.
+05:59 One thing to note is that the code point for this 1F600 is longer than four characters.
+06:05 So in order to represent that using the code point
+06:09 we need to put a capital U and then we need to pad that
+06:12 with three zeros to get 8 characters in that case.
+06:16 We can also use the name with a \m
+06:19 If we have access to the glyph or keyboard that types Emoji
+06:22 we can put that directly into a string.
+06:25 Note that here I've also got the utf-8 version of the encoding of grinning face.
+06:30 If I have that byte stream encoded as utf-8 bytes,
+06:33 I can decode it back to unicode using the decode method
+06:33 and the appropriate encoding that it was encoded as
+06:40 and I say decode to utf-8, I will get back the utf-8 string for that.
+06:45 Let's talk about how things are stored in Python.
+06:48 Everything internally is stored as two or four bytes
+06:53 and there's internal encodings, these are called UCS2 and UCS4,
+06:58 depending on how your Python was compiled
+07:01 will determine how your unicode strings are stored.
+07:04 So one thing to be aware of because all strings in Python 3 are unicode strings,
+07:10 and these are stored as UCS2 or UCS4 byte strings internally,
+07:16 there's typically a 2X to 4X increase in the size of memory
+07:20 needed to store strings in Python 3 versus Python 2.
+07:24 In practice, that doesn't really make so much of a difference
+07:28 on modern machines unless you're dealing with huge files,
+07:30 but just something to be aware of.
+07:33 Also note that bytes in Python 3 are not the same as Python 2 strings.
+07:37 So bytes in Python 3 are simply arrays of integers.
+07:41 Let's talk about encodings a little bit more,
+07:44 encodings map bytes to code points.
+07:48 A common misconception is that an encoding is a unicode number.
+07:52 So utf-8 is an encoding. This is not code point.
+07:58 This is an encoding of a code point, just to be pedantic about that,
+08:02 utf-8 is an encoding of characters, it is not unicode per se.
+08:07 Unicode is always encoded to bytes and the reverse is always true
+08:12 bytes are decoded into unicode.
+08:15 Note that you can't take unicode and decode it, you encode it.
+08:19 Also, the same with bytes— you can't take bytes and encode them,
+08:23 they are already encoded, you can only decode them to unicode.
+08:29 Here's an example here. We have the string with Omega in it.
+08:32 And I created it with the code point
+08:34 and then if I wanted to encode that as utf-16,
+08:38 I say encode, I call the encode method on that
+08:42 and I pass in the encoding utf-16
+08:45 and it returns back a byte string,
+08:47 again, note that c is a unicode string
+08:51 and the result of that is a byte string coming out of that.
+08:55 If I want to encode c as utf-8,
+08:58 I simply call the encode method and pass in utf-8.
+09:01 Note that these encodings are different,
+09:03 utf-16 and utf-8 have different encodings.
+09:06 Now, once I have these bytes, I can go back and get the original string from it.
+09:11 So I don't encode bytes, I always decode bytes
+09:14 and here I'm taking the utf-8 bytes and decoding them
+09:18 calling the decode method on them to get back a unicode string.
+09:23 Here's a chart that just shows what we do
+09:26 if we have a unicode string, we always encode it to a byte string,
+09:31 likewise if we have a byte string, we always decode it.
+09:34 We can't do the opposite,
+09:36 the byte string doesn't even have an encode method,
+09:38 likewise, the unicode string doesn't have a decode method.
+09:41 There are some errors you can get when you're dealing with unicode,
+09:44 here's a pretty common one here.
+09:46 I've got the Omega sign here in a variable called c.
+09:49 And if I try to encode that as ASCII,
+09:52 I'm going to get a unicode encode error.
+09:55 And the problem is that the ASCII character set
+09:58 doesn't have an encoding for this character.
+10:01 And so that's what this error means,
+10:04 charmap, codec cannot encode character unicode 2126 in position 0.
+10:10 This is a pretty common error when you start dealing with unicode.
+10:13 So again, what this error means is that you have a string
+10:17 and you're trying to encode it to a byte encoding
+10:20 that doesn't have a representation for that.
+10:22 There are some encodings that have representations for all of unicode,
+10:26 so utf-8 is a good choice, but ASCII does not,
+10:29 it only has a limited number of characters that it can encode.
+10:33 Here, we'll trying to encode this Omega character again
+10:36 we'll call encode with the windows 1252
+10:40 a common encoding that was found in Windows during the last century
+10:44 and we'll get the same error here.
+10:46 Well, similar error, we are getting unicode encode error
+10:49 and that it can't be encoded into Windows 1252.
+10:53 On the other hand, if we try and encode it into cp949,
+10:57 this is a Korean encoding, we get a byte string.
+11:00 So this Korean encoding has the ability to support the Omega character.
+11:04 Now be careful, once you have bytes encoded,
+11:07 you need to decode them typically.
+11:10 Typically, you only encode them to send them over the wire
+11:13 or to save them as a file or send them over the network, that sort of thing.
+11:17 But when you're dealing with them, you want them in utf-8.
+11:19 So a lot of times, you'll get data and you'll need to decode it
+11:22 to be able to deal with it.
+11:24 Here we have the variable core which has the bytes for the Omega sign
+11:27 encoded in Korean.
+11:29 Now if we have those bytes and we call decode
+11:31 and we say I want to decode these bytes assuming that they were in utf-8
+11:36 I'm going to get an error here, that's a unicode decode error.
+11:42 And this says I got bytes and I'm trying to decode them as utf-8,
+11:47 but there aren't utf-8 bytes that make sense here.
+11:52 So this is a unicode decode error,
+11:55 typically what this means is you have bytes
+11:57 and you are decoding them from the wrong encoding.
+11:59 Note that we encoded as Korean, we need to decode from Korean as well.
+12:03 Now even more nefarious is this example down here.
+12:06 We have the Korean bytes, and we're decoding them
+12:10 but we're decoding them as Turkish.
+12:12 And apparently the combination of Korean bytes is valid Turkish bytes,
+12:17 but it's not the Omega sign, it's a different sign.
+12:20 This is known as mojibake, that's a Japanese term
+12:23 that means messed up characters, I believe.
+12:25 And so this is a little bit more problematic,
+12:29 you've decoded your characters, but you have the wrong characters,
+12:34 because you decoded them in the wrong encoding,
+12:37 so be careful about your encoding, you want to be explicit here
+12:42 and you want to make sure that your encoding and decoding
+12:45 match up with the same encoding.
+12:47 Here's a chart that represents the various things you can do
+12:49 with characters and the conversions
+12:51 that you can do on the single character.
+12:54 Note that if we have a string here, this box right here
+12:57 is various ways to represent ASCII character T.
+13:01 We can convert that to an integer by calling ord on it
+13:05 and we can go back by calling chr.
+13:08 We can also get bytes by calling bytes with the encoding that we want
+13:13 and we can put our bytes into a file
+13:17 if we open the file in the right binary mode,
+13:21 if we have string and we want to write to a file
+13:24 we need to just call it with the w mode.
+13:27 There are a couple errors that you might see.
+13:29 You might try and open a file for writing with bytes
+13:33 and you'll get an error, that's the type error,
+13:36 you have to use a string and not bytes if you're opening to write it in text mode.
+13:41 Similarly, if I have a string and I open it in binary mode
+13:46 I'm getting an error that says string does not support the buffer interface.
+13:49 So these are errors that you might see with an ASCII character .
+13:53 This chart shows some of the errors that you might see with unicode characters.
+13:57 Here we've got the string here which has Ω
+14:00 and we can see that we can encode it as an integer.
+14:04 We can also encode it as bytes, in this case we're encoding it as utf-8 bytes.
+14:09 Now note that if I try and decode this sequence as Windows 1252
+14:14 that will pass, but I'll get a messed up mojibake.
+14:19 So again, we need to make sure that this decoding
+14:22 has the same encoding as the encoding call, which was utf-8.
+14:29 We also see some of the other errors that we have
+14:32 if we try and encode with a different encoding that's not supported,
+14:35 we might get a unicode encode error.
+14:38 So Windows 1252 or ASCII, those both give us errors
+14:42 and know that we can't call decode on a string, we can only encode a string.
+14:47 So those are some of the things that you need to be aware of.
+14:50 Typically, if you get these unicode encode errors,
+14:53 that means that you're trying to call encode
+14:55 and you're using the wrong encoding there.
+14:58 So try and figure out what your encoding is.
+15:00 Common coding these days is utf-8.
+15:02 Okay, we've been through a lot in this video.
+15:04 Hopefully, you have some understanding
+15:07 of how Python handles unicode
+15:09 and how we can change these unicode strings into byte strings
+15:12 to serialize or send over the wire.
+15:15 Hopefully, you also understand some of the errors you might run into
+15:18 and how to deal with those errors.
+15:21 If you're sure what your encoding is,
+15:23 that can eliminate a lot of the issues that you might run into.

@@ -1,0 +1,56 @@
+00:01 In this video, we're going to talk about asynchronous generators.
+00:03 These are described in pep 525 Python 3.6
+00:06 in the pep it describes some of the motivation for this
+00:10 we'll just read this because I think it's pretty interesting.
+00:12 It says, however currently there is no equivalent concept
+00:15 for the asynchronous iteration protocol async for.
+00:18 This makes writing asynchronous data producers unnecessarily complex
+00:22 as one must define a class that implements __aiter__ and __anext__
+00:27 to be able to use it in async for statement.
+00:30 So we saw how to implement a asynchronous iterator
+00:33 and we saw that you can do that by implementing __aiter__ and __anext__
+00:37 if you've done that with normal iterators in Python,
+00:40 you'll note that typically it's a lot easier to do that with the generator
+00:43 and this was the same motivation here.
+00:46 Also interesting to notice this next paragraph that's in the pep.
+00:49 It says performance is an additional point for this proposal
+00:51 in our testing of the reference implementation
+00:54 asynchronous generators are 2x faster than the equivalent
+00:57 implemented as an asynchronous iterator.
+01:00 Kind of cool, you get some speed benefit and it's easier to write.
+01:03 So here's an example of the migration path.
+01:06 We are taking an asynchronous iterator
+01:09 and we're starting to add a generator to it.
+01:12 Here I've got a class called GenRange,
+01:14 and this is, again, similar to that Arange guy that we implemented before
+01:17 you can give it a start and an optional end
+01:19 and if you don't specify the end it will use start as the end.
+01:22 And then we notice that we have down below specified __aiter__
+01:27 and in there, note that we are yielding the results,
+01:31 we're just looping over range and yielding the result.
+01:34 So we're combining a generator with an iterator.
+01:37 Here's an example of running this
+01:39 we can put it in a coroutine and because this is a coroutine itself
+01:44 we need to put async in front of our for when we loop over it
+01:48 and this will print the numbers from 0 up to but not including 5.
+01:51 Now we want to take that a step further
+01:53 we can do the same thing with normal iterators.
+01:56 We can yield from __iter__ in there,
+01:59 but wouldn't it be nicer if we could just make a generator function
+02:02 that is a generator and we can do that,
+02:04 here we have a function that is a generator
+02:06 because it has a yield in it but it also has an async in front of it.
+02:10 So this is a synchronous generator.
+02:12 And this is the same implementation that we had before
+02:14 but note that the logic is a lot simpler
+02:18 and we don't have to keep track of state
+02:20 because this freezes and comes back to itself like a normal generator in Python would,
+02:25 so here's an example of using it, again because it is a coroutine
+02:29 it behaves as a coroutine when we loop over it
+02:32 we need to put that async in front of our for there,
+02:34 but this will print the numbers from 0 up to but not including 5,
+02:38 so that's how you can make a asynchronous genera tor in Python.
+02:41 Just put an async in front of your def there
+02:45 and include a yield in your logic
+02:47 and you now have an asynchronous generator.
+02:50 Hopefully, you can use these to make your code more succinct and more legible.

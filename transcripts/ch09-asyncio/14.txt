@@ -1,0 +1,109 @@
+00:00 In this video we're going to talk about asynchronous context managers.
+00:03 These were discussed in pep 492, it came out in Python 3.5.
+00:07 Let's look at the protocol for asynchronicity in Python 3.
+00:12 There's a couple protocols that you can implement.
+00:14 If you want to define your own class that behaves as a coroutine,
+00:18 you can implement the __await__ method
+00:20 that means that you can call await on it and get the results from that.
+00:24 You can also Implement an asynchronous iterator and we'll talk about those,
+00:28 and in this section, we're going to talk about asynchronous context managers.
+00:31 So they have a __aenter__ and a __aexit__ method.
+00:35 If you're not familiar with context managers,
+00:37 let's briefly discuss what traditional context managers look like,
+00:40 again in Python, these are things that you can put in a with statement
+00:44 so I can open a file with a with statement
+00:47 and within the indented portion of that block the file is going to be opened
+00:51 and when I exit out of it, it's going to close it for me.
+00:54 So the traditional thinking about when to use a context manager is
+00:57 if you have some logic you want to insert before a block
+01:01 and some logic that you want to insert after,
+01:03 either one of those makes a good case for using a context manager.
+01:06 And in that case you implement a __enter__ and a __exit__ method.
+01:10 Here's a brief example of doing that.
+01:13 Here's a silly little context manager called runner.
+01:16 We're going to pass an item into the constructor
+01:18 and then when we enter into the block,
+01:20 we're going to assume that the item that we passed in is a dictionary
+01:23 and we're going to set the key running to true,
+01:24 when we exit out of that block, we will set the key running to false.
+01:28 Down here below we can see we're actually running this
+01:31 and you can see that here inside of this block
+01:33 while we are in this block, the running key on item is set to true
+01:38 as soon as we unindent out of that block running is set to false.
+01:42 So right at the start this with corresponds to this __enter__ method
+01:46 and when we unindent down here, right before this guy,
+01:49 we are at the __exit__ method, right there.
+01:53 So that's how you can control inserting logic before and after.
+01:57 On this page, I'm linking to a nice little project.
+02:00 It's a Linux window manager utility, but it allows you to run external processes
+02:07 asynchronously in a context manager.
+02:10 Let's look at some of the content of that
+02:12 and we can see that it implements this context manager
+02:14 for asynchronous context managers protocol.
+02:17 You can see that there's a __aenter__ method
+02:20 and interestingly enough, because it's defined with async here,
+02:23 we can call await within it.
+02:25 So that's sort of the key to the asynchronous context manager
+02:28 is within aenter and aexit,
+02:31 you can call asynchronous co-routines as well.
+02:34 And this _AIOPopen guy
+02:37 who again runs a processed asynchronously is awaitable,
+02:42 so we see that he has a __await__ method defined as well.
+02:45 And in the constructor here you pass in a coroutine,
+02:48 he's yielding from that and returning from that inside of the aenter there.
+02:53 I am not going to dig into much more of what's going on,
+02:55 but I just wanted to make you aware of key difference
+02:58 between an asynchronous context manager and a normal context manager.
+03:01 So if you need to do logic from a coroutine inside an enter or exit block,
+03:08 you would use an asynchronous context manager
+03:10 because inside of there you can call await.
+03:13 Here's another example, we're just going to look at quickly.
+03:15 This is heavily inspired by the async timeout project, I'll link there to the GitHub,
+03:20 but we're defining a class called timeout
+03:22 and we're going to use a timeout context manager
+03:25 to be able to timeout co-routines.
+03:27 Here we're just going to show the constructor
+03:30 we can pass in a timeout value,
+03:31 how long we want to timeout, we'll pass in a loop.
+03:33 Inside of it, we're going to make it canceled attribute
+03:36 that says we have not cancelled what we're running
+03:39 and a handler, this handler will be called if we're going to cancel what's running.
+03:43 Here we see the asynchronous protocol being implemented,
+03:46 we see an async def __aenter__ , so that's when we enter the block
+03:53 and you can see that when we enter the block,
+03:55 we're going to get the current time on the loop
+03:57 and we're going to add the timeout to it.
+04:00 And that's when we want to timeout this block.
+04:02 We're going to get a task, we'll show the get task implementation below
+04:05 and we'll set a handler, on the loop we'll say call at
+04:08 at some time when we're going to call our self cancel method
+04:13 and that gives us back a handler.
+04:15 We also have the __aexit__ and you can see that
+04:20 this is very analogous to the traditional context manager,
+04:23 we get back an exception and a value and a traceback
+04:26 if there was an exception thrown from within the context
+04:30 and here you can see that if the canceled flag is set,
+04:33 then we raise the asyncio timeout error,
+04:36 otherwise, if we have a handler we're going to cancel that handler
+04:39 and set the handler to none and we're going to set the test to none.
+04:43 Here we have the implementation of the cancel method.
+04:45 It just calls cancel on the task and sets cancel to true.
+04:49 Down below we have the get task function that takes a loop
+04:52 and returns the current task in the block.
+04:55 Here's an example of running that,
+04:57 we can see when we use an asynchronous context manager
+05:00 instead of saying just with we have to say async with.
+05:04 Here we're saying that we're going to time out after two seconds.
+05:07 We're going to pass in our loop as well,
+05:09 and we're just going to sleep for one second here.
+05:11 So this will not timeout, it should print done and after.
+05:14 If we change this value in here from 1 to say 3 or some value greater than 2,
+05:19 then this would time out and instead of saying done here,
+05:23 it would print timeout and it's going to raise this asyncio timeout error.
+05:28 We can handle that with a try block if we want to
+05:31 and do the appropriate thing at that point.
+05:33 So this is a simple example of using a context manager that is asynchronous.
+05:39 In this video we talked about asynchronous context managers.
+05:41 Again, the key here is that you implement the protocol
+05:45 and the key difference between these context managers
+05:47 and traditional context managers is that you can await from within them.

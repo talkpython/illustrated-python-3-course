@@ -1,0 +1,68 @@
+00:00 In this video, we're going to talk about annotate 3rd and the pyannotate section.
+00:05 So we're assuming that you've already done steps 1 through 4 here.
+00:08 The first step is to install pyannotate,
+00:11 I've got my virtual env active over here.
+00:14 I'm just going to say pip install pyannotate.
+00:17
+00:19 Okay, the next one is to create a function test_pa that exercises pi3pa.py
+00:25 and sticks the Json output into type_info.json.
+00:29 So I'm going to make a file similar to our runmt.py called runpa, touch runpa.py
+00:37 and let's open runpa.py here.
+00:41 I'll split my screen here so we can see both of these.
+00:45 Okay, so there's py3pa.py, let's open runpa.py.
+00:52 I want this to be similar to runmt, so we'll just copy all this,
+00:58 it's going to be very similar to this, but we're going to change a little bit
+01:00 we're going to change the mt to pa.
+01:05
+01:19 Okay, if you go to the pyannotate website, it's got some boilerplate here
+01:23 that we can put, we need to make this little context manager here
+01:27 and we need to do our import, so we'll drop in the boiler plate here,
+01:32
+01:36 and let's do our import from pyannotate import.
+01:43
+01:44 Okay, so we import this collect types guide, we init the collect types
+01:48 and then we make context manager,
+01:50 with our context manager we run our code and then we dump our stats here
+01:55 and according to here it says that we want to dump it into this guy type_info.json.
+02:04 So we'll do that type_info.json here.
+02:09
+02:10 Okay, so I think we've got that part.
+02:15 We've got the function test_pa, and it exercises our code,
+02:20 now let's run this, we're just going to run this with Python
+02:24 and then using pyannotate that should look at this type_info guy here.
+02:30 Let's just say Python runpa.py, it doesn't say anything
+02:36 but now it should be a type_info in here, let's just look at type info
+02:38 and it looks like it makes sense, when we call character.speed,
+02:42 it should return an int and it had one sample in there, it looks okay.
+02:47 Force looks like it took an int and a float and returned a float.
+02:51 So looks like that's doing okay,
+02:54 it looks like quad was called with ints and returned floats.
+02:59 So we can call pyannotate, you can just say pyannotate.h
+03:03 it's going to give you a little help documentation.
+03:06 Let's say pyannotate and we have py3pa.py and it says
+03:10 I don't have type_info.json, interesting,
+03:13 we got to change our name here, type_info.json.
+03:20
+03:29 Okay, and now if we run it, we get this little guy here
+03:33 and it says this is the refactor, this is the diff that it would make
+03:38 and note that it's making Python 2 comments here
+03:41 instead of doing the Python 3 annotations.
+03:45 So this is a supported syntax for Python 2
+03:48 and at the end it says note that this was a dry run
+03:51 we can use -w to actually write the file.
+03:54 So let's use -w to write the file here.
+03:57 And if we look at py3pa now,
+04:00 he's got the type annotations in the comments here, cool.
+04:04 And it says run mypy against py3pa, let's run mypy against this
+04:08 and see what complaints we get here.
+04:12 Okay, no complaints there,
+04:14 we'll just turn on the strict and see if strict complains about anything else.
+04:18 So that says we are still missing some stuff,
+04:20 and so this shows the gradual typing of mypy
+04:25 that it only checks what's annotated
+04:28 and we could go in and add these other annotations,
+04:31 we saw how to do that previously,
+04:33 but luckily pyannotate gives us a little leg up
+04:37 if we've got tests or something that we can run and get that information in there,
+04:41 that will just give us a little head start to get that running.
+04:43 Another benefit of this pyannotate code again is that it works in Python 2 & 3.

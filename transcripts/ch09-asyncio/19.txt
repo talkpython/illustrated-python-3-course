@@ -1,0 +1,38 @@
+00:00 In this video, we're going to look at async gen test, open that up in your editor.
+00:04 And this is about making asynchronous generators.
+00:07 So it says write an a synchronous generator countdown
+00:10 that accepts a count and a delay, when looped over asynchronously,
+00:13 it returns the numbers from countdown to an including zero
+00:16 it waits for delay seconds before returning the next value.
+00:19 This should be very familiar to you if you've already done async iter test.
+00:24 So let's make a generator that does this
+00:27 the point of this is to show that generators are typically easier to implement
+00:31 and easier to debug than iterators.
+00:34 So in order to make an a synchronous generator
+00:37 we say async def and it's going to be called countdown,
+00:40 it's going to accept count and delay
+00:43 and I'm just going to go into a while loop here,
+00:46 I am going to say while 1 and I will yield count
+00:51 and if count equals 0 then I will break out of here.
+00:58 Otherwise, I will say count minus equals 1 and then I'm going to sleep
+01:04 and I could just say time.sleep, but that's not going to be an asynchronous sleep.
+01:08 So in order to do an asynchronous sleep,
+01:10 I need to import the asyncio library and then we need to await it.
+01:16 So we're going to call await asyncio.sleep.
+01:22 and we're going to sleep for delay seconds
+01:25 again because I am in an asynchronous generator,
+01:29 I can call await on an asynchronous function here
+01:33 and that should be it, let's give it a test and make sure that it works here.
+01:37 So just run it here, it takes a while because it's doing some delaying here,
+01:44 but it looked like it ran.
+01:46 This is the same test code basically as async iter test
+01:49 and note that it takes 2 seconds to run
+01:51 and if we come down here we say that we're counting down from 2 with 1 second delay.
+01:55 So that should take 2 seconds to run.
+01:57 You'll note that we're sort of unrolling the asynchronous iteration protocol down here
+02:02 and asserting that we raise a stop async iteration error
+02:06 You'll note that we don't explicitly raise that exception
+02:09 but when the generator returns that raises the exception for us,
+02:12 so thanks for watching this video.
+02:14 Hopefully you have a better feel for those a synchronous generators now
+02:18 and you can hopefully take advantage of those and use those in your code.

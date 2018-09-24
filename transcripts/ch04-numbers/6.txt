@@ -1,0 +1,44 @@
+00:01 In this video we're going to talk about the new statistics module
+00:03 that came out in Python 3.4, this was introduced in pep 450.
+00:07 From the pep we read, even simple statistical calculations
+00:10 contain traps for the unwary,
+00:12 this problem plagues users of many programming languages, not just Python
+00:17 as coders reinvent the same numerically inaccurate code over and over again.
+00:22 Here's an example of some of the issues that someone might run into
+00:25 when trying to implement some numerical code.
+00:28 This is a simple function for calculating the variance.
+00:31 That's the change of values over a sequence of numbers
+00:36 how much they vary and here we are just calculating
+00:40 the sum of the squares minus the square of the sums
+00:45 and dividing by the numbers
+00:47 so down below here, after we've defined variance
+00:49 we pass in a list of numbers and we get the variance
+00:52 and we say it's 2.5. It seems to be fine.
+00:55 The problem is when we add a large number to that
+00:58 here we're adding 1e to the 13th
+01:01 and we're getting numbers that still should have the same variance
+01:06 because the difference between them is still between 1 and 5.
+01:09 And when you run that into our calculation here
+01:12 you get a large negative number
+01:15 and this illustrates some of the floating-point issues
+01:18 that you might run into with simple naive calculations.
+01:21 And so the impetus of this pep is to help deal with some of these issues
+01:26 and provide a pure Python implementation of some common statistical functions
+01:30 that don't have these sorts of issues.
+01:34 Here we're showing an example of using the library.
+01:37 We simply import it, it's called statistics,
+01:39 and inside of there, there are various functions.
+01:41 One of them is variance.
+01:43 We look at the variance of our same data
+01:45 and we get 2.5, we add 1e to the 13th for each of those numbers
+01:50 and we still get 2.5.
+01:52 There are various functions included in here.
+01:54 I'm not going to go over them, but you can look at the function
+01:56 and if you're dealing with statistical problems,
+01:59 you can use this code if you need to.
+02:02 Other nice thing to do is just to use the code to look at it
+02:05 and glean some insights on how you might do numerical processing code in Python
+02:10 and deal with some of these issues.
+02:13 This module is written in pure Python
+02:15 and so you can simply load the module up and inspect it
+02:19 and see what tools and techniques they're using.

@@ -1,0 +1,33 @@
+00:00 In this video, we're going to look at the mul test assignment
+00:03 and there's a function test mul that says
+00:06 implement a class vector that accepts a list of numbers
+00:08 implement the matrix multiplication operator
+00:12 to return the dot product multiplying each corresponding value, then sum the results.
+00:18 Okay, let's do that.
+00:20 Let's make a class, it's going to be called vector
+00:23 and let's implement a constructor here
+00:30 and it's going to take data, vector has input
+00:33 and we'll just attach that as a member and let's implement matmul guy.
+00:38 Okay, it's going to take another vector presumably
+00:41 so what we can do is we can loop over the pairs of data together
+00:46 how we do that is we can use the zip function.
+00:49 So the zip function takes two sequences
+00:52 and it will loop over both of them until one exhausts.
+00:57 So we're going to have self.data and other.data
+00:59 we're going to need something probably result is equal to 0.
+01:03 And we're going to zip those together so I can say this and that in zip
+01:12 res plus equals this, times that, return res.
+01:21 Let's see if this works.
+01:25
+01:29 Okay, that looks like it did work.
+01:31 We can do a little bit of refactoring if we want to here,
+01:38 we can put this into a list comprehension
+01:43 and so we could do something like this
+01:46 we could say well we're going to accumulate this, this is a sum operation,
+01:50 so we're going to say sum of the iterable
+01:59 what we're going to sum is what we're accumulating which is this
+02:05 and we'll take this for loop and we'll plop it into here
+02:09 we'll take off the colon at the end
+02:14 and we should be able to say res is equal to that.
+02:16 Let's run this and see if it works.
+02:22 Okay, it looks like we're good.

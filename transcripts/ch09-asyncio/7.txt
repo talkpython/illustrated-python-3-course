@@ -1,0 +1,48 @@
+00:00 So Python provides in 3.6 these new keywords, async and await,
+00:05 and if you put async in front of a def that makes it a coroutine
+00:10 that you can use in this asyncio framework,
+00:13 and when you want to hand off control of something else you call await.
+00:17 So the benefit of this asyncio library is that
+00:21 it allows you to write asynchronous code in a sequential style.
+00:24 Remember I had that slide where I said
+00:26 if you get rid of the async and the await, it looks sequential.
+00:29 There's other asynchronous libraries in Python
+00:31 and many of them allow you to write asynchronous code
+00:34 but do so with callbacks and if you're familiar with callbacks that can get a little confusing,
+00:39 and Guido van Rossum, the creator of Python
+00:41 who actually worked on asyncio for a long time, is not a big fan of callbacks,
+00:46 and so he didn't really want to introduce callbacks into the standard library,
+00:50 but he wanted something that allowed us to take advantage
+00:53 of asynchronous programming, but make it look as normal
+00:57 and someone who is used to Python programming
+01:01 can look at it and should be able
+01:03 to wrap their head around what's going on there.
+01:06 Why or when would you want to take advantage of this?
+01:08 Again, if you have lots of io,
+01:11 these asynchronous programs scale better than threads or processes.
+01:17 There is overhead to creating a thread in Python,
+01:20 Python threads are native threads, they are operating system threads
+01:24 and there is overhead the order of megabytes per thread.
+01:27 And so if you've got thousands of requests coming in to a web server or whatnot,
+01:32 you've got each of those as a thread,
+01:35 each of those is going to have some overhead to it
+01:38 and a process has even more overhead than a thread does.
+01:42 But if you have stuff that has a lot of io latency such as a server or whatnot,
+01:47 then you can use these native threads or this asynchronous style programming
+01:51 to scale better, but one thing to be aware of is that your whole stack
+01:56 basically needs to be asyncio aware.
+01:58 Once you put code in there that blocks or just takes up the CPU
+02:02 and doesn't allow anything else to run
+02:05 you're going to have throughput that's going to suffer
+02:07 because it's not going to allow other code to run.
+02:10 So you really need to have code that has awaits in it
+02:14 and allows other code to run.
+02:17 So some of the components that you all need,
+02:19 we need a function that will suspend and resume these co-routines.
+02:21 We need an event loop that keeps track of the functions and their states
+02:24 and we'll run them and manage them.
+02:26 If we have long-running CPU tasks, these need to call await.
+02:31 So the other code can run or else we need to use
+02:34 what's called an executor to run those in their own thread
+02:37 so that they don't interrupt or basically block
+02:41 the asynchronous code from running.

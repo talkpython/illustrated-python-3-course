@@ -1,0 +1,64 @@
+00:00 In this video, we're going to talk about the enum library,
+00:02 this came in Python 3.4 with Pep 435.
+00:05 In the pep we read, enumeration is a set of symbolic names
+00:08 bound to unique constant values.
+00:10 Within an enumeration, the values can be compared by identity
+00:14 and the numeration itself can be iterated over.
+00:17 If you're not familiar with enumerations in other languages,
+00:19 they allow you to hard-code magic numbers and make use of those
+00:23 and you could do that in Python prior by making globals
+00:26 and making all capitalized variable name and setting equal to some value.
+00:31 There are a few features that enumerations have
+00:33 that make them slightly better to use. Here's an example.
+00:36 I'm going to import the enum class from the enum module
+00:40 and then I just define a class
+00:42 in this case, I'm going to define a class called bike
+00:44 and there are various types of bikes.
+00:46 So there might be a road bike or mountain biker or a cross bike or a trike.
+00:49 and maybe I'm going to be switching on these different bike types or whatnot.
+00:53 Inside of my class, as attributes I say road is equal to 1,
+00:57 mountain is equal to 2, etc.
+00:59 And I can define numbers that give values for those.
+01:04 If you want to enumerate all the different possibilities of what are in a bike
+01:08 you can loop over that and you can say
+01:11 well there's road, mountain, cross and trike,
+01:14 you can also do comparisons using the equality operator.
+01:17 So the last bike in the enumeration was trike,
+01:20 and is that equal to a bike.trike, yes, that is the case.
+01:25 Trike is I believe number 4 here
+01:27 so you could say is bike equal equal to 4.
+01:31 That's what we're trying to get around.
+01:33 We're trying to get around magic numbers
+01:35 where you're using number that has a unique meaning for you,
+01:38 but maybe to someone else who's reading it doesn't make sense.
+01:41 So bike.trike is very explicit and makes the code more readable.
+01:45 If we want to access these enumerations,
+01:48 you can access them in different ways
+01:50 so you can do the by attribute, so you can just say .mountain
+01:53 you can also say bike 2, you can call it and pass in 2
+01:57 and that will give you what the enumeration is.
+02:00 You can also do it by index name.
+02:03 So there's an index operation that says mountain
+02:05 and that gives you back the enumeration.
+02:08 All these are the same.
+02:10 I prefer this first one I think it's the most readable.
+02:12 Identity comparisons also work with enumerations as well.
+02:15 So you can say bike.mountain is bike.mountain and that is true.
+02:19 So it's not going to make a new instance of those.
+02:21 There's an alternate construction that we can use to create enumerations here.
+02:25 This is similar to the named tuple construction.
+02:27 We're going to make a variable here called bike or bike2, camel case
+02:32 because it's class like and then we're going to pass in the name of the class here.
+02:37 And then we're going to pass in the different enumerations in here.
+02:40 And in this case, we don't need to provide the numbers
+02:43 we'll get default numbers for them,
+02:45 so I can say bike2 what's the 2, the 2 was in this case mountain
+02:50 and what is road and that was this one right here bike road,
+02:55 which has a value of 1.
+02:57 This video discussed enumerations in Python.
+02:59 This is included in Python 3.
+03:01 This is just a little library that's meant to make your code more readable.
+03:05 If you're using hard coded numbers all over the place
+03:08 consider using enumerations,
+03:10 or if you have different categorical types that you're using
+03:14 consider using enumerations to make your code more readable.

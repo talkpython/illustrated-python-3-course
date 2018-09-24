@@ -1,0 +1,21 @@
+00:00 This video will discuss explicit unicode literals.
+00:03 These were created in Python 3.3 by pep for 414
+00:08 and if you're using Python 2 and porting it to Python 3, these can be pretty important,
+00:13 just in review, all strings are unicode in Python 3 by default
+00:18 that wasn't the case in Python 2,
+00:21 in Python 2 to make a unicode string or a unicode literal,
+00:24 you would put a u in front of your string.
+00:26 So here's a little bit from the pep,
+00:28 the requirement to change the spelling of every unicode literal in an application
+00:32 regardless of how it is accomplished
+00:34 is a key stumbling block for porting Python 2 to 3 efforts.
+00:37 So this is simply an inclusion in Python 3 to ease the porting effort from Python 2 to 3.
+00:44 If you're only writing Python 3 code you can disregard this,
+00:47 but if you're using Python 2 and want to write code that works in both or migrate,
+00:52 this can be something that can be useful.
+00:54 Here's just some brief code.
+00:57 It shows that I can create a unicode string or a Python string
+00:59 by putting u in front of it and I can do the same thing without a u in front of it.
+01:06 and those are equivalent.
+01:08 Python 3 basically ignores the u and allows you to have it there for porting purposes.
+01:13 So this is a brief section but useful for those who are migrating from Python 2 to 3.

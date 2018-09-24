@@ -1,0 +1,104 @@
+00:01 In this video we're going to look at other test.py.
+00:03 Open it up in your editor, let's run it and make sure that it runs.
+00:07
+00:10 Okay, it looks like there's one failure,
+00:13 that's because there's one test function, cool.
+00:15 Let's go through it. Lazy range, get the 100th item
+00:19 from the vals variable, store it in the variable named hun.
+00:23 So we have a vals variable here
+00:25 and it's range from 42 up to but not including two million
+00:29 jumping by 32 and we want the 100th item here,
+00:33 let's try and see if we can slice it off
+00:36 hun is equal to vals 100, let's run that and see if it works.
+00:42 Okay, it looks like that worked,
+00:45 so the range function even though it's lazy in Python 3,
+00:49 allows you to do some slicing off of it,
+00:52 let's do a map, find the 100th item from mapping fn,
+00:56 which is this function right up here, to vals using the map function
+01:01 store the result in hun function.
+01:03 So we say map we're going to map a function fn to vals.
+01:09 And we want the hundredth guy from that.
+01:12 So hun_fn is equal to that and let's see if we can slice off the hundredth guy.
+01:18 We'll run it and we get an error, map is not subscriptable.
+01:23 So even though range is lazy, map is also lazy,
+01:28 but map doesn't support this index operation,
+01:34 so what we would need to do to get the hundredth item
+01:38 is do something like this,
+01:43 seq is equal to the map of that,
+01:47 and then for i in range 100 hun_fn equals next seq
+02:01 let's see if that works
+02:05 and I have a typo here let's change that and run it again.
+02:09 Okay, and so it looks like that works
+02:12 so this just shows you something that you may need to do
+02:15 in this case I need to jump through a little hoop
+02:17 and call next 100 times to get this item from my sequence here
+02:23 because it's lazy.
+02:25 Now there are pluses and minuses to this,
+02:27 in Python 2 map materialized the list for you and you can slice a list
+02:32 but if you have an arbitrary long list it might take a bunch of memory
+02:34 so there are tradeoffs depending on what behavior
+02:37 also I could course this into a list and do that
+02:41 but again, we're going from 42 to 2 million
+02:45 so this is pretty big I might not want to do that.
+02:49 Sorting, sort the nums list as if they were integers
+02:53 store the result in ordered, hint look at the sorted and the keys parameter
+02:58 look at sorted and the keys parameter,
+03:00 so there's a built in function called sorted and it has a keys parameter.
+03:04 Okay, so in Python 2, Python 2 would allow us to sort lists with arbitrary types
+03:11 and a Python 3 wants to be a little bit more explicit.
+03:13 So if we just say ordered = sorted nums, let's run that and see what happens
+03:23
+03:25 I get a type error, less than operation is not supported
+03:28 between instances of string and int
+03:31 that's because I've got a string in here and I've also got integers in here.
+03:34 So it wants me to sort these as if they were integers
+03:38 so one thing we can do is we can cast them to integers
+03:41 so we could make a little for loop or do a list comprehension and cast them to integers.
+03:47 But they key parameter in the sorted function
+03:50 will allow us to apply an arbitrary function to an item that needs to be sorted
+03:58 and will sort based on that.
+04:01 And this gives us the original ordered will now give us back the original list
+04:05 but sorted as if they were integers.
+04:08 So let's run and see if it works.
+04:12 Okay, it looks like that worked.
+04:15 So this is sorting that list as if they were integers.
+04:18 Name leakage, sum the square of the numbers in nums,
+04:23 store the result in square sum
+04:26 so I'm going to put them right here in this space
+04:29 and note that I've got some variables here that are just floating around
+04:33 that maybe someone created or maybe I created if I'm typing code
+04:38 and if I want to square a bunch of numbers and I've got them in sequence,
+04:43 one way to do that is to use a list comprehension,
+04:46 I can say nums is equal to, or I've already got nums,
+04:52 so maybe sq is equal to num squared for num in nums.
+05:01 And then I want to sum that,
+05:04 and so I'm going to say sq.sum is equal to the sum of this whole guy here.
+05:13 Let's run that see if it works.
+05:17 Okay, I got an error here, unsupported operand for ** a string and an int,
+05:25 again I've got this string in here, so maybe I want to corse these to ints.
+05:30 Let's corse them to ints, and then do that see if that works.
+05:37 Okay, it looks like it worked this might just seem like a silly thing
+05:41 but you'll note that in this case I used num
+05:46 as my variable in my list comprehension here
+05:50 and in Python 2 if I used num here when I get out of this list comprehension
+05:55 the value of no will be the last value of this list comprehension.
+05:58 In Python 3 that behavior is changed and there is no "leakage"
+06:02 of this variable into the surrounding scope here
+06:06 so num stays at 42.
+06:09 So I put an X in here and a num in here
+06:12 in case you used those in a list comprehension.
+06:14 Now if you did these in another way, if you made a for loop and used num in there
+06:18 then you would overwrite this num guy
+06:21 so it's just something to be aware of if you're not familiar with that
+06:24 in Python 2 on list comprehensions,
+06:27 note that generator expressions and set and dictionary comprehensions
+06:32 behave as in Python 3, there's no leakage there
+06:35 but in the list comprehension there is.
+06:38 So this video showed some of the things that changed in Python 3,
+06:43 we have laziness as a general theme
+06:45 so range and map are both lazy
+06:49 they support somewhat different interface so be aware of that.
+06:53 Sorting, when you sort different types, you need to be specific
+06:58 and make sure that they support sorting
+07:00 and so we can use the key parameter of the sorted function to help enable that
+07:05 and there's no name leakage in list comprehensions now.

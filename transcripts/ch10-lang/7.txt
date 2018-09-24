@@ -1,0 +1,15 @@
+00:01 One of the general themes of Python 3 is laziness
+00:03 and so a lot of functions that returned lists in Python 2
+00:07 are now lazy and behave as iterators,
+00:11 either returning generators or views or something that is iterable.
+00:15 So map, filter and zip, and range are all examples of this.
+00:20 In Python 2, these returned lists, that is no longer the case,
+00:23 they don't return lists anymore,
+00:26 they are iterables that you can loop over.
+00:28 Similarly, a dictionary in Python 3 has keys, items and views,
+00:34 these same methods existed in Python 2
+00:36 but in Python 2 these returned lists of what was in there.
+00:40 These are now views, views are slightly special
+00:43 in that they reflect any updates that are made to the dictionaries.
+00:46 So if you're looping over it and it's been updated in the meantime,
+00:50 you should get some values that update as well.

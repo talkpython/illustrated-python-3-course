@@ -1,0 +1,85 @@
+00:00 In this video, we're going to look at the venv test assignment
+00:03 and we're going to do on Unix system so that'll work on Linux or Mac systems.
+00:08 I've got the files downloaded from the labs here.
+00:12 Let's look at the venv test lab
+00:15 and you can see there's the assignment in that comment
+00:17 under the test venv function that says
+00:20 use pipenv to create a virtual environment and install pytest
+00:22 activate your virtual environment and run pytest on this file
+00:26 by invoking python venv test.py
+00:30 You'll note that this will run pytest because at the bottom there
+00:34 we've got the check for if the __name__ attribute is the string __main__
+00:37 import pytest and invoke pytest.main on the file.
+00:41 So let's do that, I'm going to create what's called a user install.
+00:46 If you don't have access right to your system or install into your system python,
+00:51 you might need to do a user install, it has a few more steps, so this is how we do it.
+00:55 We say Python 3 -m pip install --user and we're going to install pipenv.
+01:03 Okay, it looks like that installed.
+01:07 Now what I need to do is be able to access the pipenv command-line utility
+01:12 and because I installed that in a user install, python installed in a certain place,
+01:17 I'll show you where it came. Python -m I'm going to invoke the site module
+01:21 and say user-base, that says that it put it in my home directory
+01:28 in library Python 3.
+01:30 So in there, I should see a bin pipenv executable.
+01:35 Let's see if that exists in the bin directory and there is a pipenv.
+01:41 So now what I want to do is I want to make sure that this bin directory is in my path.
+01:45 So I'm going to update my .bash profile.
+01:48 I'll just show you how I update it.
+01:51
+01:54 It looks like that, and once you've updated that
+01:57 you can source that file and you should be able to say which pipenv
+02:05 and it should tell you that it's using the user-installed pipenv.
+02:09 Great, at this point, I'm ready to use pipenv
+02:12 and note that I'm in my directory, where I want to create the virtual environment,
+02:16 I want to do it in the lab directory.
+02:18 If you don't create it from inside the directory you want to
+02:21 you might have problems activating it automatically using the pipenv tool.
+02:26 So make sure you're in the right directory here.
+02:28 All you have to say is pipenv install pytest.
+02:33 So it says it's creating a virtual environment for the project and it's installing pytest.
+02:41 You can see up at the very top it says
+02:44 where the directory is in the virtual environment,
+02:46 it's in my home directory in the .local folder.
+02:49 So if I just list the contents of the home directory,
+02:52 I'm not going to see that because it starts with a period
+02:55 so I have to do an ls-al to actually get the local directory there.
+03:00
+03:05 And you can see up at the top here,
+03:09 there's a .local directory there.
+03:14 Okay, so inside of that local directory,
+03:20 there's a shared directory and then there's virtual environments inside of there
+03:23 and it created this guy right here, talkpy3 -labs
+03:26 and if you look, there's a bin directory and there's an activate guy in there.
+03:31 We're not going to run this the traditional way,
+03:33 we're going to use the pipenv tooling to activate this.
+03:35 So how we activate with pipenv is we say pipenv shell.
+03:39 And you'll see that it says it's spawning an environment
+03:43 and it says use exit to leave.
+03:45 So in this case, we don't use deactivate
+03:47 which is the traditional virtual environment command to leave the shell
+03:50 we're going to use exit and also note that it updated our prompt here
+03:54 and it said that we're using this environment here.
+03:57 You'll also note that when we ran pipenv,
+04:00 it created these two files here pipfile and pipfile.lock
+04:03 Let's just look at pipfile and you can see that it says that it has installed pytest,
+04:10 we can look at the lock file.
+04:14 The lock file has hashes for all the different libraries that we've installed.
+04:18 So if we want to get specific libraries reinstalled,
+04:21 it's going to check those hashes to make sure that they're the same versions,
+04:24 nice little feature here.
+04:26 Okay at this point, I should have pytest, let's see if pytest is found
+04:30 and it's found in my virtual environment, cool.
+04:34 Let's say which python to make sure that I'm using
+04:38 the python from my virtual environment,
+04:40 which Python, and in this case, I don't need to say Python 3 anymore
+04:43 because when we created the virtual environment
+04:47 it made an executable called python that is Python 3 there.
+04:49 I can also say Python 3, but those should be the same,
+04:52 just to show you if I type python now it says Python 3.6.
+04:58 Okay, and finally, let's run venv test
+05:01 and it says it ran one passed in 0.1 seconds.
+05:06 So that's how you create a virtual environment and install pytest using pipenv.
+05:12 I'm also going to exit from this.
+05:14 I'm going to say exit and you'll see that now I am out of my virtual environment.
+05:19 So this video showed you how to use pipenv to create a virtual environment
+05:24 and to install files, how to activate the virtual environment and how to exit from it.

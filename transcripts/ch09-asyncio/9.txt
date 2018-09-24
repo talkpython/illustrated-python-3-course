@@ -1,0 +1,41 @@
+00:00 So again, if you're using asyncio, all your code needs to be infected or whatnot,
+00:04 everything a coroutine calls should be async if you're awaiting it,
+00:09 it can call other functions if it's just calling them directly and getting the results.
+00:12 But if you're calling another coroutine, then you need to await that
+00:15 or you need to iterate over the results of those.
+00:17 So if I want to convert this prior code that I have,
+00:20 to use asyncio rather than the little framework I had,
+00:23 what I need to do is I'm going to replace def async_
+00:26 and I'm just going to put async def and I'm going to create a coroutine
+00:30 and then instead of yield, I had yield in there,
+00:33 if you have yield or yield from I'm going to replace that with await
+00:37 and then I'm going to pass in a future to get back the results.
+00:40 So the code will change slightly but it should be very similar.
+00:43 So we'll see here that I have now acync amap
+00:47 and I'm passing in a future here, but I still have a function and the sequence
+00:50 and then I'm looping over my sequence
+00:53 and I'm appending the result of my function
+00:55 and then at this point, I'm calling await and I'm sleeping for 0
+00:59 what sleeping for 0 on asyncio effectively does
+01:03 is it says you know what, give someone else a chance to run.
+01:06 And so this is the point where someone else can run their code,
+01:09 and then at the end when I'm done,
+01:12 I'm just going to stick onto my future the results that I got.
+01:14 So I'm going to create an event loop,
+01:16 I'm going to create a future to hold the result of my first guy,
+01:20 I am going to create another future to hold my result of my second guy
+01:23 and I'll pass those in and I'll have to coroutines,
+01:26 one called t1 and one called t2.
+01:28 And then I'm going to call an asyncio function called gather
+01:32 that takes multiple co-routines and gives me a future
+01:35 and then I'm just going to on my loop here say
+01:38 run until complete this coroutine that has both of them in there,
+01:41 and then at that point, when that's done, it will return
+01:44 and I can say f1 give me the result, here's the result from f1
+01:48 and here's the result from f 2 and I can close my loop if I want to at the end there.
+01:52 So again, there's a few things that you need for your asyncio code.
+01:56 You need to have an event loop, so you create a loop,
+01:58 you call run until complete and then when you're done, you close it.
+02:03 Pretty straightforward, but again, you need to have co-routines
+02:06 and you need to have an event loop that can manage and run those for you.
+02:09 So that's the basic steps that we do for using our event loop.

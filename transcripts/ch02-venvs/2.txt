@@ -1,0 +1,196 @@
+00:00 In this video we're going to talk about virtual environments and pip.
+00:03 A virtual environment is a mechanism that Python provides
+00:07 to allow per project dependency.
+00:10 When we install Python, we get what we call the system Python installed
+00:13 or if you have a machine that comes shipped with Python
+00:16 there is a version of Python installed and you can install packages into that,
+00:20 but you probably don't want to and we'll explain why.
+00:23 Virtual environment allows us to isolate our dependencies based on a project,
+00:28 and it allows us to easily install and upgrade those dependencies.
+00:32 One example of why we might not want
+00:34 to use our system Python is illustrated here
+00:38 assume that I'm working on a project that requires Django 2.0
+00:42 and later a year or so after that, my boss comes in and tells me
+00:46 he wants me to work on a new project
+00:48 and I want to use Django 3.4 the current version of Django at the time.
+00:53 If I've installed Django 2 on my system environment.
+00:55 I now need to install Django 3.4 on top of that
+00:59 and that can bring in the whole bunch of dependencies and whatnot
+01:02 essentially making it so my old project won't work anymore,
+01:06 which could be fine, if I'm working on a new project.
+01:08 But what happens when my boss says,
+01:10 oh, I need you to fix that bug in the old project.
+01:13 Well, then you've got to go in and uninstall Django 3
+01:15 and all the dependencies and install Django 2,
+01:18 it turns into somewhat of a headache.
+01:20 So solution to that is to use these virtual environments
+01:22 and that allows us to on a per project basis
+01:25 create an environment for Python and so we can have
+01:28 one for our old Django 2.0 project and have another one for our new one
+01:33 that our boss tells us to create.
+01:35 Using these virtual environments we can easily switch
+01:37 between these two different versions and use the appropriate one very easily.
+01:42 Here's how we create a virtual environment.
+01:44 I'm going to run Python with -m switch,
+01:48 the -m swicth allows me to run a module that's included
+01:51 in the standard library in the Python path,
+01:53 in this case it's going to run the venv module.
+01:56 And we're going to pass in a path where we want the virtual environment to live.
+02:01 This can be any path and I like to put it in a directory called .venv
+02:09 in the same directory as my project, I'll tell you why in a minute.
+02:15 After we've created this virtual environment, it might take a while.
+02:18 What Python is going to do is it's going to make
+02:20 a directory structure in there that has a binary directory
+02:24 where there's a Python and a pip in there
+02:27 and it's going to make a library directory
+02:30 and it's going to also give us a tool that allows us to activate our virtual environment
+02:34 and when we activate it, what it's going to do,
+02:36 it's going to shim in our path where our new binaries are found into our path variable.
+02:41 So when you run Python, we're no longer running the system Python,
+02:44 but we're running the Python in a virtual environment.
+02:47 And you can see on bash systems when we run this
+02:49 command source with the path to this new environment
+02:53 and then there's an activate script in there
+02:56 when we run that, we can see that our shell
+02:58 will tell us the name of the virtual environment we are in.
+03:01 In this case, we can see that the env matches the env
+03:06 that we passed in to the command line.
+03:08 On Windows, we do a similar thing, we can pass in the full path.
+03:11 If you have multiple versions of Python installed
+03:14 you can use the full path to Python.
+03:16 And again, we're going to do the -m with the venv module,
+03:19 and we give it the path to where we want to create our virtual environment.
+03:23 Once we've created that virtual environment in Windows,
+03:26 because we don't have source we run this bat file here,
+03:31 which is in a scripts directory.
+03:33 And if you run that, you'll see that that updates your prompt as well.
+03:36 Just to clarify the -m swich, this will execute a module
+03:39 that's found in your Python path,
+03:42 why we use this instead of using a pip executable or virtual env executable
+03:47 is it allows us to make sure that we know
+03:50 which version of Python we're using to create our virtual environment
+03:53 on systems where you might have multiple versions installed.
+03:56 this can be pretty handy.
+03:58 Once we have a virtual environment what we do inside of it?
+04:00 Typically we install things, so there's a couple commands
+04:03 we can say pip install foo to install package foo,
+04:06 we can create a requirements file if we want to
+04:09 we can say install -e and that will install our package in edit mode,
+04:13 it allows us to have our package in the Python path, but also update it
+04:17 and when we update it will get live code essentially in our Python path.
+04:22 We can also say pip freeze and that will list
+04:24 all of the packages that are installed in a virtual environment
+04:27 and we can also uninstall libraries, which can be nice.
+04:30 One thing to be aware of is if you've created a virtual environment
+04:33 just running pip doesn't ensure that you're going to install something
+04:37 into that virtual environment,
+04:39 you either need to be using the pip that's located in the virtual environment
+04:42 or have your virtual environment activated
+04:45 so that the pip for that virtual environment is shimmed in the path
+04:48 and that's what's getting called when you call pip,
+04:51 so just make sure that you know which pip you're running.
+04:53 Let's talk about a tool called pipenv,
+04:58 as of post Python 3.6 pipenv is now
+05:00 according to the Python.org documentation
+05:02 the recommended tool for managing dependencies.
+05:05 What is pipenv?
+05:07 Pipenv is a tool that basically allows you to do virtual env
+05:11 and pip in one command line, we'll see some examples of that.
+05:15 Now this is a third party tool, so it's not included in Python 3.6.
+05:20 So you need to install it, again, we're going to use this -m module
+05:25 we're going to say Python 3 -m pip install
+05:29 and we're going to also use a --user option on the command line here
+05:33 what the -- user option says, is it says I want you to install this package,
+05:38 but I don't want you to install it into the system Python
+05:41 I want you to install it into a user directory that your user has access to
+05:47 but other users might not have access to.
+05:49 It allows you to get around having to be root to install packages.
+05:52 Now that might be problematic,
+05:55 because probably wherever Python is going to install this pipenv
+06:01 user package is not going to be in your path
+06:05 and you want the pipenv tool to be in your path.
+06:08 So you're going to have to do some things after that.
+06:10 Yeah, this is a little bit more convoluted and not quite as easy as it could be
+06:14 but bear with me and you'll only have to do this once.
+06:18 You want to know where your user base is or where this user path is
+06:22 you can run this command here Python 3 -m site -- user-base
+06:26 and that will tell you the directory of where your user base is
+06:30 and on Unix systems, if you add bin to that
+06:34 or on Windows systems, if you add Python 3.6 scripts to that
+06:37 that will be the path where pipenv will be located.
+06:41 So you'll need to do something like this
+06:43 on a Unix system in your .bash profile file,
+06:46 you'll need to update that and add into the path this new directory here
+06:51 and then you can source that and you'll have access to your user pipenv.
+06:56 On Windows systems, it's a similar process
+06:59 though typically not done through editing files.
+07:02 You need to go down to your search box and type env in there
+07:06 in the path environment variable, you want to update that
+07:09 and add the user base with the addition of Python 3.6
+07:13 and scripts on the end of that.
+07:15 That point, if you relaunch the command prompt by typing cmd in the search box,
+07:17 you should be able to type pipenv and have access to it.
+07:21 Here's an example of using pipenv.
+07:23 I've created a directory called blockchain,
+07:25 this is on Unix, but you can do similar things on Windows.
+07:28 I'm going to change into that directory,
+07:31 and now, inside of that directory, I'm going to say pipenv install py.test
+07:35 what that does, is it goes out and because I called pipenv
+07:38 it's going to create a virtual environment for me
+07:41 and it's going to install py.test into that virtual environment.
+07:45 If I look in the current directory after I run this,
+07:48 this directory was brand-new, I just created it,
+07:51 I'll see two files, I'll see a file called pipfile and the file called pipfile. lock.
+07:55 That's what pipenv has created for me.
+07:57 It's also done some other things behind the scenes.
+07:59 It's created a virtual environment for me.
+08:01 Let's talk about pipfile. Pipfile is a new way of specifying dependencies.
+08:06 It supersedes the old requirements.txt file.
+08:10 One of the nice things about pipfile
+08:12 is that it allows you to support a dev environment
+08:15 and a default or production environment in a single pipfile
+08:19 and this basically says if you're developing this library,
+08:23 then you'll want to install the dev dependencies.
+08:26 If you're deploying it for production or whatnot,
+08:28 you'll just want the default dependencies.
+08:30 There's the other file there, the pipfile.lock
+08:32 and that stores the installation details about what libraries you have
+08:37 and it has hashes and versions in there, so you can make sure
+08:40 that when you recreate a virtual environment using this file
+08:43 that you have the exact same libraries installed.
+08:47 When you run this pipenv tool, it's also going to create a virtual environment
+08:51 and on my system, it threw it into this .local\ share\ virtualenvs directory
+08:56 and inside of there, it created a directory called blockchain
+09:00 with a unique identifier after it.
+09:03 If you want to have pip recognize another directory,
+09:06 it will recognize a .venv directory that is in your current project,
+09:11 if you have this environment variable pipenv_venv in project set
+09:17 so you can set that using the set command in Windows
+09:21 or you can just say pipenv_venv_in_projet=1
+09:28 right before your pipenv command and it will
+09:31 recognize .venv virtual environment if you've got one.
+09:35 A couple commands for using pipenv
+09:37 you can say pipenv run python and note that
+09:40 my environment here is not activated, my virtual environment,
+09:44 but because I'm using pipenv, pipenv has some logic to know
+09:48 that I am in a directory that has a virtual environment associated with it
+09:52 and so will launch the right Python there.
+09:55 If I want to activate my virtual environment,
+09:57 I can say pipenv shell and that will activate it,
+09:59 note that this command will work in Unix and Windows.
+10:03 A couple of other commands that we can do with pipenv,
+10:05 we can say pipenv --venv and that will give us the location
+10:09 of where our virtual environment is.
+10:11 We can say --py and that tells us which Python it's going to run
+10:15 we can install a package and we can install it
+10:18 with a dev dependency by putting --dev after it.
+10:21 Cool thing that we can do with pipenv is we can say graph
+10:23 and that will create a dependency graph to tell us
+10:26 what our dependencies depend on,
+10:28 we can lock our dependencies by calling pipenv lock.
+10:31 And we can uninstall package as well.
+10:34 I hope that you've learned a little bit more
+10:36 about virtual environments and pip and pipenv.
+10:39 If you haven't tried using these tools, please try them.
+10:42 Again, as I said, pipenv is now the recommended tool
+10:45 to use moving forward so you should get used to using that tool.

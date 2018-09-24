@@ -1,0 +1,71 @@
+00:00 Python 3.5 introduced a typing library.
+00:03 This is in the standard library and it adds support for various types.
+00:07 We can get support for any, union, tuple, callable, type variable and generic.
+00:12 There's also other types that allows us to specify dictionary and list types
+00:17 and we'll see some examples of those.
+00:19 Another thing to be aware of is if you've got a class
+00:21 that you're saying this variable is going to be a type this class
+00:25 and the class is in the same file as you're referencing it,
+00:28 but the class has not been defined yet, it's going to be defind later,
+00:31 you can just put the class name in a quoted string
+00:33 for a forward declaration of that class.
+00:36 Here's some examples of annotations
+00:38 note that I am using the typing library here
+00:40 and I'm importing capital Dict here, and here in my annotation,
+00:44 I've got a variable called ages and it's mapping a name to an age.
+00:48 So here's my traditional dictionary over on this side here
+00:52 Fred has the age of 10, and here's my annotation here.
+00:55 I'm saying dict and then I put square braces here
+00:59 and then I map the key and the value here.
+01:05 So string here is the key and it is the value.
+01:10 What this allows me to do is specify what the type,
+01:13 the specific type of the key is and what the specific type of the value is.
+01:18 Again, I'm going to harp on this but when you run your code
+01:21 Python is going to ignore this, you need to use a tool like mypy
+01:23 to actually get some information out of this, we'll show an example of that later.
+01:28 If you've got a list of items here in square brackets in our annotation list
+01:33 the list type that we import from typing, note that it's capital List,
+01:36 we see that we are putting strings into our list.
+01:40 So this allows us to type our list and use a specific type in there.
+01:45 Same thing for tuples we can specify a tuple,
+01:49 we're going to import capital tuple from the typing.
+01:51 And in this case we're saying a person has a string, an int and a string.
+01:56 And so those correspond to the individual items in the tuple.
+02:00 So Fred is a string, 10 is an integer, and USA is a string.
+02:05 We can also specify types for callables,
+02:08 here, I have a little function called repeat that takes a function as input,
+02:12 again, Python has first class functions
+02:14 and I can invoke my function down here, I can pass my function around
+02:18 and I can return functions and pass in functions to other functions.
+02:22 And we can say that this function that's getting passed into repeat
+02:26 is going to be a callable.
+02:28 We're going to import callable from typing
+02:30 and here in the square brackets inside of the square brackets,
+02:33 these are the parameters that are passed into our callable
+02:36 and then this final guy here at the end is the return value here.
+02:39 So this callable that's passed in, if we're passing in add
+02:42 it takes two integers and it returns an integer as output.
+02:46 One thing to notice, pep 526 provided some syntax for typing variables,
+02:51 but it didn't provide syntax for all the variables that can get created in Python,
+02:56 when you use a with statement and use an as at the end
+03:00 it creates a variable called foo and when you use a for loop
+03:03 and you put variables in there, it's going to create x and y.
+03:07 Pep 526 does not have a way to inline those type annotations there
+03:12 but pep 484 did by providing these comments here.
+03:16 So if I've got a with statement I can put a little type comment at the end
+03:20 that says foo is going to be type int.
+03:23 Similarly, for a for loop, if I want to put a type on those
+03:26 I can put a type there that says x is going to be a float
+03:30 and y is going to be a float as well.
+03:33 This is straight out of the pep 484.
+03:35 The typing module also has support for typing generators.
+03:38 If I want to type a generator, I can just say this echo_round returns a generator
+03:43 and this first guy here, this is going to be whatever it yields.
+03:47 So we can see that we're yielding round res, which is an integer.
+03:51 The second value that's getting past here, float is the send_type
+03:55 so we can see that when we get input into it,
+03:58 it is going to be a float or it should be a float and we're going to round it,
+04:02 so what comes in should be a float
+04:05 and then this final one here is the return type.
+04:08 So the string that we're returning is going to be a string.
+04:13 So that's how you use the generator type annotation.

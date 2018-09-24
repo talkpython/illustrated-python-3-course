@@ -1,0 +1,37 @@
+00:01 In this video, we're going to look at the venv_test assignment.
+00:04 I'm on Windows, so I'm going to start a command prompt
+00:07 and I'm going to change into the directory where I have my Python files installed here.
+00:14 I've got a labs directory here.
+00:17 We're going to do venv_tests so let's just look and see what that says.
+00:21 It says use pipenv to create a virtual environment
+00:25 and install pytest, run pytest on this file.
+00:29 Right now I can't even run pytest because it's not installed
+00:33 and I want to create a virtual environment to do that.
+00:36 One of the things that I like to do
+00:38 is to put the virtual environment in the same directory,
+00:40 and if you want to do that, you have to name your virtual environment .venv
+00:45 I can use either virtual env or I can use pipenv to do this.
+00:49 I'll show you how to do it with pipenv.
+00:52 So in order to do it with pipenv, we need to create an environment variable
+00:54 and the environment variable is pipenv_venv_in_project.
+01:01 So we're just going to say that set that equal to 1, if we want to inspect that
+01:05 we can say echo %pipenv_venv_in_project and we can see that that is now set.
+01:12 And since I have pipenv installed, I can say pipenv install py.test
+01:18 and it will think for a minute and it will create a virtual environment and then install py.test.
+01:24 Okay, so it looks like it worked.
+01:27 If you recall one of the things we can do is we can take pipenv --venv
+01:32 and it will tell us where our environment is and it says it's in this current directory.
+01:36 Awesome. If we want to activate it we can say pipenv shell and now we are activated,
+01:43 we're in our environment here, let's just type pytest venv_test.py
+01:56 and we can see that it now succeeds, it ran.
+02:00 I will also show you that I should be able to import pytest and it seems to work here
+02:06 if I exit out of this guy and I say Python and I say import pytest
+02:13 I get no module named pytest,
+02:17 this is because I'm now using the system Python,
+02:19 I'm not using the virtual Python.
+02:21 And we can see that we have created in our directory, I need to type dir,
+02:29 we have created in here a virtual environment in our directory called .venv
+02:33 simply by setting that environment variable
+02:36 and that's all there is to do for this assignment.
+02:38 You just need to make sure that it runs, it doesn't give you any errors
+02:42 and we have done that so we're good to go.

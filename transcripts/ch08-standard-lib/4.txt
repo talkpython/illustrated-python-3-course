@@ -1,0 +1,51 @@
+00:00 In this video, we're going to look at path test, open that up in your editor.
+00:03 Let's run it and make sure that our environment is configured.
+00:07
+00:09 Okay, we have one error, we're not getting failure with importing pytest,
+00:13 so we're good there and we have one test function.
+00:16 Let's go through this and figure out what's going on.
+00:19 The first part, get the contents of the current directory using the path module
+00:23 store the results in cur, the variable called cur.
+00:27 So in Python 3, there is now a library called pathlib,
+00:32
+00:34 and we can say from pathlib import path
+00:39 and let's get the current module, current equals path
+00:45 and period should be the current guy.
+00:50 If you want the contents of that you say iterdir,
+00:54 and that will give you what is in the directory.
+00:57 Let's run this and see if it works.
+01:01
+01:04 Okay, so we're only getting one failure which is fine
+01:08 because we have one test and we're getting an error on line 16.
+01:12 So it looks like the first guy worked.
+01:15 So what iterdir does, given a path it gives you a sequence
+01:18 that has all of the results in it or all of the files and directories that are in that.
+01:24 So our test is just saying is path test in the current directory,
+01:29 and because we're in that directory, it is. Cool.
+01:32 Make a path with a file named test.txt, and store it in test file.
+01:39 So test file equals path, and we're going to say test.txt, that should work.
+01:48 I'll just run it and see if it works.
+01:51 Okay, we're now on line 23, so we're down here.
+01:54 Write hello world to test file,
+01:57 we can use this path guy as we would a result of an open in the context manager
+02:05 so I can say with test file and then I can call on that open
+02:12 and I can pass in a mode,
+02:15 so I'm going to pass in the mode write
+02:17 and I'm going to say as f out: and I'll say f out.write, and we'll write hello world.
+02:24 At this point, after we've exited from this, test file should exist,
+02:28 it should have a name and we should assert that hello world is in there.
+02:34 Let's run it and make sure it works.
+02:36 Okay, we're now down to line 32, so we're at this last part.
+02:41 Delete the test file.
+02:43 So we have test file, how do we delete it? There is no delete.
+02:46 Is there a remove? There is no remove.
+02:51 Is there an rm? There's an rm dir.
+02:53 So none of those are the way to delete a file,
+02:56 the correct pronunciation of this is unlink.
+02:59 Let's run this and see if it works.
+03:02 Cool, we're good.
+03:04 So hopefully, this gives you a brief chance to play around with path.
+03:08 You can get the contents of a directory by saying iterdir,
+03:11 you can create a path, you can write to it by putting in a context manager
+03:16 and calling the open method on it, rather than using the built-in open function
+03:21 and you can delete it if you want to as well.

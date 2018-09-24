@@ -1,0 +1,10 @@
+00:01 Thanks for watching this course on Illustrated Python 3.
+00:04 I hope you've come to understand a little bit of the new features in Python 3
+00:07 and are looking forward to using them in your work.
+00:11 Again, Python 3 has awesome features, asynchronous features,
+00:15 the ability to do annotations, keyword only arguments,
+00:18 unicode, these are all great features in Python 3
+00:22 and you should be using them where you can.
+00:25 I'd love your feedback, if you have any questions or concerns,
+00:28 again, my twitter handle is @__mharrison__
+00:31 thanks for watching and best of luck in your future Python endeavors.

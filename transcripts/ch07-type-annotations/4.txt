@@ -1,0 +1,17 @@
+00:00 So we saw the new style, 526 style of annotating variables.
+00:05 Pep 484 had another style for annotating variables
+00:09 allowed us to do in a comment.
+00:11 So if you put the comment with type colon,
+00:14 and then the expression following that, in this case str,
+00:16 we could use this older style pep 484.
+00:19 Python 3.6 supports this newer style,
+00:21 and so we can just put the colon and the annotation right after that.
+00:25 One thing to note when we create these variable annotations is that
+00:28 there is a global variable called __annotations__
+00:32 that will be created and it will be updated with the name and the types in there.
+00:36 Note that, again, this middle variable here does not have a value,
+00:40 it's just an annotation for a variable.
+00:43 And so if I try and reference that here,
+00:45 I will get a name error that middle is not defined,
+00:47 but note that middle is in my annotation.
+00:50 So when I later assign middle, it should correspond with that type.

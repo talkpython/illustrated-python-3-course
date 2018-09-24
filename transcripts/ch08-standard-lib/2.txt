@@ -1,0 +1,43 @@
+00:00 In this video, we're going to look at print_test.py, open it up in your editor.
+00:04 Let's run it and make sure that it works.
+00:06 So in order to run it, I right click in PyCharm and say run print_test
+00:10 this just validates that it's being run with pytest, in this case it is,
+00:15 it says there are 2 failures, let's look at the test here.
+00:18 There are 2 failures because there are 2 tests
+00:21 this one here that starts with test and this function here that starts with test.
+00:24 The description is this comment right here and we need to do what it says.
+00:28 It says print the numbers from 10 down to 0 with a space between them
+00:32 and a new line at the end.
+00:34 And so the default behavior for the print function
+00:36 puts a space between a new line at the end, so let's just try and say print nums
+00:40 and run that and see what happens here.
+00:43 Okay, we still get 2 failures, let's see if the output from pytest helps us at all.
+00:50 We have an assertion, the assertion failed and said
+00:53 that this string here is not equal to this string,
+00:56 the difference between these two strings is
+00:59 that this one has a list embedded in it, and this one does not.
+01:03 So when we print out an object here, it just prints the __stir__ version of that
+01:08 and if we want to make it so rather than the print out a list
+01:13 we want the individual items of the list, we need to use what's called unpacking
+01:16 so we can just put a star in front of that and that should unpack them.
+01:21 Let's try it again, unpack the individual items from that string
+01:25 and it looks like we only get one failure now, so we're good with this first one.
+01:28 Let's look at the assignment for the second one,
+01:31 print the numbers from 10 down to 0 with a - * - between them
+01:36 and no new line at the end.
+01:38 So print, we're going to say *nums here again,
+01:41 and we're going to say sep is equal to - * - and end is equal to a blank string.
+01:51 Let's run it and make sure that it works.
+01:54 Okay, it looks like it works, let's look at the test a little bit
+01:57 and try and dig into what's actually going on here.
+02:00 If you'll notice the import here, I'm importing stringIO
+02:04 this is an object that behaves as a file buffer,
+02:08 and what I'm doing here is patching or monkey patching sys.stdout,
+02:12 I'm creating a stringIO instance, and pointing sys.stdout to it.
+02:17 So when I call print down here, rather than printing out to the screen,
+02:21 it's printing out the string buffer
+02:23 and we're pulling the value from that stream buffer out and checking the value of it.
+02:28 So that's how our little test is working.
+02:30 Hopefully you understand a little bit about print now
+02:33 and again, in Python 3 print is now a function
+02:36 and we can use these keyword arguments to change the behavior of the function.

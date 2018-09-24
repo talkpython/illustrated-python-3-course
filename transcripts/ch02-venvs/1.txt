@@ -1,0 +1,55 @@
+00:01 In this video, we're going to look at how to install the tool pipenv,
+00:03 which is the recommended way to install Python packages
+00:06 and create virtual environments in Python 3.
+00:09 This is kind of tricky to install on windows, so I'll show you how we do it.
+00:13 First let's launch a command prompt by typing cmd into the search box here
+00:17 and we'll see that we don't have access to pipenv right now,
+00:21 but we do have access to Python.
+00:23 Okay, so we have Python installed, but we don't have pipenv installed.
+00:27 So let's install pipenv.
+00:30 Pipenv wraps virtual environment creation
+00:32 and pip utility into one nice little command line tool
+00:38 and in order to use it, we have to install it
+00:41 so we can install it using Python and saying -m I want to run the module pip
+00:47 install pipenv and we'll try and install it here.
+00:51 When I'm running this command, it's installing it into the system Python.
+00:55 It's going to think for a while but it's going to give me an error
+00:58 because it couldn't install it into a certain directory
+01:00 because it doesn't have access to do that,
+01:02 and that might seem annoying or problematic
+01:05 but it can be okay as well because what it allows us to do is
+01:09 sandbox our system install and not have any user trampling on top of it.
+01:16 I want to install it, instead it's doing what's called a user install.
+01:19 So I'll show you how to do that.
+01:21 Rather than saying python -m pip install pipenv,
+01:25 I'm going to add a --user option here
+01:28 and this is going to try and install it again.
+01:34 And it looks like it worked this time.
+01:35 Let's try and run pipenv and we can see that pipenv did not run.
+01:39 Why didn't it run? It's because our path can't find it,
+01:43 because we did a user install the directory
+01:45 where a user install binary is installed is not in our path.
+01:49 We can look at our path by saying echo %path%
+01:53 and we can see also where the path that the user install goes in
+01:57 by saying Python -m site --user-base.
+02:03 So inside of this app data roaming Python
+02:06 is a directory that has our new pipenv guy, let's look at that.
+02:11 It's going to say dir app data roaming Python
+02:15 and inside of Python there's a Python 3.6 directory
+02:17 and inside that, there's a scripts directory
+02:20 and that's where our pipenv executable is.
+02:22 So what I want to do is copy this directory right here
+02:25 I'll just highlight it and hit enter and if I go down here into my search box
+02:29 and type env, that will allow me to update my environment variable.
+02:33 I'll just click at the bottom there, environment variable
+02:35 click on path and say edit
+02:38 and I'm going to say new I want to add a new environment variable path
+02:42 and just paste in what I copied there.
+02:44 I can say edit. Okay. Okay. Okay,
+02:47 now note that pipenv will not work in this command prompt.
+02:50 So I'm going to close it, but I'll launch another one here
+02:53 by typing cmd into the search box.
+02:55 I should have access to pipenv now.
+02:58 So this video showed you how to install pip in a local install
+03:02 and how to update your path
+03:04 so that you have access to it from the command prompt.

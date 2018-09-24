@@ -1,0 +1,96 @@
+00:00 In this video we're going to talk about pathlib.
+00:02 This came about through peps 428 and 519.
+00:05 So 428 adds pathlib to Python 3, this came about in Python 3.4.
+00:11 519 adds protocols for paths so that standard libraries
+00:15 that support operations on paths can use pathlib.
+00:20 Pathlib is included in the standard library
+00:22 so you can create a path by importing the path class from pathlib.
+00:27 Here I'm making a path called env in my temp directory
+00:31 and if this path exists on my file, and in my case it does,
+00:35 I can say list env.iterdir and that gets me back at generator
+00:41 and if I materialize that into a list,
+00:43 it gives me back a sequence of all these posix paths
+00:47 which have everything that is in that directory.
+00:51 Now posix path, because I'm running this on my Mac, that's what I get back.
+00:55 If I were to run this on a Windows machine,
+00:57 I would get back a Windows path if temp env existed on a Windows machine.
+01:01 One of the nice things about this path instance
+01:04 or these path classes that we can create
+01:07 is that we can do various manipulations on them.
+01:10 So it has overloaded the slash operator to do concatenation.
+01:14 So if I want to make a file called missing inside of this env directory,
+01:19 I can say m=env / missing and that concatenates missing on to the end
+01:24 and it gives me back a posix path that has missing on the end.
+01:27 Note that / will work on Windows systems as well
+01:30 and rather than giving back a posix path
+01:32 if this temp env existed on my machine, it would give me back a Windows path.
+01:38 I can call .exist and that says does this path exist,
+01:41 and it says false, missing doesn't exist.
+01:44 Also on my path, I can say open
+01:48 and I can pass in if I want to write to it or whatnot.
+01:51 I can put that in context manager that will give me a file handle
+01:53 and I can write to that file.
+01:55 I can do things like say parts and that will give me back a tuple
+01:58 of the various parts of the path,
+02:01 note that it puts this leading / in here for the root,
+02:04 and we can say open again to read from it and read from it.
+02:08 And then if we want to delete from it, we can say unlink.
+02:11 The nice thing about these is these are cross-platform.
+02:14 These will work on Windows or posix systems,
+02:17 so Linux or Mac or other Unix systems.
+02:21 Here are some more examples of some manipulation that we can do,
+02:24 note that in here I'm saying m.parent,
+02:26 that gives me the parent path of my directory
+02:30 and then I'm concatenating on bin and concatenating on activate this.py,
+02:34 and on that py path I can say what's the root there, and it says the root is that,
+02:40 what's the drive there, and it says the drive is that,
+02:42 what's the anchor, the anchor is this combination of root and drive,
+02:46 so drive here, this is Windows specific,
+02:49 and if you're dealing with the c drive or the d drive or whatnot,
+02:53 that will pop up in there.
+02:56 The anchor here is the combination of root and drive.
+02:59 A  couple of other things you can do
+03:01 so I can say what's the parent path and the parent path of my py guy,
+03:04 which is the activate file is tmp/env/bin.
+03:08 I can say what's my name and it will give me just the name of my file,
+03:12 I can say what's my suffix, my suffix is .py,
+03:15 I can give it this stem attribute, that's the file name without the suffix,
+03:21 I can say is this an absolute path, it says true.
+03:24 I can do matching against it with simple globbing operators,
+03:27 so does this match *.py, yes, it does match *.py.
+03:31 Pathlib makes a distinction between what it calls pure paths and concrete paths.
+03:35 We mostly deal with concrete paths.
+03:38 These are paths that have access to the file system,
+03:40 but you can also make Windows or posix pure paths
+03:43 on either operating system for manipulation.
+03:46 So if I'm on a server that's a Linux server,
+03:50 but I need to manipulate Windows paths,
+03:52 I can create a Windows path and manipulate it and get the drive and whatnot
+03:57 and it will treat that as a Windows path and do the correct thing for me there.
+04:02 If we have concrete paths, we can do system calls on that.
+04:04 Here I'm on my py path, I can say cwd, what's the current working directory,
+04:10 note that this is a method on this class,
+04:12 but I can also call a class method on path
+04:16 because current working directory isn't dependent on a path,
+04:19 it's dependent on your current process or where you are,
+04:23 in this case, I'm running this from the temp directory.
+04:25 I can ask what the home is on any path,
+04:28 or I can call it directly on the class,
+04:30 in this case, my home is users/matt.
+04:32 I can say give me the stat, this gives me the modification times of my file here.
+04:38 I can also do things like say expand user with the tilde
+04:42 and that gives me where my home directory is,
+04:46 we can do globbing operators here,
+04:48 so I can say I want to get the home path and I want to glob onto that
+04:53 anything that ends in py and I can get all the py files in my home directory.
+04:58 This is commented out because there's a lot of output here,
+05:00 but I can also use a glob operator with **,
+05:04 if you use a ** that does a recursive search.
+05:07 So this is going to search through everything in my home directory that's a Python file.
+05:10 So nice functionality there to allow you to do various operations on a path.
+05:15 So in this video we talked about paths,
+05:18 this is a nice feature that's been added in Python 3.
+05:21 This has combined a lot of the functionality in the OS modul,
+05:25 a lot of people have been using third-party path libraries,
+05:28 and so this is a welcomed feature into Python 3.
+05:31 Hopefully you can make use of this if you're dealing with files and directories.

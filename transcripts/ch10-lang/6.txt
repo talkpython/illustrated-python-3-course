@@ -1,0 +1,57 @@
+00:00 In this video, we're going to look at gen unpack test, so open that up in your editor.
+00:05 The first part says merging dictionaries given the coin value dictionary
+00:10 create a new dictionary, new value, that has the coin value values
+00:14 and has the following keys and values, so BCH entry and ETH entry,
+00:18 use extended unpacking no dictionary methods or inserts.
+00:23 So I've got coin value right here,
+00:25 it wants me to make a new dictionary below it called new value
+00:31 and it needs to be a dictionary that has these new keys and also has the original keys.
+00:39 So in order to get the original keys without calling a dictionary method or using an insert
+00:44 I can do this extended unpacking here
+00:47 and I can just say coin value right there with the ** in front of it,
+00:51 that's going to unpack the dictionary into this other dictionary
+00:55 and then I can say BCH is 1650 and ETH is 1055.
+01:08 Let's give this a run see if it works.
+01:11
+01:15 Okay, so I'm on the next one, so it looks like that worked there.
+01:19 So again, this is a nice way to unpack dictionaries into other dictionaries.
+01:24 And if you have multiple dictionaries, you can use multiple dictionaries here,
+01:28 it's not limited to just one.
+01:30 Okay, the next part is create a set of the keys from new value by unpacking.
+01:35 Put the result in coins.
+01:39 So we want the keys of the new value guy in this coins guy,
+01:44 so in order to get the keys of this we can use this extended unpacking operator
+01:50 and just say I want * of new value
+01:54 if we treat new value as a sequence, Python treats a dictionary as a sequence of keys.
+02:00 This should give us the keys.
+02:03 Let's run it and see if it works.
+02:08
+02:12 Okay, it says I can't use a starred expression here.
+02:15 That's because I can't have a star by itself, I need to put a comma there at the end.
+02:18 Let's run it again.
+02:21 Okay, and now I got an error where it said the assertion failed
+02:24 because I've got a tuple that's not equal to a set.
+02:27 Apparently I didn't read well enough that said create a set of the keys.
+02:31 So one way to create a set of them is to put this into a set.
+02:36 Let's try and run this and see if it works.
+02:39
+02:42 Okay, the next part says create a list of the keys from the new value
+02:47 and the other coins tuple, put the result in all coins.
+02:51 So we want to make a new variable called all coins
+02:54 and it should have the keys from new value
+02:58 and it should have the other coins tuple, what's in other coins, so here's new value
+03:06 if we want the keys from that, we can just do that star to get the keys from the new value
+03:11 and it wants it in the list, so we're going to say * new value,
+03:20 and the other coins tuple.
+03:22 The other coins tuple is defined right here,
+03:24 and if we just want to include that in here, we can just say
+03:27 I'm going to start other coins include that as well.
+03:30 So again, this is a nice little syntax here.
+03:33 I'm saying in my list, I want to include this sequence here.
+03:37 And this is a dictionary, but we're pulling out the keys
+03:40 and we're also including the sequence here unpacking it.
+03:44 This happens to be a tuple but we're going to pull out those guys
+03:46 and insert them into our list.
+03:48 Let's run it and make sure it works.
+03:50
+03:54 Okay, so we get no failures here.

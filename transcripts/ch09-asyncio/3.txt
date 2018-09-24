@@ -1,0 +1,15 @@
+00:00 Python has what's called gil, and gil has a couple bonuses
+00:03 or things that it gives you, it gives you simplified garbage collection.
+00:07 It also allows you to avoid none thread safe code with other threads,
+00:11 but it has some drawbacks, one is that you can only run
+00:14 one native thread at a time on Python.
+00:17 So even if you have multiple CPUs on your computer,
+00:19 you're only going to be able to take advantage of one of them
+00:22 using threading in Python, if you use a library called multiprocessing
+00:26 that gets around it by launching multiple processes, Python processes
+00:30 and each one of those processes can use the CPU.
+00:33 There's a little bit more overhead to that
+00:35 because it's got to pass around the information, it can't share it as easily.
+00:39 Another minus of the gil is that if you have cpu-bound code
+00:42 it's going to be a little bit slower and this sort of relates to the other one
+00:46 that we can't parallelize them easily from Python.

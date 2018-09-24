@@ -1,0 +1,61 @@
+00:01 In this video we're going to talk about literal string interpolation pep 498
+00:05 this came out in Python 3.6 and this is probably
+00:08 one of the most exciting features of Python 3,
+00:10 or one of the features that people really enjoy using
+00:14 and feel like maybe it should have been introduced quite a while ago.
+00:17 The existing ways of formatting strings are either
+00:20 error-prone and flexible or cumbersome.
+00:23 So here's the progression of the old-school style,
+00:26 which is the c style of formatting with the placeholders as percent
+00:30 as or whatnot the pep 3101 with curly braces,
+00:35 and then this newer style which is called literal string interpolation.
+00:38 You can see that there's a f in front of the string literal
+00:42 and then inside of these placeholders,
+00:44 we are passing in Python Expressions here.
+00:47 Note that there is no format at the end here.
+00:50 So it's just looking into my name space
+00:52 and seeing that there is a variable called coin and a variable called price
+00:55 and it's sticking those into those placeholders
+00:58 and we get this nice syntax for sticking in variables
+01:03 and having interpolation occur inside of that string.
+01:06 So basically to get this functionality in Python 3.6
+01:10 you stick an f in front of your string literal
+01:12 and then you can put an expression inside of your curly braces.
+01:15 Here's an example, it just doesn't have to be a variable.
+01:18 Here we are defining a function called to Spanish and inside of our string literal
+01:24 we are calling the to Spanish function here
+01:28 and we are passing in val here in the first placeholder
+01:32 and we're passing in val in the to Spanish call and we're getting a result there.
+01:38 The Python 3 101 format specifier doesn't allow
+01:42 anything other than index and attribute access,
+01:45 but this allows you to put arbitrary expressions in there.
+01:48 So there's a lot of power in there, you can go crazy if you want to
+01:51 but it also allows you to be a little bit more succinct with your strings and string creation.
+01:58 This syntax also supports the pep 3101 string formatting.
+02:03 So if you put in a colon in there following the colon you can put a format specifier
+02:09 and that will indicate how you want to format whatever was passed in
+02:14 into the placeholder there.
+02:17 So this says val is 12 and we're going to format that
+02:20 with the b or as a binary likewise this one down here, format to this hex.
+02:25 The pep specifies that you can use these f strings with normal Python strings.
+02:31 You can also use them with raw strings,
+02:33 but you cannot use them with byte strings or unicode literals.
+02:37 Those are the literals that have the u in front of them.
+02:40 Another thing to be wary of is including a backslash in the literal string
+02:45 Python complains about that.
+02:47 So if you want to get a backslash in there
+02:49 make a variable that has that backslash and make a reference to that variable,
+02:53 kind of an uncommon thing there but something that might get you.
+02:56 Another nicety of this is that this is also faster.
+03:01 So I've got some timings here on my machine,
+03:03 but you see that with the old c style you had pretty decent speed
+03:09 this slowed down when we called the format method and then
+03:12 when we put this as a literal string interpolation
+03:16 when we introduced the app, we get some speed up
+03:19 and we're actually faster than the old method.
+03:21 So this isn't going to be a change that if you use this
+03:25 you're going to have to use half as many web servers or whatnot
+03:27 but it is nice that this feature is faster.
+03:30 So I hope you've learned a little bit about f strings in here.
+03:34 Once you start using these, you'll wonder why this wasn't introduced earlier.
+03:38 It's a really nice syntax that allows us to be brief, but also be explicit.

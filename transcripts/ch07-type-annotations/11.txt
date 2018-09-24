@@ -1,0 +1,31 @@
+00:00 Let's look at the pyannotate tool,
+00:02 again, this is very similar to monkeytype.
+00:04 We run our code and again we might need a driver file, this is not static.
+00:08 In this case, it's going to click information in a Json file
+00:10 and then we tell it to annotate our code with our type information,
+00:14 very easy install, I just say pip install pyannotate
+00:17 and then I'm going to run a driver file.
+00:19 And then after I've run that driver file, I'm going to say pyannotate - w
+00:23 that means write the markov.py file or update it with the type information.
+00:28 Here's my driver file, I'm going to import doc test and markov
+00:31 and I'm also going to import the collect types from the pyannotate runtime module
+00:36 and you can see all this is doing is it's saying if I'm running this
+00:40 then I'm going to init my types collection
+00:43 and then it's going to have a context manager there
+00:45 that's going to run my code inside of the context manager
+00:48 that collects the information
+00:50 and then it's going to dump that information into a Json file.
+00:53 Here's a diff of the output that comes out of that.
+00:56 We see that it has imported from typing optional and dict
+00:59 so it's got some imports there
+01:01 and we see that it's added some type information here as a comment,
+01:04 so this is the Python 2 style of annotation there
+01:08 and those types look fine, it's also done some typing here.
+01:13 So it says that data in is an optional string that looks okay
+01:17 and note that get table also looks like it's returning this nested data structure
+01:23 of dictionaries, mapping strings to subdictionaries, mapping strings to counts of strings.
+01:29 So all of these types look good.
+01:31 They're just in the Python 2 style rather than Python 3,
+01:34 note that we can use those in Python 3 as well.
+01:37 Again, pyannotate supports Python 2.7 style annotations
+01:41 as of when this video was recorded.

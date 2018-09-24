@@ -1,0 +1,72 @@
+00:00 In this video, we're going to look at format test, open that up in your editor.
+00:03 Let's look at the first problem.
+00:05 It says create a string variable f1 to show a stock price.
+00:07 It should have three placeholders,
+00:09 using the format method to print given data like a name that has a string,
+00:14 price that has a float and change that as a float.
+00:17 It should be able to print a string that has name
+00:22 with the name inserted a couple spaces,
+00:24 then the price with a $ sign and the price formatted as a floating point,
+00:28 with two decimal places and the change format is %.
+00:32 Let's see if we can do this here, f1 is equal to
+00:36 name: we need a placeholder for that, string name,
+00:40 so we'll just put a placeholder there, it looks like we've got some spaces here.
+00:44 So we'll just copy those amount of spaces and stick them down here below.
+00:48
+00:58 And then, we'll say price and I need to put a $ sign here.
+01:01 And this is going to be formatted as a float.
+01:04 So I'm going to put: with two decimal places and f
+01:08 and put change and we're going to put our change in here.
+01:14 It's going to have two decimal places
+01:16 and it's going to be formatted as a percentage.
+01:19 Let's try this to see if it works, so just hit run here.
+01:24 Okay, and so we've got f2 does not work but this part worked.
+01:28 So we're down to the second part, create f2, it should look like f1
+01:32 but have 10 spaces for each left-aligned placeholder.
+01:36 So each one of these curly braces is a placeholder
+01:39 just copy this and plop it down here.
+01:43 Let's change this to F2 and if we want 10 spaces in here,
+01:48 so in order to use 10 spaces, we can put a colon here and say left-aligned 10.
+01:55 We just put a less than 10 at the front and that should give us 10 spaces here.
+02:01 Let's give it a try and see if it works.
+02:05 So let's run this again.
+02:07 And it appeared to work.
+02:10 So simply by putting that less than 10 at the front
+02:14 that says I want to make this APPL here take up 10 spaces
+02:18 and whatever's in there I want to be left aligned.
+02:21 Okay, great, f3, it should have 3 placeholders
+02:24 and should be able to create the f1 or f2 strings
+02:28 the placeholders except the formatting string.
+02:31 So this is sort of meta here.
+02:33 So this is saying I want you to create something
+02:35 that could create this or could create this
+02:38 and the end user is going to pass in the contents of this.
+02:41 So, let's see if we can do that here, f3 is equal to a string
+02:49 and we're going to say name colon
+02:53 and then we're going to have a placeholder here.
+02:56 But we want to be able to have curly braces in there
+03:00 because we want the output of the format to have curly braces.
+03:03 So we've got to put two curly braces,
+03:06 if we put two curly braces, then that's considered an escape.
+03:10 So this would show our curly braces.
+03:13 Then we need to put another curly brace pair inside
+03:16 for where we need to put our formatting.
+03:18 And we'll do our spaces here and price
+03:24 and we're going to have to again do our curly braces
+03:31 and change 1, 2, 3, 1, 2, 3.
+03:35 So this is how you include curly braces, you simply use two of them
+03:40 and then Python is not going to use those as placeholders,
+03:44 but rather it's going to just put a curly brace there.
+03:47 Let's try it and see if it works.
+03:49 Okay, it looks like it worked and you can see in the test here
+03:53 it's saying I want you to format on f3 with empty, with nothing,
+03:58 with a float, with two places and a percent with two places.
+04:03 And then with that, I want to call format again,
+04:06 so that should have the placeholders now with the formatting strings in there.
+04:10 And if you do that, we should get back
+04:13 to the original thing that we had back in f1 up above.
+04:16 Hopefully, you feel like you understand formatting a little bit more.
+04:22 There's a lot more to it.
+04:24 Again, you can refer to the slide deck
+04:26 or the website that was referred to in the slide deck
+04:28 for more examples of how to do formatting.

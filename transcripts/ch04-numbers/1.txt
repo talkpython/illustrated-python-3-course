@@ -1,0 +1,27 @@
+00:00 In this video we're going to talk about integer division.
+00:03 This came out in Python 3 pep 238 introduced it.
+00:06 In Python 2 when you divided a number by another number
+00:11 if you divided floats, you'd get back a float as a result,
+00:14 but for integers, you would get back an integer as a result.
+00:17 And this is called floor division.
+00:19 Guido writes in his Python history blog about how this was a mistake
+00:23 and Python 3 attempted to rectify this
+00:27 by changing the behavior of the division operator.
+00:30 So in Python 3 slash does what's called true division
+00:35 there's a __truediv__
+00:38 and double slash does floor division __floordiv__
+00:41 So if I divide 2 by 3 in Python 3, I get point .6666,
+00:46 and if I say 2//3 then I get that floor division and I get back 0 as a result.
+00:55 Note that floor division also works on floats
+00:58 if I say 2.0 divided by 3.1, I get .66,
+01:01 but if I do floor division on those numbers, I get 0.0
+01:05 and because everything is an object in Python,
+01:07 if we want to we can go through the steps
+01:09 to show that you can invoke __truediv__ on an integer and __floordiv__ as well.
+01:16 Now again, you typically don't do this, we typically don't call the dunder methods
+01:20 but they're there because in Python everything is an object
+01:22 and you can call the object methods if you want to.
+01:25 Quick summary, in Python 3 when you divide two numbers,
+01:29 you will get a float as a result.
+01:32 If you don't want a float then use a double divide
+01:35 to do what's called floor division.

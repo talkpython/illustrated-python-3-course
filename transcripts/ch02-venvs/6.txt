@@ -1,0 +1,27 @@
+00:00 In this video I'm going to show how to use PyCharm to run the venv test file.
+00:03 I'm going to use the environment that we created using pipenv.
+00:07 So I'm going to say create new project, it's going to be a pure Python project
+00:10 and it's going to point to the labs folder where I have the labs
+00:14 and note I'm going to say use an existing interpreter.
+00:17 PyCharm will happily create a new virtual environment for us
+00:21 if we want to, but we're going to use an existing one,
+00:24 so we have to click the little gear here and say add local
+00:26 and let's make sure that we use the right one.
+00:30 So I'm going to go into my home directory
+00:33 and I'm going to go to my .local and in my shared directory there is labs
+00:39 and note that it's looking for the Python executable there
+00:44 so I need to come down here and click on Python right here.
+00:47 Okay, at this point, I'll hit create and it will say the directory labs is not empty,
+00:53 would you like to create a project from existing sources?
+00:55 Yes, let's do that.
+00:59 Great. Here's the file right here.
+01:01 Let's run this and see if it runs.
+01:04 So to run it, it's going to index, we'll let it index for a while.
+01:09
+01:10 Okay, now let's run this here.
+01:12 So I'm going to say run venv test, and it looks like it ran,
+01:17 note that it said it used the virtual environment Python to run it and it ran it
+01:22 and the test imports pytest so it looks like pytest is working.
+01:27 This video showed how to use PyCharm to create a new project
+01:31 using an existing pipenv environment and to run a test,
+01:35 note that I can also right click here and say run test again and it will run it again.

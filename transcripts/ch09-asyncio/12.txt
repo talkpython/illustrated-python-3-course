@@ -1,0 +1,29 @@
+00:00 If you want to use asyncio you need to be aware
+00:03 that your code needs to be infested or whatnot.
+00:05 It needs to call await and use other code that allows you to wait
+00:10 and run other code or is interruptable.
+00:13 And so there are a bunch of libraries on GitHub
+00:15 that are compatible with asyncio.
+00:18 Tips for debugging you can use pdb to debug,
+00:21 if you've tried to use pdb with threading, it can be a pain
+00:25 because it may or may not stop and then it may be confusing
+00:28 because Python is trying to run while you're trying to do pdb or whatnot.
+00:31 But in this case because there's only one process running
+00:36 you can use pdb to debug.
+00:38 There's a couple other tools you might want to look into
+00:40 these aren't included in the standard library, but they're there,
+00:44 aioconsole and aiomonitor, these allow you
+00:48 to have a repl that is asyncio aware
+00:51 and allows you to directly call await and async coroutines
+00:55 rather than having to put them into loops.
+00:58 So it's a little bit easier to debug that way.
+01:00 If you're doing testing you need to have an event loop
+01:03 and your testing framework needs to be aware of that
+01:06 so you can roll your own or if you don't want to roll your own
+01:08 you can take advantage of stuff that's already there.
+01:11 So there's one called asynctest, this is on top of the unit test framework
+01:14 and there's another called pytest asyncio
+01:17 which is compatible with pytest.
+01:20 We've looked at a lot in this section.
+01:22 We've talked about asyncio, what it means to be concurrent versus parallel
+01:26 and how you can use non-blocking code to not wait if you're using asyncio.

@@ -1,0 +1,47 @@
+00:00 We're going to look at the enum test file, open that up,
+00:03 we'll see that at the top here we've got a red, green and blue variable defined
+00:07 and we've got a function here that's testing that whatever is passed in
+00:10 is equal to these variables.
+00:12 This is prime candidate to replace with enum.
+00:14 Let's look at what it says to do.
+00:17 Create an enumeration color that has red, green and blue
+00:20 as the different members, use the class style by subclassing enum.
+00:23 And in parentheses, normally these are created at the global level.
+00:27 Let's import the enum class, that's in the standard library these days.
+00:32 I'm going to say from the enum module import capital Enum.
+00:39 And then we're going to make a class called color
+00:41 and it's going to subclass enum.
+00:45 And I'm just going to give it a couple attributes
+00:47 red is equal to 1, blue is equal to 2 and green is equal to 3.
+00:54 It's all we need to do, very similar to the variables.
+00:56 But we're just putting this in the namespace of a class here
+00:59 and by subclassing enum we get some of the benefits of using that.
+01:02 Let's run this and see how the test work.
+01:05
+01:09 Okay, so it looks like I passed that first part
+01:11 and now it's asking me to do some refactoring.
+01:14 So let's go down and read the next part.
+01:17 Okay, refactor get_rgb to use the color enumeration.
+01:21 So right now get_rgb is not using color,
+01:24 it's using this integer variables that we've defined a pair.
+01:29 So all we need to do is say color.red
+01:32 and same thing here color.green and same thing here color.blue.
+01:46
+01:48 And presumably whoever's calling get_rgb would pass in color.red or whatnot.
+01:53 Just run that and make sure that works.
+01:56 Okay, we are now good with that part.
+01:59 Let's go to the next part, create the numeration pet that has dog, cat and fish
+02:03 as the different members, call the enum class to create it.
+02:07 So in this case, we're going to call enum rather than subclasses it,
+02:11 it looks similar to the name tuple if you're familiar with that.
+02:15 So we would say pet is equal to enum.
+02:22
+02:26  It says it has a dog, cat and fish.
+02:30 So the first parameter that we give to calling the enum class is
+02:35 we give it the name of the class that we're making
+02:37 or the name of the enumeration, very similar to name tuple
+02:40 and then we're going to say dog, cat and fish like that.
+02:46 Let's run this and see if it works.
+02:50 Okay, so these are two different ways of declaring an enumeration,
+02:54 one is by subclassing enum, the other is by calling it, passing in the name
+02:59 and passing in the comma separated list of those values.

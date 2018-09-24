@@ -1,0 +1,63 @@
+00:01 In this video we'll discuss unicode in files in Python 3.
+00:04 We talked about unicode in Python 3
+00:06 and that Python 3 handles unicode natively
+00:09 and the strings are natively unicode.
+00:12 One thing to be aware of is that when Python reads in a text file,
+00:16 it's going to use the system encoding
+00:18 to determine what the encoding is on that file.
+00:22 So you can run this command right here
+00:24 locale.getprefferedencoding with faults passed in
+00:28 and it will tell you what the encoding is on your system.
+00:31 Typically, on most systems that's utf-8,
+00:33 if that's not the case, you should be aware of that.
+00:36 And in any case, you should be explicit about what your files are encoded in.
+00:41 Here's an example of being explicit with writing output.
+00:45 I have a unicode string that has the ohm (Ω) character in it.
+00:49 Again, ASCII can't handle this,
+00:52 but the cpe949 encoding can, that's a Korean encoding.
+00:56 And so I'm going to make a file called ohm.core and I'm going to write to it,
+01:02 note that I'm calling the W mode, I'm not saying binary
+01:06 because I'm writing out a string to it.
+01:10 So if you're writing out text,
+01:12 you only open a file in read or write mode not in binary mode.
+01:15 And then I specify the encoding being explicit here
+01:18 and I'm saying that I'm going to encode this string
+01:21 as the Korean cp949 encoding
+01:25 and then with my file, I can call write and write my data out.
+01:29 Now, this is a case where if I tried to read the file
+01:33 without specifying the encoding
+01:35 the encoding on my system again is utf-8
+01:37 and if I'd simply try and open the file for reading and read from it,
+01:40 I'll get a unicode decode error
+01:42 that the utf-8 codec can't support that byte sequence.
+01:45 That's because there is some combination
+01:47 of characters in the Korean byte sequence
+01:49 that utf-8 doesn't know how to decode
+01:52 but if I specify my encoding here and I'm explicit
+01:55 then I can read that data back and get back my original string.
+01:58 Now, this used Korean,
+02:01 typically, most files you're going to see these days are utf-8.
+02:05 So this just shows us an example of being explicit
+02:07 by being explicit, we can get around these encoding issues.
+02:10 If we happen to have binary data,
+02:13 note that binary data is what we send over the wire
+02:16 or what we write to files.
+02:19 If we have binary data, we don't specify the encoding here.
+02:22 So here I'm saying I'm going to write a binary file
+02:25 and I'm specifying the encoding
+02:27 and Python throws an error and it says
+02:29 the binary mode doesn't take an encoding argument.
+02:32 Again, we want to be explicit here
+02:36 and remember that binary is what we send over the wire
+02:40 over the network on a file and that is already encoded
+02:44 so you don't need to specify an encoding,
+02:47 it's a sequence of bytes.
+02:49 If you open something for binary
+02:51 it's just going to lay down that sequence of bytes.
+02:53 So I hope you understand a little bit more
+02:55 about reading and writing files that have alternate encodings in Python.
+03:00 One of the best practices of Python is being explicit.
+03:03 So when you're writing a text file
+03:06 you want to be explicit about what encoding you're using,
+03:09 especially if you're using characters
+03:11 that aren't ASCII or commonly used characters.

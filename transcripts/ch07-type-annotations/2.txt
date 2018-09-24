@@ -1,0 +1,35 @@
+00:00 Let's just look at the basic syntax that was introduced in Pep 3107.
+00:03 Here we have a function foo and it's taking two parameters a and b
+00:08 and following that we see a colon and then we see this expression here.
+00:13 So this here is the type annotation here,
+00:16 note that b is a default variable, it has value 5 for the default value
+00:22 and in here we can put any expression, any Python expression in here
+00:27 and we'll see some Python expressions.
+00:29 Note that there's also support for *args and **arguments.
+00:33 So you can just put a colon following them and put an expression in there
+00:37 and there's also a way to specify the return value,
+00:40 in order to specify the return value,
+00:42 this introduce this little arrow operator dash greater than ->
+00:45 and then we put the expression following that
+00:48 and so if you have a function called sum
+00:51 and you want to indicate what it's returning
+00:53 you put that in this expression at the end,
+00:55 note that it's coming before the colon there.
+00:57 One thing to note is that annotations are not supported in lambda functions,
+01:01 so if you're a super fan of lambda functions and use those all over the place,
+01:05 you're not going to get the benefits of using annotations there
+01:08 because you can't annotate them.
+01:11 526 introduced the ability to annotate variables.
+01:15 And so this is how we annotate variables,
+01:17 here we've got a name variable and we just put a colon and this expression
+01:21 in this case we're saying that this is str, a string
+01:25 and note that this is the string class and that's a valid expression.
+01:29 One thing to note about this pep is it introduced this construct down here,
+01:34 which is a bare annotation on a variable with no assignment to it.
+01:38 So here I'm saying there is a variable called name2
+01:41 and it will be a type string, but I'm not giving it a value.
+01:45 Note that if we simply said name2 by itself without the annotation
+01:49 we would get a name error in Python.
+01:51 But in this case, it's going to create an annotation for that variable,
+01:54 note that this variable also does not exist at this point in time.
+01:58 If we say name2 after it, we will get a name error.

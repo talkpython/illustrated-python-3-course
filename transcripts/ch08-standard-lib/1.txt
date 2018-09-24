@@ -1,0 +1,43 @@
+00:00 In this video we're going to talk about the print function.
+00:02 One of the biggest changes for Python 3 is the print function.
+00:07 In Python 2 print was not a function, but it was a statement, it was built in into the language
+00:13 and that's changed in Python 3 just to make things a little bit more consistent.
+00:16 Guido wanted to change that into a function.
+00:20 Let's look at some of the features or changes that that brings.
+00:23 In Python 3, rather than calling print as a statement, we call it as a function
+00:29 and so you'll note that there are now parentheses
+00:32 when we call something as a callable in Python, we insert parentheses there.
+00:36 So we're invoking print and we're passing in one and the string one as parameters
+00:43 and note that Python prints out 1 and puts a space in there and then print another one.
+00:48 It also puts a new line at the end here that you can't really see, but it's doing that.
+00:53 Now if we change this a little bit, so one of the things that Python 3 brings about
+00:57 is it allows us to use keyword arguments,
+01:00 And we can use 2 keyword arguments with the print function
+01:03 sep and end, and sep is what goes in between the arguments that we provide
+01:07 and end is what goes in the end.
+01:10 The default sep is a space and the default for end is a new line.
+01:13 You'll note that I change them here and we see that I've changed the output here,
+01:17 it doesn't put a new line at the end.
+01:19 Here's just another slide showing that the sep comes in between the arguments
+01:23 and end comes at the end,
+01:25 if we have multiple arguments sep will be inserted between each one of those.
+01:28 And that's it, there isn't that much to it
+01:30 other than this is meant to be a thing that makes Python more consistent
+01:34 and to eliminate some of the statements in Python 2.
+01:38 I'll just go on a little rant here about print
+01:40 I personally think that you shouldn't check-in print into your code.
+01:43 If you need to print something you're probably either logging it
+01:47 or wanting to log it for debugging purposes.
+01:50 So you should use the logging module for that.
+01:52 And if you want to print something out to the screen,
+01:55 you can be slightly more explicit by calling the write method
+01:58 on the sys.stdout attribute found in the system module,
+02:02 that will write out to the standard out which typically writes out to the screen.
+02:06 I think that's a little bit more explicit and conveys your intention,
+02:10 whereas print, it's not sure whether you want something go out to the screen always
+02:14 or whether you just want it there for debug purposes.
+02:16 So if you sort of draw a line in the sand and say
+02:19 if I need to print something for debug, I'm going to use logging,
+02:22 if I need to print something out to the screen in production code or whatnot,
+02:25 I'll call sys.stdout.write
+02:28 Thanks for watching, I hope you learned a little bit about the print function in this video.

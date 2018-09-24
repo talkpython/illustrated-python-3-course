@@ -1,0 +1,36 @@
+00:00 One talk about another feature in Python 3.
+00:03 This came out pep 515 in Python 3.6
+00:06 this is the ability to use underscores in numeric literals.
+00:09 When we say literals, sometimes people are confused
+00:14 or don't understand what that means.
+00:16 A literal is something that is built in into the language
+00:19 and that the computer understands.
+00:21 So the fact that there are integer literals
+00:24 you can type an integer number and Python will know under the covers
+00:27 to make an integer for you.
+00:29 There are also string literals, simply put a quote around characters
+00:33 and Python will create a stream for your under the covers.
+00:36 This is in contrast to a class where you might define your own class,
+00:40 and in order to create your class, you'll have to call the constructor.
+00:43 There won't be a literal way that's built in into the language
+00:47 to automatically create one of your classes by using some special syntax.
+00:51 The intent of underscores in numbers is
+00:55 to be able to group decimals by thousands or hex by words
+00:59 just to make them more readable.
+01:01 Here's some examples,
+01:03 in this case, I have the number 120 million minus 3 million
+01:07 and because I've put an underscores where typically
+01:10 in English you would see a comma, it's very easy for me to say that
+01:15 that's 120 million and 3 million.
+01:17 If I had left those underscores out of there,
+01:19 it would be a little bit more hard to tell that.
+01:22 And in the second example, we have a hex number dead_beef
+01:26 and we put in an underscore there to make it slightly more legible.
+01:30 One thing to be careful of is that Python doesn't enforce where you put these
+01:35 you can put them wherever you want in numbers
+01:37 as long as you don't have two underscores together.
+01:41 So in this case one, two, three, four, five, six, that's not helping legibility
+01:47 by the intent here is to be able to improve legibility.
+01:50 So if you're dealing with large numbers or whatnot
+01:52 consider using underscores,
+01:54 and that will make your numbers a little bit easier to read.

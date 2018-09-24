@@ -1,0 +1,88 @@
+00:00 In this video, we're going to look at async iter test, open that up in your editor.
+00:04 The first part says write an asynchronous iterator countdown
+00:06 that accepts a count and a delay, when looped over asynchronously,
+00:10 it returns the numbers from count down to and including zero.
+00:14 It waits for delay seconds before returning the next value.
+00:19 Okay, so we need to define a class called count down
+00:22 and it needs to have a constructor that has a count and a delay
+00:27 so def __init__ and it needs to have a count and a delay in here
+00:35 self.count is equal to count and self.delay is equal to delay.
+00:41 Okay, we need to implement this asynchronous iteration protocol.
+00:45 So the first one is def __aiter__,
+00:50 and this can be defined as asynchronous or not,
+00:53 it just depends on whether you want to do an asynchronous call
+00:56 in this case, I don't want to, I'm just going to return self
+00:59 and make this a self iterating coroutine.
+01:02 Now, I need to define a __anext__ and this does need to be an async call
+01:08 so def __anext__.
+01:13
+01:19 Okay, there's a __anext__ and inside of here,
+01:22 we want to return count and then delay after each count.
+01:28 So we need to have some little logic there to say something like,
+01:31 maybe I need to come up here and keep track of the value
+01:34 that I'm going to return next.
+01:36 I'm going to say self.value is equal to count,
+01:38 value is what I'm going to return.
+01:40 If self.val is equal to self.count, then let's just return self.val.
+01:51 So the first time we don't want to delay before we return the value,
+01:54 so we want to say 10 and then wait for a second or whatever
+01:57 and then say 9 and then wait for a second and keep going that way.
+02:00 Now, in this case, if self.val what we're going to return is equal to 0,
+02:10 we also want to return self.val
+02:15
+02:20 and otherwise, we want to say we want to sleep for delay
+02:24 and decrement our self.val.
+02:27 So we want to say await asyncio.sleep for self.delay
+02:37 and then we want to return self.val
+02:40 and we're going to say self.val minus equals 1 and return self.val.
+02:57 Okay, let's try this see if it works here.
+03:00 I'm going to say run async test, it thinks for a minute here
+03:06 and I get an error on line 43.
+03:10
+03:13 So that's this guy right here, I got an assertion error,
+03:17 so down here we're basically unrolling this protocol here.
+03:20 We're saying get the aiter and then get a start time
+03:26 and call next on it and the first value since we passed in 2 should be 2
+03:30 and assert the time is less than half a second
+03:34 since we're saying delay of 1 and then we're getting the next and saying that
+03:39 the next value should be 1 and we got the next value was 2 instead of 1,
+03:45 so let's go up here and look at our logic here.
+03:47 So the first time we returned self.val we didn't do anything,
+03:53 so our self.val is just going to still be self.val.
+03:57 So maybe I want to say something like this
+04:00 like val is equal to self.val and if val is equal to self.count, return val.
+04:05
+04:08 And at this point we're going to say self.val minus equals 1 up here.
+04:15
+04:20 And let's see if that works a little bit better.
+04:24 So in the first case, we'll say val is equal to self.val
+04:29 which should be the start value.
+04:31 We're going to decrement our instance member which shouldn't affect val
+04:35 and then if we're starting we're just going to return,
+04:38 if we're at the end we're going to return.
+04:41 I think this is wrong, we don't want to return at the end,
+04:44 we want to sleep before that, so we'll just get rid of that and we'll say
+04:50 if val is less than 0 then we want to raise a stop async iteration.
+05:04 So that says we are done once we get 0
+05:08 so don't do any more sleeping or whatever.
+05:11 Let's run this and see if it works.
+05:17 Okay, I got an asyncio is not defined here.
+05:20 I better fix that and make it defined,
+05:26 import asyncio, let's run it again.
+05:32
+05:34 And it looks like it worked that time.
+05:36 So it passed, note that it took 2 seconds to run, or a little bit more than 2 seconds,
+05:40 which makes sense because I said I want to count down from 2
+05:44 and I want to have a one second delay in between there.
+05:47 So it should give me 2, wait for one second, give me 1,
+05:50 wait for a second, give me 0 and not wait after that.
+05:53 Note that the test here, we keep calling next
+05:57 and we assert it, it raises that stop async iteration error.
+06:00 So this is a little bit trickier.
+06:04 There's some logic in here that you've got to sort of figure out
+06:06 but once you've got it, you can see that you have a little asynchronous counter
+06:12 that will count down and sleep in there.
+06:15 Again, note that this __anext__, this is a coroutine
+06:20 and because it's defined with async we can call await in there.
+06:24 This gives anything else on the event loop that wants to run
+06:27 a chance to run at that point in time.

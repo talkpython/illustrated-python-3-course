@@ -1,0 +1,37 @@
+00:00 In this video we're going to look at asynchronous iterators.
+00:03 These were described in pep 492, it came out in Python 3.5.
+00:06 Again, here's the protocol for asynchronicity,
+00:09 we can make co-routines and we saw that we can define those with async def.
+00:15 You can also define a class that's awaitable, if you implement the __await__ method
+00:19 we can make iterators by defining two methods here.
+00:23 We can define __aiter__ and __anext__.
+00:27 These are analogous to iterators in normal Python,
+00:30 in synchronous Python where we define __iter__ and __next__ .
+00:35 Here, we're going to show an example of an asynchronous iterator.
+00:38 This is implementing a basic version of range,
+00:41 it's just going to do it asynchronously.
+00:43 So we're going to make a class called Arange,
+00:45 it's going to have a constructor that takes a start and an end
+00:47 and the end is optional, if the end is not set,
+00:50 then we use the start as the end value when we start at 0.
+00:54 We're going to define two methods in here,
+00:55 one is called __aiter__ and the other one is called __anext__
+01:00 Note that __anext__ is a coroutine, we're defining it with async and aiter,
+01:05 you can see in the implementation of the coroutine __anext__
+01:09 that we look at our current value of start and if it's greater than or equal to the end
+01:14 then we raise a stop async iteration.
+01:16 This is analogous to stop iteration in non asynchronous land
+01:21 and if that isn't the case, we're going to increment the start value
+01:25 and we're going to return the value there.
+01:27 So this should count up up to but not including the end number.
+01:32 Here's an example of running arange.
+01:34 We've got a routine called run arange and note that we have a for loop here
+01:38 in front of our for loop we have async
+01:40 so because this is the asynchronous iteration
+01:43 we need to put async in front of our for loop
+01:47 we can get our event loop and then say run until complete
+01:49 and this will print out the numbers from 0 up to but not including 5
+01:53 asynchronous iterators are pretty straightforward,
+01:56 again, you just need to implement that __aiter__
+01:59 and a coroutine called __anext__
+02:02 and you can make something that you can use in asynchronous land.

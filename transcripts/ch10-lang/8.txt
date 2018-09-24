@@ -1,0 +1,28 @@
+00:00 Another thing to be aware of is how Python handles comparisons in Python 3.
+00:05 In Python 2 you could compare an integer and a string
+00:09 and Python would have some arbitrary, well, not arbitrary
+00:12 but to humans perhaps seemingly arbitrary or confusing ordering for those.
+00:18 In Python 3 we're a little bit more strict
+00:21 and Python is going to complain about those
+00:23 if I try and compare those we'll get a type error
+00:25 and it says that that operation is not supported between those two.
+00:28 So if you've got something that you need to compare
+00:31 typically you'll use the sorted function and you'd pass a key function in there
+00:37 and the key function would do some conversion
+00:41 to another type that would allow you to compare these
+00:44 so I could compare these as integers, I could also compare them as floats.
+00:47 I could compare them as string, that sort of thing.
+00:50 In this course, we've talked about dictionary ordering
+00:53 and how in Python 3.6 as an implementation detail in the CPython interpreter
+00:58 dictionaries maintain the key insertion order.
+01:01 In Python 3.7 this is actually going to be part of the language
+01:05 what that means is that any other implementations of the interpreter
+01:09 should follow suit and also sort keys as well.
+01:12 In Python 3.6 they don't necessarily have to
+01:15 but people are taking advantage of that.
+01:17 They like the functionality so that, they like the functionality.
+01:19 In Python 3.7 this will be part of the language proper.
+01:22 We just got an example here of a dictionary that has name, age and address in there
+01:25 note that name came in first and age and address
+01:28 and we would print out the dictionary or if we loop over the keys,
+01:31 we will get them back in the same order of that insertion.

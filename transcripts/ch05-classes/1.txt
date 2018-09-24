@@ -1,0 +1,147 @@
+00:01 Let's talk about the new behavior for super in Python 3.
+00:05 This comes from Pep 3135.
+00:09 If you're not familiar with super, super is a mechanism that we use in Python
+00:13 to get access to a parent class.
+00:16 So if you have some method in a subclass
+00:20 and you want to call the parent class,
+00:22 you can call super and then pass in the arguments to the parent method
+00:27 and get access to it that way.
+00:29 In Python 2 this was a little convoluted and a little confusing.
+00:33 So the syntax in Python 3 is cleaned up a little bit and we'll talk about that.
+00:37 Just as a review, a couple of things that you might want to do
+00:40 when you're doing object-oriented programming and you're subclassing things.
+00:44 So if you've got a subclass, you can defer to the parent class for a method.
+00:48 To defer to a parent class, you don't have to do anything.
+00:50 You don't even have to implement the method.
+00:52 You just leave it there and when you call the method on the subclass,
+00:55 it will call the parent class.
+00:57 You can override a method or overload and in order to do that,
+01:01 you just implement the method in the subclass.
+01:04 And another thing you can do is specialize or take advantage
+01:07 of the parent implementation, but also add your own implementation to it
+01:12 and super allows us to do that.
+01:14 Here's what not to do, if I've got a class called animal,
+01:17 I've got a subclass of animal called cat,
+01:19 both of these Implement a method called talk
+01:22 for animal talk just return sound and for cat talk does a little bit more,
+01:27 it's going to call the parent method talk
+01:31 and then it's going to add and purr onto the end of that.
+01:35 In the cat talk method, you'll note that we call the parent class.
+01:39 We call animal.talk to get sound, the string sound back.
+01:43 And then we're going to stick that into this placeholder
+01:46 and return sound and purr at the bottom here.
+01:49 Now, this is what you don't want to do.
+01:51 You don't want to explicitly call animal,
+01:54 rather we want to do something like this
+01:56 where instead of calling animal we call super
+01:58 and you invoke super and that will return the parent class
+02:02 and call talk on the correct parent class.
+02:05 So this is how we do want to do that, and python is smart enough to know
+02:09 that when super is called within a method that it will find the correct class to call it on.
+02:15 Here's a little drawing that shows what's going on under the covers.
+02:19 On the left hand side here, we've got the code for animal
+02:22 and on the right hand side we've got a representation
+02:25 of what's going on under the covers.
+02:27 We've got some objects here, so here's one object
+02:30 and it has a variable called Animal that's pointing to that object,
+02:35 inside of that object, there's an attribute called talk that's pointing to another object.
+02:39 and this is a function down here.
+02:41 This is what's going on in the virtual machine under the covers.
+02:44 Again, in Python everything is an object
+02:46 and this is the representation that Python would do.
+02:49 Obviously there are going to be other attributes in here
+02:52 that we're not showing in this case.
+02:54 We also note that every object has an ID
+02:57 and you can inspect that ID by calling the ID function
+03:00 and objects will also have a type as well.
+03:02 So when we subclass animal we're going to make another object called cat
+03:07 and it's going to have a reference to the parent.
+03:11 It will look something like this.
+03:13 So here we have our prior animal variable
+03:15 and we're going to make a new variable called cat,
+03:17 cat is a subclass of animal and if it's a subclass
+03:20 it's going to have an attribute called __bases__
+03:23 __bases__ is actually a tuple,
+03:25 in this case, we're just showing it that it refers back to the animal parent class here
+03:29 and we'll note that animal has a talk method and cat has its own talk method.
+03:35 Again, this is the representation of what's going on inside the Python virtual machine,
+03:40 but we can see that there's a relationship
+03:43 between cat and animal due to our bases attribute.
+03:47 We could simplify this a little bit and we could say that a cat is an animal
+03:51 and the relationship looks like this.
+03:54 This will be useful when we talk about method resolution in a diamond structure.
+03:58 There are a couple of useful things for using super
+04:01 one is if you're refactoring your classes and changing the names of them,
+04:05 you don't need to push that code for refactoring into the specialization calls.
+04:10 You can just leave super in there and it will do the right thing.
+04:13 It's also useful when you have multiple inheritance.
+04:16 There's this __mro__ attribute or mro method that you can call
+04:21 that will resolve the order in which classes are called
+04:25 and super does the right thing there.
+04:27 One thing to be aware of is that you need to be consistent
+04:30 and only use super, you can't like I said before
+04:32 explicitly hard-code the parent class in there.
+04:36 If you do that, then your other guys that are using super aren't going to work.
+04:40 So you want to make sure you only use super.
+04:42 Let's talk about method resolution order a little bit.
+04:45 Here's a class A and a class B, and then we have a class C and a class D.
+04:50 If we're going to draw these in our little diagram here
+04:53 it would have A and it would have B.
+04:57 And then we have C here, C is an A, it subclasses A
+05:05 and then we have D, and D derives from both C and B.
+05:10 So this would be our hierarchy over here.
+05:13 And we can inspect the method resolution order the mro by calling the mro method
+05:18 and we see that we get D first, then C, then A, then B, and then object.
+05:25 Here's a diagram showing that, this is the same diagram that I had before
+05:30 but we can see if we want to resolve a method on D
+05:33 first we will look on the D class, if that's not there, we'll look on C
+05:38 and because C is in A we're going to look on A,
+05:41 and finally, if none of those guys implement, it will look on B.
+05:43 That's the method resolution order,
+05:45 pretty straightforward when you don't have diamonds.
+05:49 The method resolution order falls what's known as the C3 linearization algorithm
+05:54 and that's depth first generally, we saw an example of that in the last example,
+05:58 but if you have a diamond pattern, we change it a little bit
+06:02 and we use the last occurrence of repeated parents.
+06:05 Let's see an example of how this works.
+06:07 So here I have a diamond pattern, I've got a class A that is a subclass of dict,
+06:15 So at the top here would have dict and then would have A, the subclass is that,
+06:20 we also have B, the subclass is dict
+06:23 and then we have C, that subclasses A
+06:26 and we have D, that subclasses C and B.
+06:31 So this is called a diamond pattern
+06:34 because you'll see that it has something at the top and something the bottom
+06:37 and it branches out to the sides here.
+06:39 Here's the method resolution order, here's how we do it.
+06:42 We say the linearization of D is equal to D plus the linearization of its parent which is C and B.
+06:50 So I'll just draw what we have before here.
+06:53 We had dict and we had A and B, and we had C and D.
+07:04 In order to linearize this,
+07:07 or find which classes we're going to look up our methods on,
+07:11 first we need to start with D and then we're going to look at the linearization of C
+07:16 and then the linearization of B.
+07:19 So D comes down and since D isn't repeated, we'll use D.
+07:23 The linearization of C is C plus the linearization of A
+07:29 and the linearization of B is B plus linearization of dict.
+07:35 Let's expand that a little bit more.
+07:37 So we're going to have D plus C,
+07:40 the linearization of A which is A plus the linearization of dict
+07:44 plus B plus the linearization of dict
+07:47 and since we've expanded all these out, we have all the classes here,
+07:50 we'll note that there's a repeat, we have this dict here
+07:54 which would just resolve to dict so both this guy and this guy would resolve to dict
+07:59 and because this is a repeat, we're going to get rid of the first one here.
+08:04 And so the final linearization is first we'll go to D, then we'll go to C,
+08:09 then we'll go to A, then we'll go to B, and finally we'll go to dict.
+08:14 That's how the algorithm works here.
+08:17 And if you inspect the mro method you'll see that that is indeed the case,
+08:20 we get D, C, A, B, dict and then object.
+08:24 Object here is because every object is a subclass of object
+08:27 and the result looks something like this
+08:30 which is hard-coded graph of what we just drew out .
+08:33 In here we learned a little bit about super,
+08:35 the main things to remember about super is
+08:38 if you start subclassing things, you want to always use super
+08:41 don't explicitly call parent classes
+08:44 and super will do the right thing if you're calling super,
+08:47 so super is a great tool to have and make use of it.

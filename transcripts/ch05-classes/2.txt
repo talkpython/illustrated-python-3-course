@@ -1,0 +1,80 @@
+00:00 In this video we're going to look at the super test assignment.
+00:04 Here's the assignment.
+00:06 It has a function called test Mario and let's just run it and make sure it works,
+00:11 right click and say run super test and I get one fail, that's because there's one test here.
+00:17 I get an import error line 26.
+00:20 Okay, that looks okay.
+00:23 I'm going to change my size here a little bit
+00:25 so we can get a little bit more code on the screen.
+00:28 This test has a table that lists people from Mario Brothers, the game.
+00:33 So across the top are Mario Brothers,
+00:36 down the left hand side are various skills
+00:38 and here are their levels or scores for those skills.
+00:41 So it says create a base class called character
+00:43 that has speed, jump and power methods.
+00:46 They should each return 2.
+00:48 Create subclasses for Mario and Luigi that use super to call the parent class method
+00:52 and increment the value by the appropriate amount
+00:54 before returning it and put this function in a module called py3code.py
+01:00 It says function here, it should say put this code in a module called py3code.py
+01:07 There's a py3.code guy right here
+01:09 and it says put your super stuff right there.
+01:12 I'm going to right click on this and say move right
+01:16 and I'm going to adjust my size here bump my fonts down a little bit
+01:23 they are 20, I'll just put them down to 16 for this assignment.
+01:27
+01:35 Okay, so we need to make a class called character so class character.
+01:43 and it needs to have 3 methods,
+01:47 it needs to have a speed, jump and power method.
+01:50 So to make a method here I say def and I'm just going to call it speed
+01:54 and PyCharm automatically puts itself in there for me
+01:59 and I'll just say return 2 and I'll just copy these, and I'll indent them.
+02:09
+02:13 And I'll change the name, so this is speed,
+02:15 this should be jump and this one should be power.
+02:22 Okay, so there's our base character and he has certain skills.
+02:28 Let's make a Mario subclass and say class Mario
+02:33 and I put the parent class in the parentheses here.
+02:36 So the parent class is character.
+02:39 And I need to make a speed method
+02:42 and he's going to have self as the first parameter
+02:47 and what the assignment wants me to do is
+02:49 it wants me to rather than just saying return Mario has a speed of 4,
+02:53 it says it wants me to say value or some intermediate variable is super.speed.
+03:03 And this should return 2, and then instead of returning 2,
+03:06 we're going to return value plus 2, that should get us 4.
+03:10 And we'll do a similar thing for the other guys.
+03:15 So this should be instead of speed here,
+03:19 we'll say this is jump, we'll change this to jump.
+03:24 And this one should be power, we'll change this to power.
+03:32 So this shows how we call the parent class method here.
+03:36 We just say super and that gives us access to the parent class
+03:39 and then we call the method on that.
+03:42 Let's run this and see if it works.
+03:44 So I need to run the test code over here, not that py3code.
+03:48 So I'm going to run super test.
+03:50 And I get an import error cannot import Luigi.
+03:53 So apparently, I need to make a Luigi as well. Let's do a Luigi as well.
+03:59
+04:06 Luigi, and his speed is going to be 1 greater,
+04:12 his jump is going to be 3 greater, and his power is going to be 1 greater.
+04:17 Okay, let's run it again and see if it works now.
+04:20 Okay, it looks like it worked.
+04:23 So let's look at the test here really quickly.
+04:26 It's just creating an instance of Mario and calling the speed method on Mario.
+04:30 It's asserting that character is in the __bases__ attribute of the Mario class.
+04:35 So when you create a class there's a __bases__ attribute the list the base classes.
+04:40 It's asserting that the speed is the correct value
+04:43 and then it's making a little function here called speed that looks like a method
+04:48 and it's monkey patching that m for speed
+04:51 to make the base be return 5 instead of the base speed of 2
+04:57 and then it's calling Mario again to see that Mario speed now returns 7, 2 more than that 5
+05:03 and Luigi speed returns 1 more than that 5.
+05:06
+05:12 Okay, hopefully you understand a little bit more
+05:14 about the super method or super function built-in in Python
+05:18 when you're in a method and you want to call a parent method
+05:21 rather than explicitly saying, in this case rather than saying character.speed,
+05:25 we say super, that allows us to get access to character.
+05:29 but if we change this or refactor it later where character is no longer the base class
+05:33 super will do the right thing.

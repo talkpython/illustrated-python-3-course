@@ -1,0 +1,33 @@
+00:00 Pep 465 introduced what's called the matrix multiplication operator
+00:05 this came out in Python 3.5,
+00:07 from the pep we read: in numerical code there are two important operations,
+00:12 which compete for use of Python's asterisk operator
+00:15 element wise multiplication and matrix multiplication.
+00:19 Here's an example of doing matrix multiplication.
+00:23 If you're familiar with linear algebra, this is a common operation.
+00:26 Here I'm importing the numpy library and I'm creating 2 arrays
+00:30 and then I'm looping over the pairs of elements and multiplying them together
+00:35 and summing the result.
+00:37 This is doing what's called matrix multiplication.
+00:40 It gives me in this case 285 as the result.
+00:43 This pep introduced an operation to do that
+00:45 and we can use the @ sign around the two arrays
+00:49 and that also gives us the same result 285.
+00:52 Note that this is different than multiplication,
+00:55 if we simply multiply the array in numpy
+00:58 this is going to do what is called element wise multiplication
+01:01 and in that case, it will multiply every element in the array by 10,
+01:05 it won't do multiplication of the whole element by 10 per se.
+01:11 If you want to have a class that implements matrix multiplication
+01:15 you just need to implement the __matmul__ operator.
+01:20 Again, in Python, everything is an object and there are various protocols
+01:24 and if we follow certain protocols, we can take advantage of certain behavior.
+01:27 In this case, if we want to be able to use the @ sign
+01:31 we can Implement __matmul__.
+01:33 This case is pretty dumb example
+01:35 it simply ignores the other that's passed in there and returns 42,
+01:40 but you could do something more smart if you want to.
+01:42 If you're not familiar with dunder methods
+01:45 what's happening is self here would be a and b would come in as other
+01:51 and so inside of that method there, you could do whatever you wanted to
+01:55 with them and you could Implement that operation.

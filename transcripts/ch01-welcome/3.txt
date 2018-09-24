@@ -1,0 +1,65 @@
+00:01 In this screencast, we're going to look at how to install Python 3 on Windows 10.
+00:05 Typically, when I use Python in Windows,
+00:07 I like to make sure that I understand how to use the prompt.
+00:10 So in order to launch the prompt you're going to go down
+00:12 to the bottom of your taskbar
+00:15 and where it says type here to search you can just type CMD
+00:17 and then we'll pull up command prompt and you can run that.
+00:21 Now, you'll note here that when I type Python
+00:23 it currently says the Python is not installed, so we want to remedy that.
+00:27 Let's go to the Python website and download Python 3.
+00:31 We're at the Python website and you can see if you scroll down a little bit
+00:35 that there is a download link.
+00:38 We're going to click Python 3.6.4 which is the current version
+00:41 at the time of this recording, you'll want to use
+00:44 whatever Python 3 version is listed there below.
+00:48 Inside of here, you'll see a bunch of things listing peps and whatnot
+00:53 and you can scroll down and we'll get the files here at the bottom.
+00:58 And typically, you'll probably want to either install
+01:00 a Windows 64-bit or Windows 32-bit, I am going to do a window 64-bit.
+01:06 That should work on most modern machines.
+01:09 There's a couple of different versions here.
+01:11 There's what they call an embeddable zip file.
+01:13 There's an executable installer and there's a web-based installer.
+01:16 I'm going to download the executable installer.
+01:19 So just click on that and download it.
+01:21 This will download for a minute.
+01:24 After that's downloaded, you'll see that there's a file here
+01:26 called Python 3.6.4 AMD we'll just double click on that
+01:29 and that should install Python for us.
+01:32 Now, this is where you want to be careful.
+01:34 You'll see that there are various ways to install it
+01:36 and one thing that you need to make sure is
+01:38 that you click this add python 3.6 to path.
+01:41 If you don't click that, when I type Python at the command prompt, it won't find it.
+01:45 So I'm going to click that.
+01:47 I'm also going to choose customized installation
+01:49 note that the normal installation is going to put it in this
+01:51 C:\Users\matt\AppData\Local\Pograms\Python\Python36 directory
+01:55 and I'm just going to say customize and I'm going to install for all users.
+02:00 So it will put it in the C:\Program Files\Python36
+02:06 it's going to ask if I want to install it, I'll say yes,
+02:12 it will think for a little bit and install Python.
+02:16 Okay, it looks like it's installed. I'm just going to close this.
+02:21 Let's go back to our prompt here.
+02:26 Remember type CMD down there and let's type Python.
+02:29 You can see that after I type Python it's now put me in the Python interpreter
+02:33 where I can execute Python code,
+02:35 to get out of this, I type quit and that will put me back into the prompt. 02:39 Note that I can also do things such as type python -m idlelib.idle
+02:45 and it will launch idle, this is a Python editor that comes with Python.
+02:51 Note that a couple other things that it will do
+02:54 is that if you scroll down here you'll see that there is a Python directory here
+03:00 and you can click on this idle here to launch idle,
+03:04 which will launch idle that way,
+03:07 alternatively you can launch Python by clicking this as well.
+03:13 This will open a command prompt with Python,
+03:16 but I really prefer just to go down here and type CMD to launch Python here
+03:22 and note that we'll talk about virtual environments.
+03:26 When I launch Idle from the launcher here, we're using the system idle
+03:30 and when we start using virtual environments
+03:33 we'll probably want to launch idle
+03:35 or other programs from our virtual environment.
+03:37 So rather than launch it from there,
+03:40 I prefer using this Python -m idlelib.idle to launch idle.
+03:46 Great, hopefully after you've done this
+03:48 you've been able to get Python on your Windows 10 machine working.

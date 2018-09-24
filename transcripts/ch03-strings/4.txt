@@ -1,0 +1,24 @@
+00:01 This video will talk about Unicode identifiers.
+00:03 These came out in Python 3, and pep 3131 introduced them.
+00:08 The pep states: by using identifiers in their native language
+00:12 code clarity and maintainability of the code
+00:14 among speakers of that language improves.
+00:17 What does this mean? It means that I can use a unicode character
+00:20 such as Ω I can say the Ω_val=10
+00:25 if I'm talking about resistance or whatnot
+00:27 and then I can ask for that variable and Python 3 will give that to me.
+00:31 Note that Python 2 does not like this and this won't work in Python 2.
+00:36 Still have some issues, you can't start a variable with a number
+00:40 so I can't say to 2Ω_val, I'll get a syntax error there.
+00:44 That's basically all I have to say about unicode variables.
+00:47 I personally haven't seen them that often.
+00:49 I'm in the United States and I mostly deal in an ASCII centric world.
+00:54 One other thing that the pep notes
+00:56 is that the Python language isn't going to use unicode variables either.
+00:59 So even though the language supports it
+01:01 and an effort to make things simpler and easier for everyone to type and understand
+01:05 it's just going to stick with ASCII variables.
+01:09 So I personally haven't seen anyone using this feature, though it's out there.
+01:13 So if you've got a cool example, I'd love to see it.
+01:16 Hit me up on Twitter or whatnot and let me know
+01:18 of a useful example where this is being used.

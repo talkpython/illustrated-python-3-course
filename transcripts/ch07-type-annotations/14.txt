@@ -1,0 +1,61 @@
+00:01 In this video, we're going to look at annotate3rd_test.py.
+00:04 So the first thing it says is it says copy py3code.pyORIG to py3mt.py and py3pa.py.
+00:14
+00:17 So here, I've got my directory with my files in it
+00:19 and it says copy py3code.pyORIG to py3mt.py and py3pa.py.
+00:31 Okay, install monkeytype.
+00:34 I'm in my virtual environment, so I just need to say
+00:37 pip install monkeytype here and that should get it.
+00:41 Okay, it looks like it worked.
+00:45 Create a function test_mt that exercises py3mt.py in runmt.py.
+00:53 I need to make a runmt.py, I'm going to say touch runmt.py,
+00:58 run monkeytype.py here and we'll split my view here.
+01:06
+01:09 Okay, so we need to say create a function test_mt,
+01:15 and it needs to have this code here in it.
+01:21
+01:27 So let's plop this code in it.
+01:31 Okay, and it needs to say we need to import this code.
+01:34 So we're going to say from py3.mt import force and quad and Mario.
+01:47 Okay, and let's run test_mt at the bottom here.
+01:53 Okay, and it says create a stub for py3mt.py in py3mt.pyi,
+02:02 so we're going to have to use monkeytype to create a stub here.
+02:09
+02:11 So the first thing we need to do is run a Python script under monkeytype tracing.
+02:16 So we're going to say monkeytype run
+02:21 and let's run this guy that we just created here, which is called run_mt,
+02:26
+02:29 I got a syntax error, I better fix that syntax error here.
+02:32 Okay, I have now run it and let's see if we can generate a stub here.
+02:41 So let's say stub -h and see what the options are for stub.
+02:45 It says generate a stub and a module path and our module is going to be run in py3mt,
+02:54 so stub py3mt, and this is the stub right here
+03:01 so I can pipe this into py3mt.pyi and there is my little stub.
+03:09 You'll notice what it did, it imported the tuple class from the typing module,
+03:14 and for force, it said that that returns a float
+03:17 and it said the quad returns a tuple of float float,
+03:20 character speed returns an int and Mario speed returns an int.
+03:26 So it didn't type all of the guys, but just a few of them, but that's pretty nice.
+03:31 But note that it did this not by inspection of the code, but by running the code,
+03:37 so if you'll remember in our runmt, we are calling force,
+03:43 we're calling quad and we're calling Mario speed,
+03:46 we're not calling the other methods of Mario.
+03:49 And so that's how it determined what those types are.
+03:52
+03:55 So the next thing it says to do is run mypy against py3mt.py
+03:58 so let's try and run mypy against py3mt.py, we don't get any errors.
+04:08
+04:17 And if we call it with strict then we're going to get a few errors here.
+04:24 Note that if we call strict on pyi, we're going to get on line 4 and line 7
+04:31 it says it's missing a function.
+04:33 So let's just look at line 4 and line 7 and see if we can divine what's going on there.
+04:40 Okay, line 4 it says it's missing some type information here,
+04:44 so that's probably because we don't have float for mass or float for acceleration.
+04:52
+04:57 Okay, and probably same thing on line 7 here,
+04:59 we don't have type information there either
+05:02 so interestingly enough, monkeytype only gave us the return types,
+05:07 it did not give us the input types.
+05:09 This video showed how to use monkeytype to create a stub file
+05:14 and do some type checking by running some code and creating that stub file,
+05:19 we'll show how to use pyannotate in another video.
