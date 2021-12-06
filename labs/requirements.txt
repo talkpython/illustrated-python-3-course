@@ -1,9 +1,3 @@
 pytest
 pytest_asyncio
 
-# If you want to use Jupyter or Jupyter Lab as Matt did in the
-# course, uncomment these. But when using PyCharm or VS Code
-# These two are unnecessary.
-#
-# jupyter
-# jupyterlab
