@@ -1,4 +1,3 @@
-
 def test_unpack():
     # Unpacking
     #
@@ -22,8 +21,10 @@ def test_unpack():
     # list called ``letters``
     # ***********************************
 
-    assert letters == ['C', 'a', 'n', 'd', 'i', 'd', 'e'] 
+    assert letters == ['C', 'a', 'n', 'd', 'i', 'd', 'e']
+
 
 if __name__ == '__main__':
     import pytest
+
     pytest.main([__file__])

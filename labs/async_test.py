@@ -1,11 +1,11 @@
 import dis
 import pytest
 
+
 def test_async_import():
     # use pip to install pytest-asyncio
     # ************************************
     import pytest_asyncio
-
 
 
 @pytest.mark.asyncio
@@ -30,12 +30,13 @@ async def test_async():
     # ************************************
 
     res3 = await avg([add2(1, 3),
-                     add2(1, 4),
-                     add2(1, 6),
-                     ], 2)
+                      add2(1, 4),
+                      add2(1, 6),
+                      ], 2)
     assert res3 == 4.5
 
 
 if __name__ == '__main__':
     import pytest
+
     pytest.main([__file__])

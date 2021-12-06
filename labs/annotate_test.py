@@ -1,5 +1,6 @@
 from pathlib import Path
 
+
 def test_ann():
     """
     0. Make a copy of py3code.py to py3code.pyORIG
@@ -20,6 +21,8 @@ def test_ann():
     p = Path('py3code.pyORIG')
     assert p.exists()
 
+
 if __name__ == '__main__':
     import pytest
+
     pytest.main([__file__])

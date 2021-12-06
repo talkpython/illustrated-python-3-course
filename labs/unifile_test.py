@@ -1,5 +1,3 @@
-
-
 def test_bytes1():
     # Write a function, ``put_bytes``, that
     # takes a filename and bytes and
@@ -48,4 +46,5 @@ def test_encoding(tmpdir):
 
 if __name__ == '__main__':
     import pytest
+
     pytest.main([__file__])

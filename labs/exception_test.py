@@ -1,5 +1,6 @@
 import pytest
 
+
 def test_exception():
     # Define a customized Exception,
     # ``ColorError``, that subclasses
@@ -20,24 +21,23 @@ def test_exception():
     # error with ``ColorError``.
     # ***************************************
 
-    assert err_wrap(lambda x, y: x+y, 2, 3) == 5
+    assert err_wrap(lambda x, y: x + y, 2, 3) == 5
 
     with pytest.raises(ColorError) as ctx:
-        err_wrap(lambda x, y: x/y, 2, 0)
+        err_wrap(lambda x, y: x / y, 2, 0)
     assert isinstance(ctx.value.__context__,
                       ZeroDivisionError)
-    
+
     with pytest.raises(ColorError) as ctx:
         def raise2():
             raise KeyError
+
         err_wrap(raise2)
     assert isinstance(ctx.value.__context__,
                       KeyError)
-    
-        
-    
 
-        
+
 if __name__ == '__main__':
     import pytest
+
     pytest.main([__file__])

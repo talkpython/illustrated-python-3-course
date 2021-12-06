@@ -23,6 +23,8 @@ async def test_async():
     # ************************************
 
     class CloseMe:
+        closed = False
+
         def close(self):
             self.closed = True
 
@@ -34,4 +36,5 @@ async def test_async():
 
 if __name__ == '__main__':
     import pytest
+
     pytest.main([__file__])

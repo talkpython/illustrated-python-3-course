@@ -14,7 +14,6 @@ def test_unpack():
                   'BCH': 1_439,
                   'ETH': 993}
 
-
     assert new_value == {'BCH': 1650, 'BTC': 11157, 'ETH': 1055}
 
     # Create a set of the keys from
@@ -22,9 +21,7 @@ def test_unpack():
     # result in ``coins``
     # ***********************************
 
-
-    assert coins == {'BCH', 'BTC', 'ETH'} 
-
+    assert coins == {'BCH', 'BTC', 'ETH'}
 
     # Create a list of the keys from new_value
     # and the other_coins tuple. Put the result
@@ -32,12 +29,11 @@ def test_unpack():
     # ***********************************
     other_coins = 'DOGE', 'XRP', 'LTC'
 
-
     assert isinstance(all_coins, list)
-    assert sorted(all_coins) == ['BCH', 'BTC', 'DOGE', 'ETH', 'LTC', 'XRP'] 
+    assert sorted(all_coins) == ['BCH', 'BTC', 'DOGE', 'ETH', 'LTC', 'XRP']
 
 
 if __name__ == '__main__':
     import pytest
-    pytest.main([__file__])
 
+    pytest.main([__file__])

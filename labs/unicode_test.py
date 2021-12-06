@@ -34,7 +34,8 @@ def test_3():
 
     assert len(result) == 22
 
-    
+
 if __name__ == '__main__':
     import pytest
+
     pytest.main([__file__])

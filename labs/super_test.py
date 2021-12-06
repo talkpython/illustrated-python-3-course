@@ -1,5 +1,3 @@
-
-
 def test_mario():
     """
    ======= ====== ====== ===== =====================
@@ -22,14 +20,15 @@ def test_mario():
     # Put this function in a module called py3code.py
     # ***********************************
 
-
     from py3code import Character, Luigi, Mario
     m = Mario()
     sp = m.speed()
     assert Character in Mario.__bases__
     assert sp == 4
+
     def speed(self):
         return 5
+
     Character.speed = speed
     assert m.speed() == 7
     assert Luigi().speed() == 6
@@ -37,4 +36,5 @@ def test_mario():
 
 if __name__ == '__main__':
     import pytest
+
     pytest.main([__file__])

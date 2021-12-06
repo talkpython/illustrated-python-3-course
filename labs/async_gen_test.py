@@ -3,7 +3,6 @@ import time
 import pytest
 
 
-
 @pytest.mark.asyncio
 async def test_async():
     # Write an asynchronous generator, ``countdown``,
@@ -29,7 +28,7 @@ async def test_async():
         val = await co.__anext__()
 
 
-
 if __name__ == '__main__':
     import pytest
+
     pytest.main([__file__])

@@ -1,5 +1,6 @@
 from pathlib import Path
 
+
 def test_ann3rd():
     """
     0. Copy py3code.pyORIG to py3mt.py and py3pa.py
@@ -26,7 +27,8 @@ def test_ann3rd():
     p = Path('py3code.type_info.json')
     assert p.exists()
 
-    
+
 if __name__ == '__main__':
     import pytest
+
     pytest.main([__file__])

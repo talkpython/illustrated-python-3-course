@@ -1,4 +1,3 @@
-
 def test_fstring():
     # Assuming the variables ``stock`` and ``price``
     # exist, make a variable ``res`` that
@@ -8,7 +7,6 @@ def test_fstring():
     # ***********************************
     stock = 'APPL'
     price = 171.98
-
 
     assert res == 'Stock: APPL Price: 171.98'
 
@@ -26,4 +24,5 @@ def test_fstring():
 
 if __name__ == '__main__':
     import pytest
+
     pytest.main([__file__])

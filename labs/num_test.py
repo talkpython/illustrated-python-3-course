@@ -14,14 +14,13 @@ def test_nums():
 
     assert per[::-1] == '%9.6'
 
-
     # I have (2^64)-1 satoshis. Can I divide them
     # wholly by 3?
     # How many would each person get? Store the
     # result in ``coins``.
     # ***********************************
-    satoshis = (2**64) - 1
-    
+    satoshis = (2 ** 64) - 1
+
     assert coins * 3 == satoshis
 
     # The US population is around 326,979,681.
@@ -29,9 +28,8 @@ def test_nums():
     # citizen get? Store the result in ``us_coins``
     # (Use _ to make population easier to read)
     # ***********************************
-    
+
     assert us_coins == 56_415_566_916
-    
 
     # I have .5 pumpkin pies and 1.5 apple pies.
     # I want to use Python to round the number
@@ -40,9 +38,9 @@ def test_nums():
     # ***********************************
 
     assert pumpkin + apple == 2
-    
 
 
 if __name__ == '__main__':
     import pytest
+
     pytest.main([__file__])

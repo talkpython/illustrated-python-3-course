@@ -1,6 +1,5 @@
 import pytest
 
-
 RED = 1
 BLUE = 2
 GREEN = 3
@@ -38,11 +37,12 @@ def test_enum():
     # as the different members. Call the
     # ``Enum`` class to create it
     # ***************************************
- 
-    assert {x.name for x in Pet} == \
-        {'cat', 'dog', 'fish'} 
 
-        
+    assert {x.name for x in Pet} == \
+           {'cat', 'dog', 'fish'}
+
+
 if __name__ == '__main__':
     import pytest
+
     pytest.main([__file__])

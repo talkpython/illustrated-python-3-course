@@ -3,7 +3,6 @@ import time
 import pytest
 
 
-
 @pytest.mark.asyncio
 async def test_async():
     # Write an asynchronous iterator, ``Countdown``,
@@ -14,7 +13,7 @@ async def test_async():
     # seconds before returning the next value.
     # ************************************
     co = Countdown(2, 1)
-    #aiter = await co.__aiter__()
+    # aiter = await co.__aiter__()
     aiter = co.__aiter__()
     now = time.time()
     val = await co.__anext__()
@@ -30,7 +29,7 @@ async def test_async():
         val = await co.__anext__()
 
 
-
 if __name__ == '__main__':
     import pytest
+
     pytest.main([__file__])

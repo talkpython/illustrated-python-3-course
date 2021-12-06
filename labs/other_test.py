@@ -32,7 +32,6 @@ def test_other():
     # ***********************************
     nums = [42, -1, '24', 99.9]
 
-
     assert ordered == [-1, '24', 42, 99.9]
 
     # Name leakage
@@ -46,10 +45,9 @@ def test_other():
     assert sq_sum == 12142
     assert x == 38
     assert num == 42
-    
 
 
 if __name__ == '__main__':
     import pytest
-    pytest.main([__file__])
 
+    pytest.main([__file__])
