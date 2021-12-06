@@ -8,7 +8,13 @@ def test_other():
 
     vals = range(42, 2_000_000, 32)
 
+    # Note: This assertion is for the **100th** element
+    # In the video there is a small error using index 100
+    # which is actually the 101st value.
+    # See https://github.com/talkpython/illustrated-python-3-course/pull/3 for details
+    #
     assert hex(hun) == '0xc8a'
+
     def fn(x):
         return x + 10
 
