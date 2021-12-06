@@ -1,10 +1,13 @@
+import asyncio
 import dis
+
 import pytest
 
 
 def test_async_import():
     # use pip to install pytest-asyncio
     # ************************************
+    # noinspection PyUnresolvedReferences
     import pytest_asyncio
 
 
