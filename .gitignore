@@ -99,3 +99,11 @@ ENV/
 
 # mypy
 .mypy_cache/
+labs/.idea/.gitignore
+labs/.idea/.name
+labs/.idea/Illustrated Python Demo Code.iml
+labs/.idea/misc.xml
+labs/.idea/modules.xml
+labs/.idea/vcs.xml
+labs/.idea/inspectionProfiles/profiles_settings.xml
+labs/.idea/inspectionProfiles/Project_Default.xml
